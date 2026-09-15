@@ -351,6 +351,114 @@ const playbook = [
       return { p1, p2, p3, p4, p5, ball };
     }
   }
+{
+    slug: 'trap-drill',
+    category: 'Defense / Press',
+    title: '1-2-1-1 Full-Court Sideline Trap Drill',
+    description: 'Force the ball handler toward the sideline, snap a high-wall 2-man trap at the hash, jump passing lanes, and protect the rim.',
+    options: [
+      { id: 'A', label: 'Option A: Sideline Trap (Intercept Skip)' },
+      { id: 'B', label: 'Option B: Sideline Trap (Deflect Up-Line)' }
+    ],
+    legend: [
+      { num: '1', color: '#2563eb', desc: 'Point (On-Ball): Steers ball handler to sideline' },
+      { num: '2', color: '#059669', desc: 'Trap Guard: Springs trap with #1 at sideline' },
+      { num: '3', color: '#d97706', desc: 'Weak Guard: Shifts to center circle (reads skip)' },
+      { num: '4', color: '#7c3aed', desc: 'Mid Interceptor: Jumps the up-line pass' },
+      { num: '5', color: '#dc2626', desc: 'Goalie: Deep rim protection / back line' }
+    ],
+    getPositions: function(t, option) {
+      let p1, p2, p3, p4, p5, ball;
+
+      // Defense attacks left-to-right (Basket at X:50 is defense's basket, X:890 is opponent basket)
+      // Play starts with the opponent inbounding near left baseline (X: 60, Y: 250)
+      // Opponent dribbles toward the bottom sideline (Right side of defense)
+
+      // #1 (Point Defender / The Steerer)
+      if (t < 0.2) {
+        // Angles body to force ball-handler toward bottom sideline
+        let sub = t / 0.2;
+        p1 = { x: 120 + sub * 40, y: 250 + sub * 50 };
+      } else if (t < 0.6) {
+        // Runs hip-to-hip with ball handler, forcing into the sideline trap zone
+        let sub = (t - 0.2) / 0.4;
+        p1 = { x: 160 + sub * (320 - 160), y: 300 + sub * (430 - 300) };
+      } else {
+        // Locks into 2-man trap at bottom sideline/hash mark
+        p1 = { x: 320, y: 430 };
+      }
+
+      // #2 (Ball-Side Trap Guard - Bottom Wing)
+      if (t < 0.3) {
+        // Holds ground at quarter court waiting for commitment
+        p2 = { x: 260, y: 400 };
+      } else if (t < 0.6) {
+        // Springs the trap forward to cut off the sideline dribble
+        let sub = (t - 0.3) / 0.3;
+        p2 = { x: 260 + sub * (350 - 260), y: 400 + sub * (430 - 400) };
+      } else {
+        // Clamps the sideline high wall with #1
+        p2 = { x: 350, y: 430 };
+      }
+
+      // #3 (Weak-Side Guard - Top Wing)
+      if (t < 0.3) {
+        p3 = { x: 260, y: 100 };
+      } else if (t < 0.7) {
+        // Slides from weak-side top into center circle to deny cross-court skip
+        let sub = (t - 0.3) / 0.4;
+        p3 = { x: 260 + sub * (430 - 260), y: 100 + sub * (250 - 100) };
+      } else {
+        p3 = { x: 430, y: 250 };
+      }
+
+      // #4 (Mid Interceptor)
+      if (t < 0.35) {
+        p4 = { x: 460, y: 320 };
+      } else if (t < 0.7) {
+        // Steps up into the passing lane along the bottom sideline
+        let sub = (t - 0.35) / 0.35;
+        p4 = { x: 460 + sub * (490 - 460), y: 320 + sub * (390 - 320) };
+      } else {
+        p4 = { x: 490, y: 390 };
+      }
+
+      // #5 (Goalie / Deep Rim Protector)
+      if (t < 0.4) {
+        p5 = { x: 700, y: 250 };
+      } else {
+        // Sags slightly toward ball-side block while keeping rim behind
+        let sub = (t - 0.4) / 0.6;
+        p5 = { x: 700 + sub * 20, y: 250 + sub * 40 };
+      }
+
+      // Ball Trajectory (Opponent dribbling into trap, then desperate pass intercepted)
+      if (t < 0.15) {
+        // Inbound pass to opponent ball handler
+        let sub = t / 0.15;
+        ball = { x: 50 + sub * 80, y: 250 + sub * 40 };
+      } else if (t < 0.6) {
+        // Opponent dribbling down bottom sideline
+        let sub = (t - 0.15) / 0.45;
+        ball = { x: 130 + sub * (335 - 130), y: 290 + sub * (440 - 290) };
+      } else if (t < 0.8) {
+        // Trapped at (X: 335, Y: 440) - trying to pivot
+        ball = { x: 335, y: 440 };
+      } else {
+        // Desperate pass out of trap
+        let sub = (t - 0.8) / 0.2;
+        if (option === 'A') {
+          // Option A: Desperate cross-court skip pass intercepted by #3 in center circle
+          ball = { x: 335 + sub * (p3.x - 335), y: 440 + sub * (p3.y - 440) };
+        } else {
+          // Option B: Up-line pass along sideline intercepted by #4
+          ball = { x: 335 + sub * (p4.x - 335), y: 440 + sub * (p4.y - 440) };
+        }
+      }
+
+      return { p1, p2, p3, p4, p5, ball };
+    }
+  }
 ];
 
 // ==========================================
