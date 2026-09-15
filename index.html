@@ -434,108 +434,110 @@ const playbook = [
     slug: 'box-blob',
     category: 'Inbounds / BLOB',
     title: 'Box Baseline Inbounds (vs Defenders)',
-    description: 'Four defenders in man coverage. #1 down-screens to pin #4\'s defender, while #4 cross-screens to wall off #5\'s defender for a clean layup.',
+    description: 'Disciplined staggered timing: #4 waits for #1 to plant the down-screen, then cuts across to pin #5\'s defender so #5 can scrape off clean to the rim.',
     options: [
       { id: 'A', label: 'Option A: Cross-Cut Layup (#5)' },
       { id: 'B', label: 'Option B: Safety Pop (#1)' }
     ],
     legend: [
-      { num: '3', color: '#d97706', desc: 'Inbounder: Baseline passer' },
-      { num: '1', color: '#2563eb', desc: 'Ball-Side Elbow: Down-screener / Safety pop' },
-      { num: '4', color: '#7c3aed', desc: 'Ball-Side Block: Cross-screener for #5' },
-      { num: '2', color: '#059669', desc: 'Weak-Side Elbow: Corner flare' },
-      { num: '5', color: '#dc2626', desc: 'Weak-Side Block: Cuts off screen to rim' },
+      { num: '3', color: '#d97706', desc: 'Inbounder: Slaps ball, delivers pass' },
+      { num: '1', color: '#2563eb', desc: 'Ball Elbow: Down-screens, then pops out' },
+      { num: '4', color: '#7c3aed', desc: 'Ball Block: Waits for 1, cross-screens 5' },
+      { num: '2', color: '#059669', desc: 'Weak Elbow: Corner flare / decoy' },
+      { num: '5', color: '#dc2626', desc: 'Weak Block: Jabs, waits for screen, cuts to rim' },
       { num: 'D', color: '#64748b', desc: 'Defenders (Man-to-Man coverage)' }
     ],
     getPositions: function(t, option) {
       let p1, p2, p3, p4, p5, ball;
       let d_inbound, d_block1, d_block2, d_elbow1, d_elbow2;
 
-      // Inbounder #3 on baseline (starts at X: 928, Y: 330)
-      if (t < 0.8) {
+      // Inbounder (#3)
+      if (t < 0.85) {
         p3 = { x: 928, y: 330 };
       } else {
-        let sub = (t - 0.8) / 0.2;
+        let sub = (t - 0.85) / 0.15;
         p3 = { x: 928 - sub * 48, y: 330 + sub * 20 };
       }
 
-      // Inbound Defender (D): jumps in front of inbounder
+      // Inbound Defender
       d_inbound = { x: 905, y: 330 };
 
-      // #1 (Ball-Side Elbow - Down Screener)
+      // #1 (Ball Elbow - Down Screener, then Perimeter Pop)
       if (t < 0.2) {
         p1 = { x: 730, y: 330 };
-      } else if (t < 0.5) {
-        let sub = (t - 0.2) / 0.3;
-        // Sprints down to plant solid down-screen on D_block1
-        p1 = { x: 730 + sub * (835 - 730), y: 330 };
-      } else if (t < 0.8) {
-        let sub = (t - 0.5) / 0.3;
-        // Pops out to the 3-point line / safety
-        p1 = { x: 835 - sub * (835 - 660), y: 330 - sub * (330 - 250) };
+      } else if (t < 0.4) {
+        let sub = (t - 0.2) / 0.2;
+        p1 = { x: 730 + sub * (830 - 730), y: 330 };
+      } else if (t < 0.55) {
+        p1 = { x: 830, y: 330 };
+      } else if (t < 0.85) {
+        let sub = (t - 0.55) / 0.3;
+        p1 = { x: 830 - sub * (830 - 660), y: 330 - sub * (330 - 250) };
       } else {
         p1 = { x: 660, y: 250 };
       }
 
       // D_elbow1 (Defender on #1)
       if (t < 0.2) {
-        d_elbow1 = { x: 745, y: 320 };
-      } else if (t < 0.5) {
-        let sub = (t - 0.2) / 0.3;
-        // Follows #1 down
-        d_elbow1 = { x: 745 + sub * 80, y: 320 };
-      } else if (t < 0.8) {
-        let sub = (t - 0.5) / 0.3;
-        // Recovers late toward #1 at top of key
-        d_elbow1 = { x: 825 - sub * (825 - 690), y: 320 - sub * (320 - 255) };
+        d_elbow1 = { x: 745, y: 315 };
+      } else if (t < 0.45) {
+        let sub = (t - 0.2) / 0.25;
+        d_elbow1 = { x: 745 + sub * 70, y: 315 };
+      } else if (t < 0.85) {
+        let sub = (t - 0.45) / 0.4;
+        d_elbow1 = { x: 815 - sub * (815 - 690), y: 315 - sub * (315 - 255) };
       } else {
         d_elbow1 = { x: 690, y: 255 };
       }
 
-      // #4 (Ball-Side Block - Cross Screener)
-      if (t < 0.3) {
+      // #4 (Ball Block: WAITS for #1's screen, then cuts to cross-screen)
+      if (t < 0.42) {
         p4 = { x: 870, y: 330 };
-      } else if (t < 0.6) {
-        let sub = (t - 0.3) / 0.3;
-        // Comes off down-screen to set cross-screen on D_block2
-        p4 = { x: 870, y: 330 - sub * (330 - 205) };
+      } else if (t < 0.65) {
+        let sub = (t - 0.42) / 0.23;
+        p4 = { x: 870, y: 330 - sub * (330 - 195) };
       } else {
-        p4 = { x: 870, y: 205 };
+        p4 = { x: 870, y: 195 };
       }
 
-      // D_block1 (Defender on #4 - gets trapped/delayed by #1's down screen)
-      if (t < 0.3) {
-        d_block1 = { x: 855, y: 330 };
-      } else if (t < 0.6) {
-        // Pinned by #1's screen! Cannot chase #4
-        d_block1 = { x: 850, y: 325 };
+      // D_block1 (Defender on #4: pinned by #1)
+      if (t < 0.4) {
+        d_block1 = { x: 850, y: 330 };
+      } else if (t < 0.65) {
+        d_block1 = { x: 848, y: 325 };
       } else {
-        d_block1 = { x: 855, y: 300 };
+        let sub = (t - 0.65) / 0.35;
+        d_block1 = { x: 848 + sub * 10, y: 325 - sub * 40 };
       }
 
-      // #5 (Weak-Side Block - Cutter to Rim)
-      if (t < 0.45) {
+      // #5 (Weak Block: Jabs baseline, WAITS for #4, cuts to rim)
+      if (t < 0.4) {
         p5 = { x: 870, y: 170 };
-      } else if (t < 0.75) {
-        let sub = (t - 0.45) / 0.3;
-        // Cuts tight off #4's cross screen straight to the rim
-        p5 = { x: 870, y: 170 + sub * (260 - 170) };
+      } else if (t < 0.55) {
+        let sub = (t - 0.4) / 0.15;
+        p5 = { x: 870 + sub * 10, y: 170 - sub * 15 };
+      } else if (t < 0.65) {
+        p5 = { x: 880, y: 155 };
+      } else if (t < 0.85) {
+        let sub = (t - 0.65) / 0.2;
+        p5 = { x: 880 - sub * (880 - 865), y: 155 + sub * (260 - 155) };
       } else {
-        p5 = { x: 870, y: 260 };
+        p5 = { x: 865, y: 260 };
       }
 
-      // D_block2 (Defender on #5 - gets walled off by #4's cross screen)
-      if (t < 0.45) {
-        d_block2 = { x: 855, y: 175 };
-      } else if (t < 0.75) {
-        // Runs right into #4's chest, walled off from following #5 to the rim!
-        d_block2 = { x: 865, y: 195 };
+      // D_block2 (Defender on #5: walled off by #4)
+      if (t < 0.4) {
+        d_block2 = { x: 855, y: 170 };
+      } else if (t < 0.55) {
+        let sub = (t - 0.4) / 0.15;
+        d_block2 = { x: 855 + sub * 15, y: 170 - sub * 10 };
+      } else if (t < 0.8) {
+        d_block2 = { x: 865, y: 185 };
       } else {
-        // Trailing hopelessly behind
-        d_block2 = { x: 865, y: 205 };
+        d_block2 = { x: 865, y: 190 };
       }
 
-      // #2 (Weak-Side Elbow - Corner Flare)
+      // #2 (Weak Elbow - Flares to corner)
       if (t < 0.35) {
         p2 = { x: 730, y: 170 };
       } else if (t < 0.7) {
@@ -556,15 +558,13 @@ const playbook = [
       }
 
       // Ball Trajectory
-      if (t < 0.7) {
+      if (t < 0.8) {
         ball = { x: p3.x - 6, y: p3.y };
       } else {
-        let sub = (t - 0.7) / 0.3;
+        let sub = (t - 0.8) / 0.2;
         if (option === 'A') {
-          // Bounce pass to #5 wide open right at the rim
           ball = { x: 928 - sub * (928 - p5.x), y: 330 - sub * (330 - p5.y) };
         } else {
-          // Safety chest pass to #1 popping out to perimeter
           ball = { x: 928 - sub * (928 - p1.x), y: 330 - sub * (330 - p1.y) };
         }
       }
@@ -737,15 +737,13 @@ function renderFrame() {
   const pos = currentPlay.getPositions(progress, activeOption);
 
   if (currentPlay.slug === 'box-blob') {
-    // 5 Defenders in Man-to-Man (D)
     drawPlayer(pos.d_inbound.x, pos.d_inbound.y, 'D', '#64748b');
     drawPlayer(pos.d_block1.x, pos.d_block1.y, 'D', '#64748b');
     drawPlayer(pos.d_block2.x, pos.d_block2.y, 'D', '#64748b');
     drawPlayer(pos.d_elbow1.x, pos.d_elbow1.y, 'D', '#64748b');
     drawPlayer(pos.d_elbow2.x, pos.d_elbow2.y, 'D', '#64748b');
 
-    // 5 Offensive Players
-    drawPlayer(pos.p3.x, pos.p3.y, '3', '#d97706'); // Inbounder
+    drawPlayer(pos.p3.x, pos.p3.y, '3', '#d97706');
     drawPlayer(pos.p1.x, pos.p1.y, '1', '#2563eb');
     drawPlayer(pos.p4.x, pos.p4.y, '4', '#7c3aed');
     drawPlayer(pos.p2.x, pos.p2.y, '2', '#059669');
@@ -771,12 +769,13 @@ function renderFrame() {
 
   const phaseLabel = document.getElementById('phaseText');
   if (currentPlay.slug === 'box-blob') {
-    if (progress < 0.3) phaseLabel.textContent = 'Phase 1: Box Setup in Man Defense & Ball Slap';
-    else if (progress < 0.55) phaseLabel.textContent = 'Phase 2: #1 Down-Screens D_block1; #4 Cross-Screens D_block2';
-    else if (progress < 0.75) phaseLabel.textContent = 'Phase 3: Defender Walled Off! #5 Slips Free to Rim; #1 Pops';
+    if (progress < 0.2) phaseLabel.textContent = 'Phase 1: Box Setup (#4 & #5 Freeze, Ball Slap)';
+    else if (progress < 0.42) phaseLabel.textContent = 'Phase 2: #1 Down-Screens D_block1; #4 Waits for Contact';
+    else if (progress < 0.65) phaseLabel.textContent = 'Phase 3: #4 Cuts Off #1; #5 Jabs & Waits for Cross-Screen';
+    else if (progress < 0.85) phaseLabel.textContent = 'Phase 4: #4 Walls Off D_block2; #5 Cuts Off Hip to Rim';
     else {
-      if (activeOption === 'A') phaseLabel.textContent = 'Phase 4: Bounce Pass to #5 for Layup';
-      else phaseLabel.textContent = 'Phase 4: Safety Pass to #1 at 3-Point Line';
+      if (activeOption === 'A') phaseLabel.textContent = 'Phase 5: Lead Bounce Pass to #5 for Layup';
+      else phaseLabel.textContent = 'Phase 5: Safety Pass to #1 Popping to Perimeter';
     }
   } else if (currentPlay.slug === 'trap-drill') {
     if (progress < 0.5) phaseLabel.textContent = 'Phase 1: Defenders Steer #1 Toward Sideline';
