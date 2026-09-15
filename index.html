@@ -197,6 +197,7 @@
     font-weight: 600;
     font-size: 0.85rem;
     cursor: pointer;
+    transition: background 0.15s ease;
   }
   button.ctrl-btn:hover { background: #475569; }
   button.option-btn.active {
@@ -215,9 +216,10 @@
   }
   .legend-item { display: flex; align-items: center; gap: 8px; }
   .badge {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 4px;
+    border-radius: 12px;
     color: #fff;
     font-weight: bold;
     display: inline-flex;
@@ -276,7 +278,7 @@
 
 <script>
 // ==========================================
-// 1. PLAY REGISTRY (Add new plays here)
+// 1. PLAY REGISTRY
 // ==========================================
 const playbook = [
   {
@@ -353,87 +355,179 @@ const playbook = [
   },
   {
     slug: 'trap-drill',
-    category: 'Defense / Press',
-    title: '1-2-1-1 Full-Court Sideline Trap Drill',
-    description: 'Force the ball handler toward the sideline, snap a high-wall 2-man trap at the hash, jump passing lanes, and protect the rim.',
+    category: 'Offense / Press Break',
+    title: '3-on-2 Press Trap & Escape Drill',
+    description: 'Two defenders (D1, D2) trap the ball handler along the sideline. Offense drills three escape options: splitting the trap, advancing up-line, or reversing cross-court.',
     options: [
-      { id: 'A', label: 'Option A: Intercept Skip' },
-      { id: 'B', label: 'Option B: Deflect Up-Line' }
+      { id: 'A', label: 'Option A: Split the Trap (Drive Through)' },
+      { id: 'B', label: 'Option B: Up-Line Release (to #2)' },
+      { id: 'C', label: 'Option C: Flash/Reversal (to #3)' }
     ],
     legend: [
-      { num: '1', color: '#2563eb', desc: 'Point: Steers ball to sideline' },
-      { num: '2', color: '#059669', desc: 'Trap Guard: Springs sideline trap' },
-      { num: '3', color: '#d97706', desc: 'Weak Guard: Shifts to center circle' },
-      { num: '4', color: '#7c3aed', desc: 'Interceptor: Jumps up-line pass' },
-      { num: '5', color: '#dc2626', desc: 'Goalie: Deep rim protection' }
+      { num: '1', color: '#2563eb', desc: 'Ball Handler: Attacked by trap' },
+      { num: '2', color: '#059669', desc: 'Up-Line Wing: Sinks down sideline' },
+      { num: '3', color: '#d97706', desc: 'Middle/Weak Wing: Flashes center' },
+      { num: 'D1', color: '#dc2626', desc: 'Defender 1: On-ball sideline channel' },
+      { num: 'D2', color: '#b91c1c', desc: 'Defender 2: Help trapper from front' }
+    ],
+    getPositions: function(t, option) {
+      let p1, p2, p3, d1, d2, ball;
+
+      // #1 Ball Handler
+      if (t < 0.5) {
+        let sub = t / 0.5;
+        p1 = { x: 220 + sub * 200, y: 350 + sub * 70 };
+      } else if (t < 0.75) {
+        p1 = { x: 420, y: 420 };
+      } else {
+        let sub = (t - 0.75) / 0.25;
+        if (option === 'A') {
+          p1 = { x: 420 + sub * 220, y: 420 - sub * 80 };
+        } else {
+          p1 = { x: 420, y: 420 };
+        }
+      }
+
+      // D1 (Defender 1)
+      if (t < 0.5) {
+        let sub = t / 0.5;
+        d1 = { x: 250 + sub * 150, y: 320 + sub * 80 };
+      } else if (t < 0.75) {
+        d1 = { x: 400, y: 400 };
+      } else {
+        d1 = option === 'A' ? { x: 405, y: 395 } : { x: 400, y: 400 };
+      }
+
+      // D2 (Defender 2)
+      if (t < 0.2) {
+        d2 = { x: 460, y: 430 };
+      } else if (t < 0.5) {
+        let sub = (t - 0.2) / 0.3;
+        d2 = { x: 460 - sub * 20, y: 430 };
+      } else if (t < 0.75) {
+        d2 = { x: 440, y: 430 };
+      } else {
+        d2 = option === 'A' ? { x: 445, y: 435 } : { x: 440, y: 430 };
+      }
+
+      // #2 Up-Line Wing
+      if (t < 0.4) {
+        p2 = { x: 620, y: 450 };
+      } else if (t < 0.75) {
+        let sub = (t - 0.4) / 0.35;
+        p2 = { x: 620 - sub * 80, y: 450 };
+      } else {
+        p2 = { x: 540, y: 450 };
+      }
+
+      // #3 Middle / Weak Wing
+      if (t < 0.35) {
+        p3 = { x: 380, y: 160 };
+      } else if (t < 0.7) {
+        let sub = (t - 0.35) / 0.35;
+        p3 = { x: 380 + sub * 60, y: 160 + sub * 100 };
+      } else {
+        p3 = { x: 440, y: 260 };
+      }
+
+      // Ball Movement
+      if (t < 0.5) {
+        ball = { x: p1.x + 8, y: p1.y + 4 };
+      } else if (t < 0.75) {
+        ball = { x: 420, y: 420 };
+      } else {
+        let sub = (t - 0.75) / 0.25;
+        if (option === 'A') {
+          ball = { x: p1.x + 8, y: p1.y + 4 };
+        } else if (option === 'B') {
+          ball = { x: 420 + sub * (p2.x - 420), y: 420 + sub * (p2.y - 420) };
+        } else {
+          ball = { x: 420 + sub * (p3.x - 420), y: 420 + sub * (p3.y - 420) };
+        }
+      }
+
+      return { p1, p2, p3, d1, d2, ball };
+    }
+  },
+  {
+    slug: 'box-blob',
+    category: 'Inbounds / BLOB',
+    title: 'Box Baseline Inbounds (Cross-Screen)',
+    description: 'Square formation along the key. Down-screen to cross-screen action to free up the opposite big for a layup, with a perimeter safety pop.',
+    options: [
+      { id: 'A', label: 'Option A: Cross-Cut Layup (#5)' },
+      { id: 'B', label: 'Option B: Safety Pop (#1)' }
+    ],
+    legend: [
+      { num: '3', color: '#d97706', desc: 'Inbounder: Baseline passer' },
+      { num: '1', color: '#2563eb', desc: 'Ball-Side Elbow: Down-screener / Safety pop' },
+      { num: '4', color: '#7c3aed', desc: 'Ball-Side Block: Cross-screener for #5' },
+      { num: '2', color: '#059669', desc: 'Weak-Side Elbow: Corner flare' },
+      { num: '5', color: '#dc2626', desc: 'Weak-Side Block: Cuts off screen to rim' }
     ],
     getPositions: function(t, option) {
       let p1, p2, p3, p4, p5, ball;
 
-      // #1 Point Defender
-      if (t < 0.2) {
-        let sub = t / 0.2;
-        p1 = { x: 120 + sub * 40, y: 250 + sub * 50 };
-      } else if (t < 0.6) {
-        let sub = (t - 0.2) / 0.4;
-        p1 = { x: 160 + sub * (320 - 160), y: 300 + sub * (430 - 300) };
-      } else {
-        p1 = { x: 320, y: 430 };
-      }
-
-      // #2 Ball-Side Trap Guard
-      if (t < 0.3) {
-        p2 = { x: 260, y: 400 };
-      } else if (t < 0.6) {
-        let sub = (t - 0.3) / 0.3;
-        p2 = { x: 260 + sub * (350 - 260), y: 400 + sub * (430 - 400) };
-      } else {
-        p2 = { x: 350, y: 430 };
-      }
-
-      // #3 Weak-Side Guard
-      if (t < 0.3) {
-        p3 = { x: 260, y: 100 };
-      } else if (t < 0.7) {
-        let sub = (t - 0.3) / 0.4;
-        p3 = { x: 260 + sub * (430 - 260), y: 100 + sub * (250 - 100) };
-      } else {
-        p3 = { x: 430, y: 250 };
-      }
-
-      // #4 Mid Interceptor
-      if (t < 0.35) {
-        p4 = { x: 460, y: 320 };
-      } else if (t < 0.7) {
-        let sub = (t - 0.35) / 0.35;
-        p4 = { x: 460 + sub * (490 - 460), y: 320 + sub * (390 - 320) };
-      } else {
-        p4 = { x: 490, y: 390 };
-      }
-
-      // #5 Goalie
-      if (t < 0.4) {
-        p5 = { x: 700, y: 250 };
-      } else {
-        let sub = (t - 0.4) / 0.6;
-        p5 = { x: 700 + sub * 20, y: 250 + sub * 40 };
-      }
-
-      // Ball Movement
-      if (t < 0.15) {
-        let sub = t / 0.15;
-        ball = { x: 50 + sub * 80, y: 250 + sub * 40 };
-      } else if (t < 0.6) {
-        let sub = (t - 0.15) / 0.45;
-        ball = { x: 130 + sub * (335 - 130), y: 290 + sub * (440 - 290) };
-      } else if (t < 0.8) {
-        ball = { x: 335, y: 440 };
+      // #3 Inbounder
+      if (t < 0.8) {
+        p3 = { x: 928, y: 330 };
       } else {
         let sub = (t - 0.8) / 0.2;
+        p3 = { x: 928 - sub * 48, y: 330 + sub * 20 };
+      }
+
+      // #1 Ball-Side Elbow
+      if (t < 0.2) {
+        p1 = { x: 730, y: 330 };
+      } else if (t < 0.5) {
+        let sub = (t - 0.2) / 0.3;
+        p1 = { x: 730 + sub * (850 - 730), y: 330 };
+      } else if (t < 0.8) {
+        let sub = (t - 0.5) / 0.3;
+        p1 = { x: 850 - sub * (850 - 660), y: 330 - sub * (330 - 250) };
+      } else {
+        p1 = { x: 660, y: 250 };
+      }
+
+      // #4 Ball-Side Block
+      if (t < 0.3) {
+        p4 = { x: 870, y: 330 };
+      } else if (t < 0.6) {
+        let sub = (t - 0.3) / 0.3;
+        p4 = { x: 870, y: 330 - sub * (330 - 200) };
+      } else {
+        p4 = { x: 870, y: 200 };
+      }
+
+      // #5 Weak-Side Block
+      if (t < 0.45) {
+        p5 = { x: 870, y: 170 };
+      } else if (t < 0.75) {
+        let sub = (t - 0.45) / 0.3;
+        p5 = { x: 870, y: 170 + sub * (260 - 170) };
+      } else {
+        p5 = { x: 870, y: 260 };
+      }
+
+      // #2 Weak-Side Elbow
+      if (t < 0.35) {
+        p2 = { x: 730, y: 170 };
+      } else if (t < 0.7) {
+        let sub = (t - 0.35) / 0.35;
+        p2 = { x: 730 + sub * (860 - 730), y: 170 - sub * (170 - 70) };
+      } else {
+        p2 = { x: 860, y: 70 };
+      }
+
+      // Ball Trajectory
+      if (t < 0.7) {
+        ball = { x: p3.x - 6, y: p3.y };
+      } else {
+        let sub = (t - 0.7) / 0.3;
         if (option === 'A') {
-          ball = { x: 335 + sub * (p3.x - 335), y: 440 + sub * (p3.y - 440) };
+          ball = { x: 928 - sub * (928 - p5.x), y: 330 - sub * (330 - p5.y) };
         } else {
-          ball = { x: 335 + sub * (p4.x - 335), y: 440 + sub * (p4.y - 440) };
+          ball = { x: 928 - sub * (928 - p1.x), y: 330 - sub * (330 - p1.y) };
         }
       }
 
@@ -586,7 +680,7 @@ function drawPlayer(x, y, label, color) {
   ctx.stroke();
 
   ctx.fillStyle = '#ffffff';
-  ctx.font = 'bold 13px sans-serif';
+  ctx.font = 'bold 12px sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText(label, x, y);
@@ -610,11 +704,26 @@ function renderFrame() {
 
   const pos = currentPlay.getPositions(progress, activeOption);
 
-  drawPlayer(pos.p5.x, pos.p5.y, '5', '#dc2626');
-  drawPlayer(pos.p4.x, pos.p4.y, '4', '#7c3aed');
-  drawPlayer(pos.p3.x, pos.p3.y, '3', '#d97706');
-  drawPlayer(pos.p2.x, pos.p2.y, '2', '#059669');
-  drawPlayer(pos.p1.x, pos.p1.y, '1', '#2563eb');
+  if (currentPlay.slug === 'trap-drill') {
+    drawPlayer(pos.p1.x, pos.p1.y, '1', '#2563eb');
+    drawPlayer(pos.p2.x, pos.p2.y, '2', '#059669');
+    drawPlayer(pos.p3.x, pos.p3.y, '3', '#d97706');
+    drawPlayer(pos.d1.x, pos.d1.y, 'D1', '#dc2626');
+    drawPlayer(pos.d2.x, pos.d2.y, 'D2', '#b91c1c');
+  } else if (currentPlay.slug === 'box-blob') {
+    drawPlayer(pos.p3.x, pos.p3.y, '3', '#d97706');
+    drawPlayer(pos.p1.x, pos.p1.y, '1', '#2563eb');
+    drawPlayer(pos.p4.x, pos.p4.y, '4', '#7c3aed');
+    drawPlayer(pos.p2.x, pos.p2.y, '2', '#059669');
+    drawPlayer(pos.p5.x, pos.p5.y, '5', '#dc2626');
+  } else {
+    drawPlayer(pos.p5.x, pos.p5.y, '5', '#dc2626');
+    drawPlayer(pos.p4.x, pos.p4.y, '4', '#7c3aed');
+    drawPlayer(pos.p3.x, pos.p3.y, '3', '#d97706');
+    drawPlayer(pos.p2.x, pos.p2.y, '2', '#059669');
+    drawPlayer(pos.p1.x, pos.p1.y, '1', '#2563eb');
+  }
+
   drawBall(pos.ball.x, pos.ball.y);
 
   document.getElementById('timelineScrubber').value = Math.floor(progress * 1000);
@@ -622,12 +731,20 @@ function renderFrame() {
 
   const phaseLabel = document.getElementById('phaseText');
   if (currentPlay.slug === 'trap-drill') {
-    if (progress < 0.3) phaseLabel.textContent = 'Phase 1: #1 Angles Ball Handler to Sideline';
-    else if (progress < 0.6) phaseLabel.textContent = 'Phase 2: #2 Closes Trap; #3 & #4 Rotate';
-    else if (progress < 0.8) phaseLabel.textContent = 'Phase 3: High Wall Trap Locked at Hash';
+    if (progress < 0.5) phaseLabel.textContent = 'Phase 1: D1 & D2 Steer #1 Toward Sideline';
+    else if (progress < 0.75) phaseLabel.textContent = 'Phase 2: Sideline Trap Locked; #2 & #3 Flash to Windows';
     else {
-      if (activeOption === 'A') phaseLabel.textContent = 'Phase 4: #3 Intercepts Desperate Skip';
-      else phaseLabel.textContent = 'Phase 4: #4 Jumps Up-Line Pass';
+      if (activeOption === 'A') phaseLabel.textContent = 'Phase 3: #1 Splits Between D1 & D2 Downhill';
+      else if (activeOption === 'B') phaseLabel.textContent = 'Phase 3: Up-Line Pass to #2';
+      else phaseLabel.textContent = 'Phase 3: Reversal Pass to #3 Flashing Center';
+    }
+  } else if (currentPlay.slug === 'box-blob') {
+    if (progress < 0.3) phaseLabel.textContent = 'Phase 1: Box Setup & Ball Slap';
+    else if (progress < 0.6) phaseLabel.textContent = 'Phase 2: #1 Down-Screens; #4 Sets Cross-Screen';
+    else if (progress < 0.75) phaseLabel.textContent = 'Phase 3: #5 Cuts Off Screen to Rim; #1 Pops';
+    else {
+      if (activeOption === 'A') phaseLabel.textContent = 'Phase 4: Bounce Pass to #5 for Layup';
+      else phaseLabel.textContent = 'Phase 4: Safety Pass to #1 at the Perimeter';
     }
   } else {
     if (progress < 0.2) phaseLabel.textContent = 'Phase 1: Rebound & Right Sideline Outlet';
@@ -675,7 +792,7 @@ document.getElementById('resetBtn').addEventListener('click', () => {
   renderFrame();
 });
 
-speedBtn = document.getElementById('speedBtn');
+const speedBtn = document.getElementById('speedBtn');
 speedBtn.addEventListener('click', (e) => {
   playSpeed = playSpeed === 1.0 ? 1.5 : (playSpeed === 1.5 ? 0.5 : 1.0);
   e.target.textContent = `Speed: ${playSpeed}x`;
