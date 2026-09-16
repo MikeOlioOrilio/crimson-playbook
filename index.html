@@ -451,7 +451,6 @@ const playbook = [
       let p1, p2, p3, p4, p5, ball;
       let d_inbound, d_block1, d_block2, d_elbow1, d_elbow2;
 
-      // Inbounder (#3)
       if (t < 0.85) {
         p3 = { x: 928, y: 330 };
       } else {
@@ -459,10 +458,8 @@ const playbook = [
         p3 = { x: 928 - sub * 48, y: 330 + sub * 20 };
       }
 
-      // Inbound Defender
       d_inbound = { x: 905, y: 330 };
 
-      // #1 (Ball Elbow - Down Screener, then Perimeter Pop)
       if (t < 0.2) {
         p1 = { x: 730, y: 330 };
       } else if (t < 0.4) {
@@ -477,7 +474,6 @@ const playbook = [
         p1 = { x: 660, y: 250 };
       }
 
-      // D_elbow1 (Defender on #1)
       if (t < 0.2) {
         d_elbow1 = { x: 745, y: 315 };
       } else if (t < 0.45) {
@@ -490,7 +486,6 @@ const playbook = [
         d_elbow1 = { x: 690, y: 255 };
       }
 
-      // #4 (Ball Block: WAITS for #1's screen, then cuts to cross-screen)
       if (t < 0.42) {
         p4 = { x: 870, y: 330 };
       } else if (t < 0.65) {
@@ -500,7 +495,6 @@ const playbook = [
         p4 = { x: 870, y: 195 };
       }
 
-      // D_block1 (Defender on #4: pinned by #1)
       if (t < 0.4) {
         d_block1 = { x: 850, y: 330 };
       } else if (t < 0.65) {
@@ -510,7 +504,6 @@ const playbook = [
         d_block1 = { x: 848 + sub * 10, y: 325 - sub * 40 };
       }
 
-      // #5 (Weak Block: Jabs baseline, WAITS for #4, cuts to rim)
       if (t < 0.4) {
         p5 = { x: 870, y: 170 };
       } else if (t < 0.55) {
@@ -525,7 +518,6 @@ const playbook = [
         p5 = { x: 865, y: 260 };
       }
 
-      // D_block2 (Defender on #5: walled off by #4)
       if (t < 0.4) {
         d_block2 = { x: 855, y: 170 };
       } else if (t < 0.55) {
@@ -537,7 +529,6 @@ const playbook = [
         d_block2 = { x: 865, y: 190 };
       }
 
-      // #2 (Weak Elbow - Flares to corner)
       if (t < 0.35) {
         p2 = { x: 730, y: 170 };
       } else if (t < 0.7) {
@@ -547,7 +538,6 @@ const playbook = [
         p2 = { x: 860, y: 70 };
       }
 
-      // D_elbow2 (Defender on #2)
       if (t < 0.35) {
         d_elbow2 = { x: 745, y: 175 };
       } else if (t < 0.75) {
@@ -557,7 +547,6 @@ const playbook = [
         d_elbow2 = { x: 845, y: 85 };
       }
 
-      // Ball Trajectory
       if (t < 0.8) {
         ball = { x: p3.x - 6, y: p3.y };
       } else {
@@ -570,6 +559,121 @@ const playbook = [
       }
 
       return { p1, p2, p3, p4, p5, d_inbound, d_block1, d_block2, d_elbow1, d_elbow2, ball };
+    }
+  },
+  {
+    slug: 'zone-buster',
+    category: 'Half-Court Offense',
+    title: 'High-Low Zone Buster (vs 2-3 Zone)',
+    description: 'Patience and spacing against a packed paint: Misdirection swing, #4 flashes to the high post to lift the center defender, and #5 dives behind for an uncontested high-low layup.',
+    options: [
+      { id: 'A', label: 'Option A: High-Low Hi-Lo Seal (#5 Layup)' },
+      { id: 'B', label: 'Option B: Kick Out to Corner (#2 3-PT/Drive)' }
+    ],
+    legend: [
+      { num: '1', color: '#2563eb', desc: 'PG: Top initiator / reversal' },
+      { num: '2', color: '#059669', desc: 'Wing: Spaced in deep corner' },
+      { num: '3', color: '#d97706', desc: 'Wing: Left wing floor stretcher' },
+      { num: '4', color: '#7c3aed', desc: 'High Post: Flashes to foul line (the nail)' },
+      { num: '5', color: '#dc2626', desc: 'Short Corner/Low Post: Dives behind defense' },
+      { num: 'D', color: '#64748b', desc: '2-3 Zone Defenders (D1-D2 top, D3-D5 bottom)' }
+    ],
+    getPositions: function(t, option) {
+      let p1, p2, p3, p4, p5, ball;
+      let d1, d2, d3, d4, d5;
+
+      if (t < 0.25) {
+        p1 = { x: 620, y: 250 };
+      } else if (t < 0.5) {
+        let sub = (t - 0.25) / 0.25;
+        p1 = { x: 620 + sub * 20, y: 250 + sub * 40 };
+      } else {
+        p1 = { x: 640, y: 290 };
+      }
+
+      if (t < 0.25) {
+        p3 = { x: 670, y: 130 };
+      } else {
+        p3 = { x: 660, y: 110 };
+      }
+
+      if (t < 0.3) {
+        p2 = { x: 700, y: 400 };
+      } else if (t < 0.6) {
+        let sub = (t - 0.3) / 0.3;
+        p2 = { x: 700 + sub * 160, y: 400 + sub * 40 };
+      } else {
+        p2 = { x: 860, y: 440 };
+      }
+
+      if (t < 0.3) {
+        p4 = { x: 720, y: 180 };
+      } else if (t < 0.55) {
+        let sub = (t - 0.3) / 0.25;
+        p4 = { x: 720 + sub * 10, y: 180 + sub * (250 - 180) };
+      } else {
+        p4 = { x: 730, y: 250 };
+      }
+
+      if (t < 0.3) {
+        p5 = { x: 860, y: 350 };
+      } else if (t < 0.55) {
+        let sub = (t - 0.3) / 0.25;
+        p5 = { x: 860 + sub * 20, y: 350 + sub * 40 };
+      } else if (t < 0.8) {
+        let sub = (t - 0.55) / 0.25;
+        p5 = { x: 880 - sub * 20, y: 390 - sub * (390 - 260) };
+      } else {
+        p5 = { x: 860, y: 260 };
+      }
+
+      if (t < 0.3) d1 = { x: 670, y: 210 };
+      else d1 = { x: 675, y: 190 };
+
+      if (t < 0.25) d2 = { x: 670, y: 290 };
+      else if (t < 0.5) {
+        let sub = (t - 0.25) / 0.25;
+        d2 = { x: 670 + sub * 10, y: 290 + sub * 25 };
+      } else {
+        d2 = { x: 680, y: 315 };
+      }
+
+      d3 = { x: 810, y: 160 };
+
+      if (t < 0.3) d4 = { x: 810, y: 340 };
+      else if (t < 0.6) {
+        let sub = (t - 0.3) / 0.3;
+        d4 = { x: 810 + sub * 30, y: 340 + sub * 60 };
+      } else {
+        d4 = { x: 840, y: 400 };
+      }
+
+      if (t < 0.35) {
+        d5 = { x: 830, y: 250 };
+      } else if (t < 0.6) {
+        let sub = (t - 0.35) / 0.25;
+        d5 = { x: 830 - sub * 70, y: 250 };
+      } else {
+        d5 = { x: 760, y: 250 };
+      }
+
+      if (t < 0.45) {
+        ball = { x: p1.x + 8, y: p1.y + 4 };
+      } else if (t < 0.6) {
+        let sub = (t - 0.45) / 0.15;
+        ball = { x: p1.x + sub * (p4.x - p1.x), y: p1.y + sub * (p4.y - p1.y) };
+      } else if (t < 0.75) {
+        ball = { x: p4.x + 6, y: p4.y };
+      } else {
+        let sub = (t - 0.75) / 0.25;
+        if (option === 'A') {
+          ball = { x: p4.x + sub * (p5.x - p4.x), y: p4.y + sub * (p5.y - p4.y) };
+        } else {
+          ball = { x: p4.x + sub * (p2.x - p4.x), y: p4.y + sub * (p2.y - p4.y) };
+        }
+      }
+
+      return { p1, p2, p3, p4, p5, d1, d2, d3, d4, d5, ball };
     }
   }
 ];
@@ -736,7 +840,19 @@ function renderFrame() {
 
   const pos = currentPlay.getPositions(progress, activeOption);
 
-  if (currentPlay.slug === 'box-blob') {
+  if (currentPlay.slug === 'zone-buster') {
+    drawPlayer(pos.d1.x, pos.d1.y, 'D', '#64748b');
+    drawPlayer(pos.d2.x, pos.d2.y, 'D', '#64748b');
+    drawPlayer(pos.d3.x, pos.d3.y, 'D', '#64748b');
+    drawPlayer(pos.d4.x, pos.d4.y, 'D', '#64748b');
+    drawPlayer(pos.d5.x, pos.d5.y, 'D', '#64748b');
+
+    drawPlayer(pos.p1.x, pos.p1.y, '1', '#2563eb');
+    drawPlayer(pos.p2.x, pos.p2.y, '2', '#059669');
+    drawPlayer(pos.p3.x, pos.p3.y, '3', '#d97706');
+    drawPlayer(pos.p4.x, pos.p4.y, '4', '#7c3aed');
+    drawPlayer(pos.p5.x, pos.p5.y, '5', '#dc2626');
+  } else if (currentPlay.slug === 'box-blob') {
     drawPlayer(pos.d_inbound.x, pos.d_inbound.y, 'D', '#64748b');
     drawPlayer(pos.d_block1.x, pos.d_block1.y, 'D', '#64748b');
     drawPlayer(pos.d_block2.x, pos.d_block2.y, 'D', '#64748b');
@@ -768,7 +884,15 @@ function renderFrame() {
   document.getElementById('timeDisplay').textContent = (progress * totalDuration).toFixed(1) + 's';
 
   const phaseLabel = document.getElementById('phaseText');
-  if (currentPlay.slug === 'box-blob') {
+  if (currentPlay.slug === 'zone-buster') {
+    if (progress < 0.3) phaseLabel.textContent = 'Phase 1: #1 Shifts Ball; #2 Drops to Corner to Stretch Zone';
+    else if (progress < 0.6) phaseLabel.textContent = 'Phase 2: #4 Flashes to Nail; Pulls Center Defender (D5) Out';
+    else if (progress < 0.75) phaseLabel.textContent = 'Phase 3: Pass to Nail! #5 Dives Behind Lifted Defense';
+    else {
+      if (activeOption === 'A') phaseLabel.textContent = 'Phase 4: High-Low Bounce Pass to #5 for Layup';
+      else phaseLabel.textContent = 'Phase 4: Kick Out to Wide-Open #2 in Corner';
+    }
+  } else if (currentPlay.slug === 'box-blob') {
     if (progress < 0.2) phaseLabel.textContent = 'Phase 1: Box Setup (#4 & #5 Freeze, Ball Slap)';
     else if (progress < 0.42) phaseLabel.textContent = 'Phase 2: #1 Down-Screens D_block1; #4 Waits for Contact';
     else if (progress < 0.65) phaseLabel.textContent = 'Phase 3: #4 Cuts Off #1; #5 Jabs & Waits for Cross-Screen';
