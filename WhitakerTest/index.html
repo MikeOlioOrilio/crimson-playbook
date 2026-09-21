@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Sculpture Promo Viewer</title>
+  <style>
+    /* Reset and prevent scrolling */
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Full screen container using dynamic viewport height */
+    .immersive-video-wrapper {
+      position: relative;
+      width: 100vw;
+      height: 100dvh; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Video styling */
+    video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Vertical fits exactly */
+    #verticalVideo {
+      object-fit: cover;
+    }
+
+    /* Widescreen contains with black slivers */
+    #wideVideo {
+      object-fit: contain;
+      display: none; /* Hidden by default */
+    }
+
+    /* Custom UI Overlay */
+    .video-overlay-ui {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 9999;
+      display: flex;
+      gap: 12px;
+    }
+
+    /* Frosted glass buttons */
+    .action-icon {
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+
+    .action-icon:hover {
+      background: rgba(0, 0, 0, 0.6);
+    }
+    
+    .action-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="immersive-video-wrapper">
+    
+    <!-- Both videos load to prevent buffering, utilizing the playsinline attribute -->
+    <video id="verticalVideo" playsinline autoplay muted loop>
+      <source src="assets/Agave_LG_Full.webm" type="video/webm">
+    </video>
+    
+    <video id="wideVideo" playsinline autoplay muted loop>
+      <source src="assets/Agave_LG_Head.webm" type="video/webm">
+    </video>
+
+    <!-- Overlay Controls -->
+    <div class="video-overlay-ui">
+      <button id="toggleFormatBtn" class="action-icon">
+        <!-- SVG Icon for Screen Swap -->
+        <svg viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14z"/></svg>
+        <span>Watch Widescreen</span>
+      </button>
+      
+      <button id="purchaseBtn" class="action-icon">
+        <!-- SVG Icon for Cart -->
+        <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+        <span>Purchase</span>
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    const vertVid = document.getElementById('verticalVideo');
+    const wideVid = document.getElementById('wideVideo');
+    const toggleBtn = document.getElementById('toggleFormatBtn');
+    const toggleText = toggleBtn.querySelector('span');
+    const purchaseBtn = document.getElementById('purchaseBtn');
+
+    let isVertical = true;
+
+    // Ensure the hidden video plays as soon as it's revealed
+    wideVid.pause();
+
+    toggleBtn.addEventListener('click', () => {
+      isVertical = !isVertical;
+      
+      if (isVertical) {
+        vertVid.style.display = 'block';
+        wideVid.style.display = 'none';
+        
+        wideVid.pause();
+        vertVid.play();
+        
+        toggleText.textContent = 'Watch Widescreen';
+      } else {
+        vertVid.style.display = 'none';
+        wideVid.style.display = 'block';
+        
+        vertVid.pause();
+        wideVid.play();
+        
+        toggleText.textContent = 'Watch Vertical';
+      }
+    });
+
+    purchaseBtn.addEventListener('click', () => {
+      // Replace with your actual purchasing link
+      window.location.href = 'https://www.whitakerstudio.com/'; 
+    });
+  </script>
+
+</body>
+</html>
