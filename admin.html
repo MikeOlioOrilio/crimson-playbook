@@ -1,0 +1,39 @@
+<main class="page admin-page" id="main">
+  <div class="eyebrow">CRIMSON · ADMINISTRATION</div>
+  <h1>Set the team’s focus.</h1>
+  <p class="admin-intro">Choose what your players see, and manage PIN access for your coaches.</p>
+  <p id="admin-status" role="status">Connecting to Firebase…</p>
+  <section id="admin-login" class="info-panel login-panel" hidden>
+    <h2>Administrator sign in</h2><p>Use your administrator email and password. Coach PINs open the library only.</p>
+    <form id="admin-login-form" class="stack-form">
+      <label>Email<input id="admin-email" type="email" autocomplete="username" required></label>
+      <label>Password<input id="admin-password" type="password" autocomplete="current-password" required></label>
+      <button class="primary" id="admin-signin">Sign in</button>
+    </form>
+  </section>
+  <div class="admin-links"><a href="../firebase-setup/index.html">First-time setup & troubleshooting ↗</a><button id="retry-admin" hidden>Retry connection</button><button id="admin-signout" hidden>Sign out</button></div>
+  <div id="admin-workspace" hidden>
+    <nav class="admin-tabs" aria-label="Administration sections"><a href="#team-selection">Team selections</a><a href="#coach-management">Coaches & PINs</a><a href="../index.html" target="_blank" rel="noopener">Preview Team View ↗</a><a href="../index.html?view=coach">Open Coach View ↗</a></nav>
+    <section id="team-selection" class="info-panel">
+      <h2>What the team sees</h2><p>Check the plays to display, then save. Unchecked plays remain available in Coach View.</p>
+      <form id="selection-form" class="stack-form">
+        <label>Heading<input id="selection-title" maxlength="100" placeholder="This week’s playbook" required></label>
+        <label>Message to the team<textarea id="selection-note" rows="3" maxlength="1500" placeholder="This week: spacing, help defense, and finishing our rebounds."></textarea></label>
+        <div class="selection-actions"><button type="button" id="select-all">Select all</button><button type="button" id="select-none">Clear selection</button><span id="selection-count" aria-live="polite"></span></div>
+        <div id="play-checklist"></div>
+        <div class="save-row"><button class="primary" id="save-selection">Save team selection</button><p id="selection-status" role="status"></p></div>
+      </form>
+    </section>
+    <section id="coach-management" class="info-panel">
+      <h2>Coaches & PINs</h2><p>Names are labels for you. Coaches enter only their PIN. Use a unique PIN for each coach; 4–8 digits, preferably six or more.</p>
+      <form id="coach-editor" class="stack-form">
+        <input id="coach-id" type="hidden">
+        <div class="form-pair"><label>First name<input id="coach-first" maxlength="80" autocomplete="off" required></label><label>Last name<input id="coach-last" maxlength="80" autocomplete="off" required></label></div>
+        <label id="pin-label">PIN<input id="new-coach-pin" type="password" inputmode="numeric" pattern="[0-9]{4,8}" minlength="4" maxlength="8" autocomplete="new-password" required><small id="pin-help">Share the PIN with this coach after saving. PINs cannot be displayed later.</small></label>
+        <label class="inline-check"><input id="coach-enabled" type="checkbox" checked>Access enabled</label>
+        <div class="save-row"><button class="primary" id="save-coach">Add coach</button><button type="button" id="cancel-coach" hidden>Cancel editing</button><p id="coach-save-status" role="status"></p></div>
+      </form>
+      <div id="coach-list" class="coach-list"></div>
+    </section>
+  </div>
+</main>

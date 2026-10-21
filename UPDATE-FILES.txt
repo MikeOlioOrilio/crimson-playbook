@@ -1,0 +1,48 @@
+FIREBASE TEAM VIEW / COACH PIN UPDATE
+Complete firebase-setup/index.html before sharing this version.
+Paste firestore.rules into Firebase Console > Firestore > Rules and publish. Uploading that file to GitHub alone does not apply it.
+
+UPLOAD / REPLACE THESE FILES:
+index.html
+assets/ (entire folder)
+admin/index.html
+firebase-setup/index.html
+coach-guide/index.html
+advantage-break/index.html
+alternating-elbow-shooting/index.html
+ball-screen-defense/index.html
+baseline-four-flat/index.html
+baseline-help/index.html
+baseline-screen-slip/index.html
+baseline-stack/index.html
+box-blob/index.html
+closeout-contain/index.html
+cut-read-3v3/index.html
+drag-screen/index.html
+dribble-at-backdoor/index.html
+five-out/index.html
+full-court-man/index.html
+gap-help-recover/index.html
+hit-find-get/index.html
+laker-drill/index.html
+made-basket-entry/index.html
+press-break/index.html
+run-and-jump/index.html
+screen-away/index.html
+screen-read-3v3/index.html
+sideline-box/index.html
+trap-drill/index.html
+zone-buster/index.html
+
+KEEP THESE SOURCE / SETUP FILES TOO:
+build.cjs
+admin.html
+firebase-setup.html
+firestore.rules
+README.md
+UPDATE-FILES.txt
+
+The easiest upload is ALL CONTENTS of the clean crimson-playbook folder in the new zip, preserving folders. Do not add another nested crimson-playbook folder.
+content/*.js, assets/court.js, guide.html, and .nojekyll did not need changes for this update, but are included in the full package.
+
+After publishing, hard-refresh (Ctrl+Shift+R). Later weekly selection and coach PIN changes happen in Firebase and need no GitHub upload.

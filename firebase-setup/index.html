@@ -1,0 +1,87 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0c1420"><meta name="description" content="Step-by-step instructions for connecting the playbook."><title>Firebase setup | Crimson Playbook</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230c1420'/%3E%3Ccircle cx='32' cy='32' r='23' fill='%23ed5671'/%3E%3Cpath d='M9 32h46M32 9v46M17 14q25 18 0 36M47 14q-25 18 0 36' fill='none' stroke='%230c1420' stroke-width='3'/%3E%3C/svg%3E"><link rel="stylesheet" href="../assets/style.css"></head><body><a class="skip" href="#main">Skip to content</a><header class="topbar"><a class="brand" href="../index.html"><span class="brand-icon" aria-hidden="true">✣</span><span><b>CRIMSON</b> / PLAYBOOK</span></a><nav class="toplinks" aria-label="Main navigation"><a href="../index.html">Team View</a><a href="../index.html?view=coach">Coach View</a><a href="../admin/index.html">Admin</a><button id="leave-coach" hidden>Exit Coach View</button><span class="edition">6TH GRADE · CLUB</span></nav></header><main id="main" class="page guide setup-guide">
+  <div class="eyebrow">ONE-TIME SETUP · FIREBASE + GITHUB PAGES</div>
+  <h1>Connect your playbook.</h1>
+  <p>The website already contains your <strong>crimson-playbook</strong> Firebase web configuration. Complete these steps in your Firebase console, then upload the updated website. You do not need to move your website off GitHub, install a server, or manually enter the 25 plays.</p>
+  <div class="callout">Use <strong>Cloud Firestore</strong> for this setup, not Realtime Database. The application uses Firestore and Firebase Authentication. Cloud Functions, Storage, Analytics, and a paid upgrade are not required for this design. Usage remains subject to your Firebase plan’s quotas.</div>
+  <section class="info-panel"><h2>How this compares with SQL</h2>
+    <table><thead><tr><th>SQL term</th><th>Firestore equivalent</th><th>Our example</th></tr></thead><tbody>
+      <tr><td>Table</td><td>Collection</td><td><code>coaches</code></td></tr>
+      <tr><td>Row</td><td>Document, with a unique document ID</td><td>One coach’s record</td></tr>
+      <tr><td>Column</td><td>Field inside a document</td><td><code>firstName</code>, <code>lastName</code>, <code>enabled</code></td></tr>
+      <tr><td>Primary key</td><td>Document ID</td><td>An automatically assigned coach ID</td></tr>
+      <tr><td>Database permissions</td><td>Firestore Security Rules</td><td>Only administrators can change selections and coach records</td></tr>
+    </tbody></table>
+    <p>You do not need a CREATE TABLE statement. Firestore creates a collection when its first document is saved. Documents can include arrays, so this small app stores the selected play slugs together in one document rather than creating a join table.</p>
+  </section>
+  <section class="info-panel"><h2>1. Create the Firestore database</h2><ol>
+    <li>Open the <a href="https://console.firebase.google.com/project/crimson-playbook/overview" target="_blank" rel="noopener">crimson-playbook Firebase project</a>.</li>
+    <li>In the left menu, open <strong>Build → Firestore Database</strong>, then choose <strong>Create database</strong>.</li>
+    <li>If an edition is offered, choose <strong>Standard edition</strong>. Use the database ID <code>(default)</code>. If this database already exists, use it instead of creating another.</li>
+    <li>Choose a suitable US region. Check the choice before continuing; the database location cannot be changed later.</li>
+    <li>Choose <strong>Production mode</strong> if asked about rules. We will supply the specific rules next. Do not use open test-mode rules.</li>
+  </ol></section>
+  <section class="info-panel"><h2>2. Publish the supplied database rules</h2><ol>
+    <li>Open the <strong>Rules</strong> tab in Firestore Database.</li>
+    <li>Open <a href="../firestore.rules">firestore.rules from this package</a> and copy its complete contents.</li>
+    <li>For a new database dedicated to this playbook, replace the editor’s contents with that file, then click <strong>Publish</strong>. If your database already serves another app, merge its rules with these instead of overwriting them.</li>
+  </ol><p>The team can read the current selection. Only a named administrator can write it. Coach names are private to administrators. Knowing a coach PIN never grants permission to change database records.</p></section>
+  <section class="info-panel"><h2>3. Enable administrator sign-in</h2><ol>
+    <li>Open <strong>Build → Authentication → Get started</strong>.</li>
+    <li>Under <strong>Sign-in method</strong>, enable <strong>Email/Password</strong>. Email-link sign-in is not needed.</li>
+    <li>Open <strong>Users → Add user</strong>. Enter your real administrator email and a password you choose. Keep that password private; do not put it in your website files.</li>
+    <li>After creating the user, copy its <strong>User UID</strong>. This long identifier is used in the next step, not your email address.</li>
+    <li>Under <strong>Settings → Authorized domains</strong>, add the hostname of your GitHub Pages website, for example <code>YOUR-USERNAME.github.io</code>. Enter only the hostname, without <code>https://</code> or a repository path. Add your custom domain too if you use one.</li>
+    <li>For local testing, add <code>localhost</code> and <code>127.0.0.1</code> if needed. New Firebase projects may not include localhost automatically.</li>
+  </ol><p>Coaches do not need Firebase Authentication accounts. Their PIN-only convenience access is managed in the website’s admin page.</p></section>
+  <section class="info-panel"><h2>4. Make that account an administrator</h2><ol>
+    <li>Return to <strong>Firestore Database → Data</strong>.</li>
+    <li>Click <strong>Start collection</strong>. Set Collection ID to exactly <code>admins</code>.</li>
+    <li>For <strong>Document ID</strong>, paste the User UID from step 3. Do not use Auto-ID for this record.</li>
+    <li>Add a field named <code>enabled</code>, choose type <strong>boolean</strong>, and set it to <strong>true</strong>. It must be a boolean, not the string “true”.</li>
+    <li>Click <strong>Save</strong>.</li>
+  </ol><p>The resulting path is <code>admins/YOUR-USER-UID</code>. This is the only application document you must create manually. The Firebase console can create it even though the website is prohibited from granting administrator access.</p><p>To add another administrator later, repeat steps 3–4 for that person. To revoke administration, change their <code>enabled</code> field to boolean <code>false</code>.</p></section>
+  <section class="info-panel"><h2>5. Upload the updated website</h2><ol>
+    <li>Extract the latest <code>crimson-playbook.zip</code>.</li>
+    <li>Upload the <strong>contents</strong> of its <code>crimson-playbook</code> folder to the same GitHub folder you already publish. Preserve the subfolders. Do not create another nested <code>crimson-playbook</code> folder.</li>
+    <li>For this update, replace the root <code>index.html</code>, all play-folder <code>index.html</code> files, <code>coach-guide/index.html</code>, and the entire <code>assets</code> folder. Add <code>admin/</code>, <code>firebase-setup/</code>, and <code>firestore.rules</code>. Keep the supplied source files, build script, and README for future maintenance. Uploading the whole clean package is easiest.</li>
+    <li>Wait for GitHub Pages to finish publishing, then press <strong>Ctrl+Shift+R</strong> on the live site.</li>
+  </ol><p>Publishing the <code>firestore.rules</code> file to GitHub does <strong>not</strong> apply the rules to Firebase. Step 2 is separate and required. Weekly selections and PIN changes do not require GitHub uploads after this initial installation.</p></section>
+  <section class="info-panel"><h2>6. Choose the team’s plays</h2><ol>
+    <li>Open your website and click <strong>Admin</strong> at the top.</li>
+    <li>Sign in with the administrator email and password from step 3.</li>
+    <li>Enter a heading such as “Week 3: spacing and help defense” and an optional message to the team.</li>
+    <li>Check the drills and plays to display. Click <strong>Save team selection</strong>.</li>
+    <li>Click <strong>Preview Team View</strong>. Confirm that only the checked plays appear. Players see changes when they open or refresh the page.</li>
+  </ol><p>Saving automatically creates <code>settings/team</code>. An empty selection intentionally shows no plays; it never means “show everything.” If Firebase cannot be reached, the page shows a retry message instead of the complete library.</p></section>
+  <section class="info-panel"><h2>7. Add coaches and assign PINs</h2><ol>
+    <li>In Admin, open <strong>Coaches & PINs</strong>.</li>
+    <li>Enter the coach’s first name and last name. These are labels for you; coaches do not type them to sign in.</li>
+    <li>Assign a unique <strong>4–8 digit PIN</strong>. Six or more digits is recommended. Leading zeros are preserved. Two coaches cannot share the same PIN.</li>
+    <li>Keep <strong>Access enabled</strong> checked, then click <strong>Add coach</strong>. Share the PIN with that coach separately.</li>
+    <li>The coach opens <strong>Coach View</strong>, enters only their PIN, and sees every play. Selected team plays carry a “Team pick” label.</li>
+  </ol><p>Add more coaches using the same form; there is no small application-level coach limit. For changes, choose <strong>Edit / change PIN</strong>. Leave PIN blank to preserve it, or enter a replacement. Uncheck Access enabled to turn off that coach’s access. A PIN change invalidates the old PIN. Existing open pages are not forcibly closed; access is rechecked on the next page load or refresh.</p><p>Coach access stays in the current browser tab’s session for up to 12 hours. <strong>Exit Coach View</strong> clears it. PINs are never shown again or stored as readable text. If a coach forgets one, assign a new PIN.</p></section>
+  <section class="info-panel"><h2>The records you will see</h2><table><thead><tr><th>Document path</th><th>Purpose</th><th>Created by</th></tr></thead><tbody>
+    <tr><td><code>admins/{uid}</code></td><td><code>enabled: true</code> grants administrator rights</td><td>You, once, in Firebase console</td></tr>
+    <tr><td><code>settings/team</code></td><td>Heading, message, selected play slugs, revision, update time</td><td>Save team selection</td></tr>
+    <tr><td><code>coaches/{auto-id}</code></td><td>First/last name, enabled flag, derived credential identifier</td><td>Add/edit coach</td></tr>
+    <tr><td><code>coachAccess/{derived-key}</code></td><td>PIN lookup containing a coach ID and enabled flag; no names or readable PIN</td><td>Add/edit coach</td></tr>
+  </tbody></table><p>A slug is the play’s folder name, such as <code>five-out</code>. Animations and coaching instructions remain in <code>content/</code> on GitHub. Firebase stores only selections and access records. No indexes or play-by-play database imports are needed.</p></section>
+  <section class="info-panel"><h2>About the simple PIN gate</h2><p>This follows your goal of keeping players focused. Static play files remain public on GitHub; Coach View is a convenience gate, not a private content vault. A PIN is converted to a derived lookup key using PBKDF2 before checking Firestore. The rules prohibit listing those keys or reading the coach-name list publicly. Because this design has no custom backend, it does not provide server-enforced PIN attempt limits. Use it for this public playbook, not confidential player information. Administrator writes are protected separately with Firebase Authentication and Security Rules.</p></section>
+  <section class="info-panel"><h2>If something does not work</h2><ul>
+    <li><strong>“Firebase blocked this request”:</strong> Check that step 2’s rules were published. For Admin, check the exact User UID document and boolean <code>enabled: true</code>.</li>
+    <li><strong>Email/password sign-in not enabled:</strong> Complete Authentication → Sign-in method → Email/Password.</li>
+    <li><strong>Unable to reach Firebase:</strong> Check the internet connection, the default Firestore database, and the project configuration. Run from HTTPS on GitHub Pages or a localhost server; do not double-click HTML files for this Firebase version.</li>
+    <li><strong>No team plays:</strong> Open Admin, check plays, and save. This is expected before the first selection is saved.</li>
+    <li><strong>PIN not recognized:</strong> Use only the PIN, including any leading zeros. Check that the coach is enabled. Assign a replacement PIN if necessary.</li>
+    <li><strong>Another administrator changed the selection:</strong> Reload Admin to get the latest selection before editing again. This prevents silently overwriting another admin’s saved work.</li>
+    <li><strong>The old website still appears:</strong> Upload the full update, wait for Pages publishing, and hard-refresh. The new data lives in Firebase, but the new interface must first be uploaded.</li>
+  </ul></section>
+  <section class="info-panel"><h2>Firebase references</h2><ul>
+    <li><a href="https://firebase.google.com/docs/firestore/quickstart" target="_blank" rel="noopener">Create a Firestore database</a></li>
+    <li><a href="https://firebase.google.com/docs/firestore/data-model" target="_blank" rel="noopener">Collections, documents, and fields</a></li>
+    <li><a href="https://firebase.google.com/docs/auth/web/password-auth" target="_blank" rel="noopener">Email/password authentication</a></li>
+    <li><a href="https://firebase.google.com/docs/firestore/security/get-started" target="_blank" rel="noopener">Firestore Security Rules</a></li>
+    <li><a href="https://firebase.google.com/docs/projects/api-keys" target="_blank" rel="noopener">Why the Firebase web API key is public configuration</a></li>
+  </ul></section>
+</main>
+<footer class="footer"><span>CRIMSON BASKETBALL · Play fast. Read the game. Play together.</span><a href="../coach-guide/index.html#sources">Coaching sources & rules notes ↗</a></footer></body></html>

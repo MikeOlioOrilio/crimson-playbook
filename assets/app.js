@@ -1,14 +1,6 @@
 (function(){
 'use strict';
 const C=window.CrimsonCourt,$=id=>document.getElementById(id);
-if(window.CRIMSON_CATALOG){
- const data=window.CRIMSON_CATALOG;const cats={all:'The complete playbook',drills:'Drills',offense:'Offensive Plays / Strategies',defense:'Defensive Plays / Strategies',inbounds:'Inbounding Plays'};
- const intro={all:data.length+' ways to build a fast, connected team.',drills:'Repetition with a defender, a decision, and a purpose.',offense:'Space the floor. Move the ball. Read the next defender.',defense:'Five matchups. One connected man defense.',inbounds:'Create a clean window and get it in on time.'};
- function render(){const cat=cats[location.hash.slice(1)]?location.hash.slice(1):'all';let q=$('search').value.trim().toLowerCase();const filtered=data.filter(p=>(cat==='all'||p.category===cat)&&[p.title,p.description,p.level,p.category].join(' ').toLowerCase().includes(q));$('section-title').textContent=cats[cat];$('section-subtitle').textContent=intro[cat];$('result-count').textContent=filtered.length+' entries';document.querySelectorAll('[data-category]').forEach(a=>a.setAttribute('aria-current',a.dataset.category===cat?'page':'false'));$('cards').innerHTML=filtered.length?filtered.map(p=>`<a class="play-card" href="${p.slug}/index.html"><div class="card-preview">${C.svg(p,p.preview,.35)}<span class="tag">${C.escape({drills:'Drill',offense:'Offense',defense:'Defense',inbounds:'Inbound'}[p.category])} · ${p.full?'Full court':'Half court'}</span></div><div class="card-copy"><div class="card-meta"><span class="tag level">${C.escape(p.level)}</span><span class="tag ${p.original?'original':''}">${p.original?'Refined original':'New'}</span></div><h3>${C.escape(p.title)}</h3><p>${C.escape(p.description)}</p><div class="card-foot">Open play <span>${p.sequence?'30s sequence':p.optionsCount+' reads'} <b aria-hidden="true">↗</b></span></div></div></a>`).join(''):'<div class="empty"><h3>No plays found</h3><p>Try “screen”, “Foundation”, or another category.</p><button id="clear-search">Clear search</button></div>';if($('clear-search'))$('clear-search').onclick=()=>{$('search').value='';render();};}
- $('search').addEventListener('input',render);window.addEventListener('hashchange',()=>{const slug=location.hash.replace(/^#\/?/,'');if(data.some(p=>p.slug===slug)){location.replace(slug+'/index.html');return;}render();});
- const slug=location.hash.replace(/^#\/?/,'');if(data.some(p=>p.slug===slug)){location.replace(slug+'/index.html');return;}
- const featured=data.find(p=>p.slug==='gap-help-recover');$('hero-court').innerHTML=C.svg(featured,featured.preview,.48,{help:true,matchups:true});render();return;
-}
 const p=window.CRIMSON_PLAY;if(!p)return;
 let chosen=0,t=0,playing=false,last=null,speed=1,raf=null,repeat=false;
 const params=new URLSearchParams(location.search);if(/^\d+$/.test(params.get('read')||''))chosen=Math.min(p.options.length-1,+params.get('read'));if(Number.isFinite(Number(params.get('t'))))t=Math.max(0,Math.min(1,Number(params.get('t'))||0));
@@ -22,7 +14,9 @@ function setOption(i,keep=false){stop();chosen=i;if(!keep)t=0;prevIndex=-1;const
 function jump(direction){stop();const f=p.options[chosen].steps||p.options[chosen].frames;const next=direction>0?f.find(x=>x.t>t+.0001):[...f].reverse().find(x=>x.t<t-.0001);t=next?next.t:direction>0?1:0;draw();}
 function play(){if(playing){stop();return;}if(t>=1)t=0;playing=true;last=null;controls();raf=requestAnimationFrame(loop);}
 $('play-pause').onclick=play;$('reset').onclick=()=>{stop();t=0;draw();};$('previous-step').onclick=()=>jump(-1);$('next-step').onclick=()=>jump(1);$('scrubber').oninput=e=>{stop();t=Number(e.target.value)/1000;draw();};$('speed').onchange=e=>{speed=Number(e.target.value);};
+$('repeat').checked=false;
 $('repeat').onchange=e=>{repeat=e.target.checked;};
+window.addEventListener('pageshow',()=>{repeat=false;$('repeat').checked=false;});
 for(const k of ['paths','matchups','help']){const el=$(k);if(el){el.checked=settings[k];el.onchange=()=>{settings[k]=el.checked;draw();};}}
 $('print').onclick=()=>{stop();window.print();};$('share').onclick=async()=>{const u=new URL(location.href);u.search='';u.searchParams.set('read',chosen);u.searchParams.set('t',t.toFixed(3));try{await navigator.clipboard.writeText(u.href);$('share').textContent='Link copied';}catch{$('share-fallback').hidden=false;$('share-url').value=u.href;$('share-url').focus();$('share-url').select();}setTimeout(()=>{$('share').textContent='Copy this read';},2200);};
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
