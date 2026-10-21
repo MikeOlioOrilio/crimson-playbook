@@ -1,10 +1,10 @@
-FIREBASE TEAM VIEW / COACH PIN UPDATE
-Complete firebase-setup/index.html before sharing this version.
-Paste firestore.rules into Firebase Console > Firestore > Rules and publish. Uploading that file to GitHub alone does not apply it.
+LOGO + POSITIONS GUIDE UPDATE — October 21, 2026
 
-UPLOAD / REPLACE THESE FILES:
+Upload / replace:
+assets/crimsonlogo.webp (lowercase filename)
+assets/style.css
 index.html
-assets/ (entire folder)
+position-guide/index.html (new page)
 admin/index.html
 firebase-setup/index.html
 coach-guide/index.html
@@ -34,15 +34,14 @@ sideline-box/index.html
 trap-drill/index.html
 zone-buster/index.html
 
-KEEP THESE SOURCE / SETUP FILES TOO:
+Keep the editable sources too:
 build.cjs
-admin.html
-firebase-setup.html
-firestore.rules
+position-guide.html
 README.md
 UPDATE-FILES.txt
 
-The easiest upload is ALL CONTENTS of the clean crimson-playbook folder in the new zip, preserving folders. Do not add another nested crimson-playbook folder.
-content/*.js, assets/court.js, guide.html, and .nojekyll did not need changes for this update, but are included in the full package.
-
-After publishing, hard-refresh (Ctrl+Shift+R). Later weekly selection and coach PIN changes happen in Firebase and need no GitHub upload.
+All generated pages changed because the shared logo and Positions navigation link appear throughout the site.
+The easiest upload is the contents of the latest clean crimson-playbook folder, preserving its subfolders. Do not create a nested crimson-playbook folder.
+The logo is packaged using the exact lowercase path assets/crimsonlogo.webp. GitHub Pages paths are case-sensitive.
+This update does not change Firebase configuration, database records, permissions, coach PINs, or play animations. No Firebase console steps are needed if the previous Firebase version is already configured.
+After GitHub Pages finishes publishing, refresh with Ctrl+Shift+R.

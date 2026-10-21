@@ -2,6 +2,8 @@
 
 25 animated lessons: four refined originals, the original twenty additions, and the requested alternating-elbow shooting drill.
 
+The shared header uses `assets/crimsonlogo.webp` followed by “/ PLAYBOOK”. The public **Positions** page at `position-guide/index.html` covers roles 1–5, offense, man-to-man defense, both sides of inbounding, shot priorities, and skill development. Edit `position-guide.html`, then run `node build.cjs` to update it. This reference page does not need a Firebase record or a coach PIN.
+
 ## Use it
 
 Open the website through GitHub Pages or a localhost web server. The Firebase edition needs an internet connection; opening index.html directly as a file is no longer supported. Complete the setup guide in firebase-setup/index.html before sharing the new version. Team View shows only selected plays. Coach View accepts a PIN only and shows the full library. Admin uses a separate email/password login to manage selections and coaches. Choose a category, open a lesson, choose a defensive read, and use Play, Step, or the timeline. Print lesson includes the current diagram and all reads. Copy this read includes its option and position; when used from the hosted website, this gives a shareable web link.
