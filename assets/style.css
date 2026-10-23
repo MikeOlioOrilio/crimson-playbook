@@ -13,7 +13,7 @@
 /* Shared logo and player position reference. */
 .topbar{height:auto;min-height:86px;padding-top:12px;padding-bottom:12px;flex-wrap:wrap}
 .brand{gap:12px;flex-shrink:0;letter-spacing:1px}
-.brand-logo{display:block;width:210px;height:auto;object-fit:contain;background:#fff;border-radius:5px;padding:4px}
+.brand-logo{display:block;width:210px;height:auto;object-fit:contain}
 .brand-label{white-space:nowrap;font-size:15px}
 .positions-guide{max-width:1220px}
 .positions-intro{padding:12px 0 24px;max-width:850px}
