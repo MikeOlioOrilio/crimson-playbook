@@ -1,0 +1,661 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0c1420"><meta name="description" content="Isolated slow-motion breakdown of 1-on-1 on-ball defensive stance, 1-arm cushion spacing, wide chair base, active hand positioning in relation to the ball, and lateral push-step slides."><title>On-Ball 1-on-1 Defensive Stance: Cushion, Base &amp; Active Hands | Crimson Playbook</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230c1420'/%3E%3Ccircle cx='32' cy='32' r='23' fill='%23ed5671'/%3E%3Cpath d='M9 32h46M32 9v46M17 14q25 18 0 36M47 14q-25 18 0 36' fill='none' stroke='%230c1420' stroke-width='3'/%3E%3C/svg%3E"><link rel="stylesheet" href="../assets/style.css"><style>
+  .def-stage {
+    position: relative;
+    background: #080d14;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    aspect-ratio: 1376 / 768;
+  }
+  .def-stage canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .def-hud-tl {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(8, 13, 20, 0.84);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(8px);
+    padding: 8px 12px;
+    border-radius: 10px;
+    max-width: 62%;
+    pointer-events: none;
+  }
+  .def-hud-step {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #f4b841;
+    font-weight: 800;
+  }
+  .def-hud-title {
+    font-size: 15px;
+    font-weight: 800;
+    margin: 2px 0;
+    color: #f4f7fb;
+  }
+  .def-hud-cue {
+    font-size: 12.5px;
+    color: #b7c5d8;
+    margin: 0;
+  }
+  .def-hud-tr {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    pointer-events: none;
+  }
+  .def-pill {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(8, 13, 20, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+  }
+  .def-pill.slow { color: #f4b841; border-color: rgba(244, 184, 65, 0.45); }
+  .def-pill.sec { color: #38d9a9; border-color: rgba(56, 217, 169, 0.45); }
+  .cue-callout {
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: rgba(56, 217, 169, 0.09);
+    border-left: 3px solid #38d9a9;
+    border-radius: 6px;
+    font-size: 13.5px;
+  }
+  @media (max-width: 720px) {
+    .def-hud-tl { max-width: 92%; padding: 6px 9px; }
+    .def-hud-title { font-size: 13px; }
+    .def-hud-cue { display: none; }
+    .def-hud-tr { display: none; }
+  }
+</style></head><body><a class="skip" href="#main">Skip to content</a><header class="topbar"><a class="brand" href="../index.html"><img class="brand-logo" src="../assets/crimsonlogo.webp" alt="Crimson — Home of the Mustangs" width="768" height="202"><span class="brand-label">/ PLAYBOOK</span></a><nav class="toplinks" aria-label="Main navigation"><a href="../index.html">Team View</a><a href="../index.html?view=coach">Coach View</a><a href="../position-guide/index.html">Positions</a><a href="../coach-guide/index.html">Coach’s Guide</a><a href="../admin/index.html">Admin</a><button id="leave-coach" hidden>Exit Coach View</button><span class="edition">6TH GRADE · CLUB</span></nav></header><main id="main" class="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="../index.html">Playbook</a><span>/</span>
+    <a href="../fundamentals/index.html">Fundamentals</a><span>/</span>
+    <span>On-Ball 1-on-1 Defensive Stance: Cushion, Base &amp; Active Hands</span>
+  </nav>
+
+  <div class="play-heading">
+    <div>
+      <div class="eyebrow">Fundamentals <span aria-hidden="true"> / </span> Individual Defense &amp; Ball Pressure</div>
+      <h1>On-Ball 1-on-1 Defensive Stance: Cushion, Base &amp; Active Hands</h1>
+      <p>Great one-on-one defense is played with your feet and positioning—not by lunging or slapping at the ball. This isolated slow-motion breakdown demonstrates proper spacing from the ball-handler (<strong>THUNDER #11</strong>), sitting into a balanced wide chair base, active hand positioning in relation to the basketball, and lateral push-step slides by <strong>MUSTANGS #23</strong>.</p>
+    </div>
+    <div class="actions">
+      <a class="button" href="../fundamentals/index.html">← All Fundamentals</a>
+      <button id="print-fundamental" type="button">Print lesson</button>
+    </div>
+  </div>
+
+  <section class="fundamental-video-card" aria-label="Slow-motion on-ball defensive stance video player">
+    <div class="fundamental-video-header">
+      <div>
+        <strong style="font-size:15px">Slow-Motion Studio Video (0.35× Default · Muted)</strong>
+        <p style="font-size:12px">Isolated studio background — toggle Full 1-on-1 View vs. Hands &amp; Cushion Zoom, or step through each phase below.</p>
+      </div>
+      <div class="fundamental-view-controls">
+        <button id="cam-wide" type="button" aria-pressed="true">Full 1-on-1 View</button>
+        <button id="cam-hands" type="button" aria-pressed="false">Hands &amp; Cushion Zoom</button>
+        <button id="toggle-cues" type="button" aria-pressed="true">Overlays: On</button>
+      </div>
+    </div>
+
+    <div class="def-stage">
+      <canvas id="vid" width="1376" height="768"></canvas>
+      <div class="def-hud-tl">
+        <div class="def-hud-step" id="hud-step">STEP 1 OF 5 · 0.0s – 1.2s</div>
+        <div class="def-hud-title" id="hud-title">1. Establish the 1-Arm Cushion &amp; Midline Leverage</div>
+        <p class="def-hud-cue" id="hud-cue">Stay one arm's length (3–4 ft) from THUNDER #11 with your nose aligned on his chest midline.</p>
+      </div>
+      <div class="def-hud-tr">
+        <div class="def-pill slow" id="speed-pill">SLOW MOTION · 0.35×</div>
+        <div class="def-pill sec" id="sec-pill">CUSHION: 1 ARM LENGTH</div>
+      </div>
+    </div>
+
+    <div class="transport">
+      <label class="timeline">
+        <output id="time-txt">0.00s</output>
+        <span class="sr-only">Animation timeline</span>
+        <input id="scrub" type="range" min="0" max="1000" value="0" step="1">
+        <span>6.00s</span>
+      </label>
+      <div class="transport-buttons">
+        <button class="primary" id="play-btn" type="button" aria-pressed="true">Pause</button>
+        <button id="prev-btn" type="button">← Step</button>
+        <button id="next-btn" type="button">Step →</button>
+        <label for="speed-sel">Speed
+          <select id="speed-sel">
+            <option value="0.2">0.20× Ultra Slow</option>
+            <option value="0.35" selected>0.35× Slow Motion</option>
+            <option value="0.6">0.60× Half Speed</option>
+            <option value="1">1.00× Real Time</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <div class="fundamental-phase-strip" id="phase-strip">
+      <button type="button" class="phase-btn active" data-phase="0"><b>Step 1 · 0.0–1.2s</b>1-Arm Cushion</button>
+      <button type="button" class="phase-btn" data-phase="1"><b>Step 2 · 1.2–2.4s</b>Sit in the Chair</button>
+      <button type="button" class="phase-btn" data-phase="2"><b>Step 3 · 2.4–3.6s</b>Trace &amp; Lane Hands</button>
+      <button type="button" class="phase-btn" data-phase="3"><b>Step 4 · 3.6–4.8s</b>Low Ball-Level Dig</button>
+      <button type="button" class="phase-btn" data-phase="4"><b>Step 5 · 4.8–6.0s</b>Push-Step Slide</button>
+    </div>
+  </section>
+
+  <section style="margin-top:34px">
+    <div class="eyebrow">Step-by-Step Technique Breakdown</div>
+    <h2 style="margin-top:6px">The 5 Pillars of 1-on-1 On-Ball Defense</h2>
+    <p style="max-width:760px;font-size:14px;margin-top:6px">
+      Every detail below matches the numbered moments in the slow-motion breakdown above.
+    </p>
+
+    <div class="fundamental-steps-grid">
+      <article class="info-panel">
+        <div class="eyebrow" style="margin-bottom:6px">Step 1 · 0.0s – 1.2s</div>
+        <h2>Spacing from the Ball-Handler: The 1-Arm Cushion</h2>
+        <p>Your spacing controls whether you can both pressure the ball and contain the drive. Set up roughly <strong>one full arm’s length (3 to 4 feet)</strong> away from the ball-handler.</p>
+        <ul style="margin-top:10px">
+          <li><strong>Why 1 arm’s length?</strong> You are close enough that extending your hand contests any jumper or pass immediately, yet far enough that you have reaction space when the offensive player explodes off the dribble.</li>
+          <li><strong>Eyes on the Chest (Never the Head or Ball):</strong> Lock your eyes on the offensive player’s chest/sternum midline. A player can fake with their head, eyes, shoulders, or the ball—their chest cannot go anywhere without taking their body with it.</li>
+          <li><strong>Adjust by Status:</strong> Against a dead dribble (picked up ball), close the cushion to <em>“Chest-to-Chest / Trace the Ball”</em>. Against a quick driver with a live dribble, protect your 1-arm cushion.</li>
+        </ul>
+        <div class="cue-callout"><strong>Coach’s Cue:</strong> <em>“Touch distance, not hug distance—eyes on the numbers!”</em></div>
+      </article>
+
+      <article class="info-panel">
+        <div class="eyebrow" style="margin-bottom:6px">Step 2 · 1.2s – 2.4s</div>
+        <h2>Body Positioning: “Sit in the Chair” (Wide Base &amp; Flat Back)</h2>
+        <p>Defense starts from the ground up. If your legs are straight or you bend at the waist with your head down, one jab step will put you on your heels.</p>
+        <ul style="margin-top:10px">
+          <li><strong>Feet Wider Than Shoulders:</strong> Create a wide, stable pyramid base so your center of gravity stays low and inside your feet.</li>
+          <li><strong>Weight on the Balls of Your Feet:</strong> Keep your heels light (able to slide a sheet of paper under your heels) so you can push laterally in either direction instantly.</li>
+          <li><strong>Hips Down, Chest Proud, Back Flat:</strong> Drop your hips like sitting into a chair rather than bowing forward from the waist. Keep your head level inside your cylinder—no leaning over your toes.</li>
+        </ul>
+        <div class="cue-callout"><strong>Coach’s Cue:</strong> <em>“Butt down, chest up, heels light—sit in the chair!”</em></div>
+      </article>
+
+      <article class="info-panel">
+        <div class="eyebrow" style="margin-bottom:6px">Step 3 · 2.4s – 3.6s</div>
+        <h2>Hand Positioning vs. Triple-Threat: Left Hand (Thumb Up, Palm Facing Ball) &amp; Right Hand Chest-High</h2>
+        <p>Because you are facing the ball-handler head-on, your hands match up in mirror symmetry to where the offensive player holds the basketball—never tucked into your chest, resting on your knees, or hanging dead at your sides.</p>
+        <ul style="margin-top:10px">
+          <li><strong>Hand Closest to the Ball = “Ball / Trace Hand” (Mustangs’ Left Hand vs. Thunder’s Right Hand):</strong> When <strong>THUNDER #11</strong> holds the ball on his right hip (in his right hand), <strong>MUSTANGS #23</strong>’s <strong>left arm</strong> is partially extended forward toward the ball with the <strong>thumb up and the palm facing straight on with the ball</strong>, tracing the basketball’s height to contest any rip or shot pocket rise.</li>
+          <li><strong>Opposite Hand = “Passing-Lane Denier Hand” (Mustangs’ Right Hand Chest-High):</strong> <strong>MUSTANGS #23</strong>’s <strong>right hand</strong> (on the non-ball side across from Thunder’s left shoulder) stays extended <strong>chest-high</strong> in the passing lane with an open palm, shrinking passing windows and deflecting passes.</li>
+          <li><strong>Switch Roles Instantly on a Rip:</strong> Keep your elbows bent and springy so if the ball-handler rips the ball to their left hip, your right hand drops to trace the ball and your left hand rises chest-high into the new passing lane.</li>
+        </ul>
+        <div class="cue-callout"><strong>Coach’s Cue:</strong> <em>“Ball-side arm partially extended—thumb up, palm facing the ball; other hand chest-high in the lane!”</em></div>
+      </article>
+
+      <article class="info-panel">
+        <div class="eyebrow" style="margin-bottom:6px">Step 4 · 3.6s – 4.8s</div>
+        <h2>Live-Ball Hand Discipline: Move Below the Ball With Palm Aligned Straight On</h2>
+        <p>The #1 foul for 12-year-old defenders is slapping <em>downward</em> at a dribble and hitting the ball-handler’s forearms or wrists.</p>
+        <ul style="margin-top:10px">
+          <li><strong>Move Below the Ball With Thumb Up &amp; Palm Facing the Ball:</strong> As <strong>THUNDER #11</strong> lowers the basketball on his right side, <strong>MUSTANGS #23</strong> lowers his partially extended <strong>left arm</strong> below the level of the ball—keeping the <strong>thumb up and the palm aligned straight on with the ball</strong> (not tucked into the chest or flat straight up)—ready to dig upward at the bottom of the basketball.</li>
+          <li><strong>Keep Your Lane-Denier (Right) Hand Chest-High:</strong> Do not let both hands drop when the ball goes low—keep your opposite (right) hand up at chest height to take away the quick pass.</li>
+          <li><strong>Reach With Your Hand Only If Your Feet Are Set:</strong> Never lunge your shoulders forward outside your base to poke at the ball—if you miss a lunge, you give up a layup.</li>
+        </ul>
+        <div class="cue-callout"><strong>Coach’s Cue:</strong> <em>“Keep your palm aligned with the ball—drop below the ball and dig up!”</em></div>
+      </article>
+
+      <article class="info-panel">
+        <div class="eyebrow" style="margin-bottom:6px">Step 5 · 4.8s – 6.0s</div>
+        <h2>Footwork on the Drive: Push-Step Lateral Slide (“Show Your Numbers”)</h2>
+        <p>When the ball-handler attacks off the dribble, your job is to beat them to the spot with your chest—not to chase them with your hands.</p>
+        <ul style="margin-top:10px">
+          <li><strong>Push Off the Trail Foot, Step With the Lead Foot:</strong> Explode laterally by pushing through the inside edge of your trail foot while stepping wide with your lead foot (<em>Wide → Wider → Wide</em>).</li>
+          <li><strong>Never Cross Your Feet &amp; Never Bob Up and Down:</strong> Crossing your feet or hopping straight up in the air takes away your ability to counter a crossover. Keep your head on a flat ceiling plane.</li>
+          <li><strong>Beat Them to the Spot with Your Chest:</strong> Aim to put the numbers on your MUSTANGS jersey squarely in front of the offensive player’s chest while keeping both arms wide (“Wall Up”) so the official sees clean legal guarding position.</li>
+        </ul>
+        <div class="cue-callout"><strong>Coach’s Cue:</strong> <em>“Push-step wide, chest in front, show the ref your palms!”</em></div>
+      </article>
+    </div>
+
+    <div class="guide-grid" style="margin-top:18px">
+      <div class="info-panel">
+        <h3>Common 6th-Grade Mistakes to Correct</h3>
+        <ul style="margin-top:10px">
+          <li><strong>Bending at the waist instead of the knees:</strong> Makes the defender top-heavy and slow laterally. Fix: <em>“Drop your hips, show me the Mustang name on your chest.”</em></li>
+          <li><strong>Slapping down at the dribble:</strong> Refs call reaching/wrist fouls nearly every time a defender chops downward. Fix: <em>“Thumb up, palm aligned with the ball—move below the ball and dig up.”</em></li>
+          <li><strong>Clicking heels together on a slide:</strong> Bringing the feet together mid-slide makes the defender vulnerable to a crossover. Fix: <em>“Keep daylight between your shoes—wide to wider.”</em></li>
+          <li><strong>Watching the ball or head fakes:</strong> Leads to jumping out of stance. Fix: <em>“Eyes glued to the opponent’s jersey numbers.”</em></li>
+        </ul>
+      </div>
+
+      <div class="info-panel">
+        <h3>2-Minute Practice Warm-Up: Mirror &amp; Cushion Drill</h3>
+        <ol style="margin-top:10px;padding-left:20px">
+          <li style="margin-bottom:8px"><strong>Partner Up (Offense + Defense, No Dribble First — 30 sec):</strong> Offense holds the ball in triple-threat and rips it High / Low / Left / Right. Defender stays in a deep chair stance 1 arm’s length away, switching <em>Ball Hand</em> and <em>Lane Hand</em> on every rip without moving their head up.</li>
+          <li style="margin-bottom:8px"><strong>1-Arm Cushion Check (30 sec):</strong> On the coach’s whistle, freeze! The defender reaches their lead hand out—their fingertips should just brush the ball-handler’s shoulder/ball zone without leaning forward.</li>
+          <li><strong>Zig-Zag Push-Step Contain (60 sec):</strong> Offense dribbles at 50% then 75% speed in a lane; defender slides with push-steps keeping their chest in front and hands wide (no reaching fouls allowed).</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <nav class="next-prev" aria-label="Fundamentals navigation">
+    <a href="../rebound-ball-security/index.html">← Previous: Securing the Rebound</a>
+    <a href="../fundamentals/index.html">All Fundamentals →</a>
+  </nav>
+</main>
+
+<script>
+(function() {
+  const FRAME_SOURCES = [
+    '../assets/fundamentals/defense-1-cushion.jpg',
+    '../assets/fundamentals/defense-2-base.jpg',
+    '../assets/fundamentals/defense-3-hands.jpg',
+    '../assets/fundamentals/defense-4-dribble.jpg',
+    '../assets/fundamentals/defense-5-slide.jpg'
+  ];
+
+  const canvas = document.getElementById('vid');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width;
+  const H = canvas.height;
+  const DURATION = 6.0;
+
+  const PHASES = [
+    {
+      step: 'STEP 1 OF 5 · 0.0s – 1.2s',
+      title: '1. Establish the 1-Arm Cushion & Midline Leverage',
+      cue: 'Stay 1 arm’s length (3–4 ft) from THUNDER #11 with your nose on his chest midline—close enough to contest, enough cushion to contain the drive.',
+      badge: 'CUSHION: 1 ARM LENGTH (3–4 FT)',
+      ball: { u: 0.215, v: 0.465, rH: 0.080 },
+      offChest: { u: 0.345, v: 0.365 },
+      defNose: { u: 0.630, v: 0.196 },
+      defChest: { u: 0.707, v: 0.396 },
+      ballHand: { u: 0.528, v: 0.440, label: 'LEFT HAND: THUMB UP, PALM FACING BALL' },
+      laneHand: { u: 0.435, v: 0.330, label: 'RIGHT HAND: 1-ARM CUSHION (CHEST HIGH)' },
+      leadFoot: { u: 0.592, v: 0.895 },
+      trailFoot: { u: 0.882, v: 0.925 }
+    },
+    {
+      step: 'STEP 2 OF 5 · 1.2s – 2.4s',
+      title: '2. Sit in the Chair: Wide Base, Balls of Feet & Flat Back',
+      cue: 'Drop your hips deep (“sit in the chair”) with feet wider than shoulders, weight on the balls of your feet (heels light), chest proud, and head level.',
+      badge: 'BASE: WIDE CHAIR · BALLS OF FEET',
+      ball: { u: 0.215, v: 0.465, rH: 0.080 },
+      offChest: { u: 0.345, v: 0.365 },
+      defNose: { u: 0.615, v: 0.234 },
+      defChest: { u: 0.692, v: 0.434 },
+      ballHand: { u: 0.522, v: 0.455, label: 'LEFT HAND: PARTIALLY EXTENDED AT BALL' },
+      laneHand: { u: 0.431, v: 0.345, label: 'RIGHT HAND: CHEST-HIGH LANE HAND' },
+      leadFoot: { u: 0.585, v: 0.895 },
+      trailFoot: { u: 0.875, v: 0.925 }
+    },
+    {
+      step: 'STEP 3 OF 5 · 2.4s – 3.6s',
+      title: '3. Hand Positioning vs. Triple-Threat: Left Tracks Ball, Right Denies Lane',
+      cue: 'Facing THUNDER #11 (ball in right hand): Mustangs’ LEFT arm is partially extended toward the ball with THUMB UP and PALM FACING THE BALL; RIGHT hand stays CHEST-HIGH in the lane.',
+      badge: 'LEFT: THUMB UP / PALM TO BALL · RIGHT: CHEST-HIGH',
+      ball: { u: 0.220, v: 0.471, rH: 0.080 },
+      offChest: { u: 0.350, v: 0.371 },
+      defNose: { u: 0.611, v: 0.232 },
+      defChest: { u: 0.688, v: 0.432 },
+      ballHand: { u: 0.518, v: 0.458, label: 'LEFT HAND: THUMB UP, PALM FACING BALL' },
+      laneHand: { u: 0.427, v: 0.335, label: 'RIGHT HAND: CHEST-HIGH LANE DENIER' },
+      leadFoot: { u: 0.583, v: 0.895 },
+      trailFoot: { u: 0.873, v: 0.925 }
+    },
+    {
+      step: 'STEP 4 OF 5 · 3.6s – 4.8s',
+      title: '4. Live Ball Discipline: Left Hand Lowers Below Ball, Palm Aligned Straight On',
+      cue: 'As THUNDER #11 lowers the ball, Mustangs’ partially extended LEFT arm moves below ball level with THUMB UP and PALM ALIGNED STRAIGHT ON WITH THE BALL to dig upward.',
+      badge: 'DISCIPLINE: PALM ALIGNED WITH BALL · DIG UP',
+      ball: { u: 0.231, v: 0.493, rH: 0.080 },
+      offChest: { u: 0.361, v: 0.393 },
+      defNose: { u: 0.623, v: 0.248 },
+      defChest: { u: 0.700, v: 0.448 },
+      ballHand: { u: 0.518, v: 0.495, label: 'LEFT HAND: BELOW BALL, PALM ALIGNED ON BALL' },
+      laneHand: { u: 0.441, v: 0.348, label: 'RIGHT HAND: CHEST-HIGH LANE DENIAL' },
+      leadFoot: { u: 0.589, v: 0.895 },
+      trailFoot: { u: 0.879, v: 0.925 }
+    },
+    {
+      step: 'STEP 5 OF 5 · 4.8s – 6.0s',
+      title: '5. Push-Step Lateral Slide: Chest in Front (“Show Your Numbers”)',
+      cue: 'Push off the trail foot and slide wide without crossing feet—chest in front, LEFT hand partially extended tracking the ball, RIGHT hand chest-high contesting the lane.',
+      badge: 'FOOTWORK: PUSH-STEP · NEVER CROSS FEET',
+      ball: { u: 0.253, v: 0.487, rH: 0.080 },
+      offChest: { u: 0.383, v: 0.387 },
+      defNose: { u: 0.651, v: 0.242 },
+      defChest: { u: 0.728, v: 0.442 },
+      ballHand: { u: 0.538, v: 0.480, label: 'LEFT HAND: TRACKS DRIBBLE (PALM TO BALL)' },
+      laneHand: { u: 0.463, v: 0.344, label: 'RIGHT HAND: CHEST-HIGH CONTAIN' },
+      leadFoot: { u: 0.601, v: 0.895 },
+      trailFoot: { u: 0.891, v: 0.925 }
+    }
+  ];
+
+  const imgs = FRAME_SOURCES.map(src => {
+    const im = new Image();
+    im.src = src;
+    return im;
+  });
+
+  let tNorm = 0;
+  let playing = true;
+  let speed = 0.35;
+  let camMode = 'wide';
+  let showCues = true;
+  let lastTs = performance.now();
+
+  const hudStep = document.getElementById('hud-step');
+  const hudTitle = document.getElementById('hud-title');
+  const hudCue = document.getElementById('hud-cue');
+  const speedPill = document.getElementById('speed-pill');
+  const secPill = document.getElementById('sec-pill');
+  const timeTxt = document.getElementById('time-txt');
+  const scrub = document.getElementById('scrub');
+  const playBtn = document.getElementById('play-btn');
+  const phaseBtns = Array.from(document.querySelectorAll('#phase-strip button'));
+  const printBtn = document.getElementById('print-fundamental');
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function smooth(t) { return t * t * (3 - 2 * t); }
+
+  function drawTag(x, y, text, borderColor, textColor) {
+    ctx.save();
+    ctx.font = '800 14px "Segoe UI", system-ui, sans-serif';
+    const padX = 10;
+    const tw = ctx.measureText(text).width;
+    const bw = tw + padX * 2;
+    const bh = 28;
+    const rx = Math.max(10, Math.min(W - bw - 10, x - bw * 0.5));
+    const ry = Math.max(10, Math.min(H - bh - 10, y - bh * 0.5));
+
+    ctx.fillStyle = 'rgba(8, 13, 20, 0.88)';
+    ctx.strokeStyle = borderColor || 'rgba(255,255,255,0.35)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.roundRect(rx, ry, bw, bh, 7);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = textColor || '#f4f7fb';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(text, rx + bw * 0.5, ry + bh * 0.5 + 1);
+    ctx.restore();
+  }
+
+  function render() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = '#080d14';
+    ctx.fillRect(0, 0, W, H);
+
+    const scaled = tNorm * (PHASES.length - 1);
+    const idx0 = Math.min(PHASES.length - 1, Math.floor(scaled));
+    const idx1 = Math.min(PHASES.length - 1, idx0 + 1);
+    const frac = smooth(scaled - idx0);
+
+    const activePhase = Math.min(PHASES.length - 1, Math.floor(tNorm * PHASES.length));
+    const pActive = PHASES[activePhase];
+
+    hudStep.textContent = pActive.step;
+    hudTitle.textContent = pActive.title;
+    hudCue.textContent = pActive.cue;
+    secPill.textContent = pActive.badge;
+
+    phaseBtns.forEach((btn, i) => {
+      btn.classList.toggle('active', i === activePhase);
+    });
+
+    const p0 = PHASES[idx0];
+    const p1 = PHASES[idx1];
+
+    const ballU = lerp(p0.ball.u, p1.ball.u, frac);
+    const ballV = lerp(p0.ball.v, p1.ball.v, frac);
+    const ballRH = lerp(p0.ball.rH, p1.ball.rH, frac);
+    const offChestU = lerp(p0.offChest.u, p1.offChest.u, frac);
+    const offChestV = lerp(p0.offChest.v, p1.offChest.v, frac);
+    const defNoseU = lerp(p0.defNose.u, p1.defNose.u, frac);
+    const defNoseV = lerp(p0.defNose.v, p1.defNose.v, frac);
+    const defChestU = lerp(p0.defChest.u, p1.defChest.u, frac);
+    const defChestV = lerp(p0.defChest.v, p1.defChest.v, frac);
+    const ballHandU = lerp(p0.ballHand.u, p1.ballHand.u, frac);
+    const ballHandV = lerp(p0.ballHand.v, p1.ballHand.v, frac);
+    const laneHandU = lerp(p0.laneHand.u, p1.laneHand.u, frac);
+    const laneHandV = lerp(p0.laneHand.v, p1.laneHand.v, frac);
+    const leadFootU = lerp(p0.leadFoot.u, p1.leadFoot.u, frac);
+    const leadFootV = lerp(p0.leadFoot.v, p1.leadFoot.v, frac);
+    const trailFootU = lerp(p0.trailFoot.u, p1.trailFoot.u, frac);
+    const trailFootV = lerp(p0.trailFoot.v, p1.trailFoot.v, frac);
+
+    ctx.save();
+    if (camMode === 'hands') {
+      const focusX = W * 0.46;
+      const focusY = H * 0.41;
+      const zoom = 1.48;
+      ctx.translate(W * 0.5, H * 0.5);
+      ctx.scale(zoom, zoom);
+      ctx.translate(-focusX, -focusY);
+    }
+
+    const im0 = imgs[idx0];
+    const im1 = imgs[idx1];
+    if (im0 && im0.complete && im0.naturalWidth) {
+      ctx.globalAlpha = 1;
+      ctx.drawImage(im0, 0, 0, W, H);
+    }
+    if (im1 && im1.complete && im1.naturalWidth && idx1 !== idx0) {
+      ctx.globalAlpha = frac;
+      ctx.drawImage(im1, 0, 0, W, H);
+      ctx.globalAlpha = 1;
+    }
+
+    if (showCues) {
+      const bx = ballU * W;
+      const by = ballV * H;
+      const br = ballRH * H;
+
+      const bhx = ballHandU * W;
+      const bhy = ballHandV * H;
+      const lnx = laneHandU * W;
+      const lny = laneHandV * H;
+
+      ctx.save();
+      ctx.strokeStyle = 'rgba(244, 184, 65, 0.92)';
+      ctx.lineWidth = 3;
+      ctx.setLineDash([8, 6]);
+      ctx.beginPath();
+      ctx.arc(bx, by, br + 6, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+
+      if (activePhase === 0 || activePhase === 1) {
+        const nx = defNoseU * W, ny = defNoseV * H;
+        const cx = offChestU * W, cy = offChestV * H;
+        ctx.save();
+        ctx.strokeStyle = 'rgba(56, 217, 169, 0.85)';
+        ctx.lineWidth = 2.5;
+        ctx.setLineDash([6, 6]);
+        ctx.beginPath();
+        ctx.moveTo(nx, ny);
+        ctx.lineTo(cx, cy);
+        ctx.stroke();
+        ctx.fillStyle = '#38d9a9';
+        ctx.beginPath();
+        ctx.arc(cx, cy, 6, 0, Math.PI * 2);
+        ctx.fill();
+        drawTag((nx + cx) * 0.5, (ny + cy) * 0.5 - 26, 'EYES LOCKED ON CHEST MIDLINE', '#38d9a9', '#38d9a9');
+        ctx.restore();
+      }
+
+      const cStartX = offChestU * W + 24;
+      const cEndX = (defChestU - 0.07) * W;
+      const cY = H * 0.65;
+      ctx.save();
+      ctx.strokeStyle = 'rgba(244, 184, 65, 0.9)';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(cStartX, cY - 10);
+      ctx.lineTo(cStartX, cY + 10);
+      ctx.moveTo(cStartX, cY);
+      ctx.lineTo(cEndX, cY);
+      ctx.moveTo(cEndX, cY - 10);
+      ctx.lineTo(cEndX, cY + 10);
+      ctx.stroke();
+      drawTag((cStartX + cEndX) * 0.5, cY + 26, '1-ARM CUSHION (3–4 FT SPACING)', '#f4b841', '#f4b841');
+      ctx.restore();
+
+      ctx.save();
+      ctx.strokeStyle = '#38d9a9';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.arc(bhx, bhy, 26, 0, Math.PI * 2);
+      ctx.stroke();
+
+      ctx.strokeStyle = 'rgba(56, 217, 169, 0.85)';
+      ctx.lineWidth = 2.5;
+      ctx.setLineDash([6, 5]);
+      ctx.beginPath();
+      ctx.moveTo(bhx - 26, bhy);
+      ctx.lineTo(bx + br + 6, by);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      drawTag(bhx + 10, bhy + 42, PHASES[activePhase].ballHand.label, '#38d9a9', '#38d9a9');
+      ctx.restore();
+
+      ctx.save();
+      ctx.strokeStyle = '#ed5671';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.arc(lnx, lny, 26, 0, Math.PI * 2);
+      ctx.stroke();
+      drawTag(lnx + 20, lny - 42, PHASES[activePhase].laneHand.label, '#ed5671', '#ff8da1');
+      ctx.restore();
+
+      if (activePhase === 1 || activePhase === 4) {
+        const lfx = leadFootU * W, lfy = leadFootV * H + 12;
+        const tfx = trailFootU * W, tfy = trailFootV * H + 12;
+        const baseY = Math.max(lfy, tfy);
+        ctx.save();
+        ctx.strokeStyle = '#38d9a9';
+        ctx.lineWidth = 3.5;
+        ctx.beginPath();
+        ctx.moveTo(lfx, baseY - 12);
+        ctx.lineTo(lfx, baseY);
+        ctx.lineTo(tfx, baseY);
+        ctx.lineTo(tfx, baseY - 12);
+        ctx.stroke();
+        const baseLabel = activePhase === 4
+          ? 'PUSH-STEP LATERAL SLIDE · NEVER CROSS FEET'
+          : 'WIDE CHAIR BASE · WEIGHT ON BALLS OF FEET';
+        drawTag((lfx + tfx) * 0.5, baseY - 26, baseLabel, '#38d9a9', '#38d9a9');
+        ctx.restore();
+      }
+    }
+
+    ctx.restore();
+
+    const curSec = (tNorm * DURATION).toFixed(2);
+    timeTxt.textContent = `${curSec}s`;
+    scrub.value = Math.round(tNorm * 1000);
+  }
+
+  function tick(now) {
+    const dt = Math.min(0.05, (now - lastTs) / 1000);
+    lastTs = now;
+    if (playing) {
+      tNorm += (dt * speed) / DURATION;
+      if (tNorm >= 1) tNorm = 0;
+    }
+    render();
+    requestAnimationFrame(tick);
+  }
+
+  playBtn.addEventListener('click', () => {
+    playing = !playing;
+    playBtn.textContent = playing ? 'Pause' : 'Play';
+    playBtn.setAttribute('aria-pressed', String(playing));
+  });
+
+  scrub.addEventListener('input', () => {
+    playing = false;
+    playBtn.textContent = 'Play';
+    playBtn.setAttribute('aria-pressed', 'false');
+    tNorm = Number(scrub.value) / 1000;
+    render();
+  });
+
+  document.getElementById('prev-btn').addEventListener('click', () => {
+    playing = false;
+    playBtn.textContent = 'Play';
+    playBtn.setAttribute('aria-pressed', 'false');
+    const cur = Math.min(PHASES.length - 1, Math.floor(tNorm * PHASES.length));
+    const prev = (cur - 1 + PHASES.length) % PHASES.length;
+    tNorm = prev / (PHASES.length - 1);
+    render();
+  });
+
+  document.getElementById('next-btn').addEventListener('click', () => {
+    playing = false;
+    playBtn.textContent = 'Play';
+    playBtn.setAttribute('aria-pressed', 'false');
+    const cur = Math.min(PHASES.length - 1, Math.floor(tNorm * PHASES.length));
+    const next = (cur + 1) % PHASES.length;
+    tNorm = next / (PHASES.length - 1);
+    render();
+  });
+
+  phaseBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      playing = false;
+      playBtn.textContent = 'Play';
+      playBtn.setAttribute('aria-pressed', 'false');
+      const idx = Number(btn.dataset.phase);
+      tNorm = idx / (PHASES.length - 1);
+      render();
+    });
+  });
+
+  document.getElementById('speed-sel').addEventListener('change', e => {
+    speed = Number(e.target.value);
+    speedPill.textContent = `SLOW MOTION · ${speed.toFixed(2)}×`;
+  });
+
+  const camWide = document.getElementById('cam-wide');
+  const camHands = document.getElementById('cam-hands');
+  camWide.addEventListener('click', () => {
+    camMode = 'wide';
+    camWide.setAttribute('aria-pressed', 'true');
+    camHands.setAttribute('aria-pressed', 'false');
+    render();
+  });
+  camHands.addEventListener('click', () => {
+    camMode = 'hands';
+    camHands.setAttribute('aria-pressed', 'true');
+    camWide.setAttribute('aria-pressed', 'false');
+    render();
+  });
+
+  const toggleCues = document.getElementById('toggle-cues');
+  toggleCues.addEventListener('click', () => {
+    showCues = !showCues;
+    toggleCues.setAttribute('aria-pressed', String(showCues));
+    toggleCues.textContent = `Overlays: ${showCues ? 'On' : 'Off'}`;
+    render();
+  });
+
+  if (printBtn) {
+    printBtn.addEventListener('click', () => window.print());
+  }
+
+  requestAnimationFrame(tick);
+})();
+</script>
+<footer class="footer"><span>CRIMSON BASKETBALL · Play fast. Read the game. Play together.</span><a href="../coach-guide/index.html#sources">Coaching sources &amp; rules notes ↗</a></footer></body></html>
