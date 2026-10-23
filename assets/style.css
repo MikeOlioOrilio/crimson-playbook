@@ -70,3 +70,17 @@
 .setup-guide li{margin:10px 0}.setup-guide p{margin:12px 0}.setup-guide code{overflow-wrap:anywhere;color:var(--gold)}
 .setup-guide table{width:100%;border-collapse:collapse;margin:20px 0}.setup-guide td,.setup-guide th{text-align:left;vertical-align:top;padding:12px;border-bottom:1px solid var(--line)}
 @media(max-width:760px){.topbar{height:auto;min-height:78px;flex-wrap:wrap;padding:15px 18px;gap:12px}.toplinks{flex-wrap:wrap;gap:15px}.toplinks button{padding:5px 8px;font-size:11px}#play-checklist{grid-template-columns:1fr}.form-pair{grid-template-columns:1fr}.coach-row{align-items:flex-start;flex-direction:column}.setup-guide table{font-size:12px}.setup-guide td,.setup-guide th{padding:7px}.focus-hero{padding-top:0}}
+/* Fundamentals menu and skill lessons. */
+.sidebar-fundamentals{margin-top:24px;padding-top:18px;border-top:1px solid var(--line)}
+.card-preview img.card-thumb{width:100%;height:100%;object-fit:cover;object-position:38% 22%;display:block}
+.fundamental-video-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.fundamental-video-header{padding:16px 20px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.fundamental-view-controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.fundamental-stage{background:#05080d;border-bottom:1px solid var(--line)}
+.fundamental-stage canvas{display:block;width:100%;height:auto;max-height:460px}
+.fundamental-phase-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;padding:0 20px 18px}
+.fundamental-phase-strip button{text-align:left;padding:11px 12px;font-size:12px;line-height:1.45;background:var(--bg)}
+.fundamental-phase-strip button b{display:block;color:var(--accent);margin-bottom:3px;font-size:11px}
+.fundamental-phase-strip button.active{border-color:var(--accent);background:#172e3a}
+.fundamental-steps-grid{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
+@media(max-width:760px){.sidebar-fundamentals{margin-top:10px;padding-top:10px}}

@@ -1,0 +1,554 @@
+<main id="main" class="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="../index.html">Playbook</a><span>/</span>
+    <a href="../fundamentals/index.html">Fundamentals</a><span>/</span>
+    <span>Securing the Rebound: Attack, Chin &amp; Protect</span>
+  </nav>
+
+  <div class="play-heading">
+    <div>
+      <div class="eyebrow">Fundamentals <span aria-hidden="true"> / </span> Rebounding &amp; Ball Security</div>
+      <h1>Securing the Rebound: Attack, Chin &amp; Protect</h1>
+      <p>A rebound is not complete until the ball is protected from guards digging down. This slow-motion studio isolation removes the court and crowd noise so players can focus strictly on hand placement, chin position, elbow width, and footwork.</p>
+    </div>
+    <div class="actions">
+      <a class="button" href="../fundamentals/index.html">← All Fundamentals</a>
+      <button id="print-fundamental" type="button">Print lesson</button>
+    </div>
+  </div>
+
+  <section class="fundamental-video-card" aria-label="Slow-motion rebound security video">
+    <div class="fundamental-video-header">
+      <div>
+        <strong style="font-size:15px">Slow-Motion Studio Video (0.35× Default · Muted)</strong>
+        <p style="font-size:12px">Isolated studio background — toggle Full Stance vs. Grip &amp; Chin Zoom, or step through each phase below.</p>
+      </div>
+      <div class="fundamental-view-controls">
+        <button id="btn-full" type="button" aria-pressed="true">Full Stance</button>
+        <button id="btn-close" type="button" aria-pressed="false">Grip &amp; Chin Zoom</button>
+        <button id="btn-cues" type="button" aria-pressed="true">Overlays: On</button>
+      </div>
+    </div>
+
+    <div class="fundamental-stage">
+      <canvas id="render-canvas" width="960" height="360"></canvas>
+    </div>
+
+    <div class="transport">
+      <label class="timeline">
+        <output id="clock">0.0s</output>
+        <span class="sr-only">Animation timeline</span>
+        <input id="timeline" type="range" min="0" max="1000" value="0" step="1">
+        <span>10.0s</span>
+      </label>
+      <div class="transport-buttons">
+        <button class="primary" id="play-toggle" type="button" aria-pressed="true">Pause</button>
+        <button id="reset-video" type="button">Reset</button>
+        <button id="prev-phase" type="button">← Step</button>
+        <button id="next-phase" type="button">Step →</button>
+        <label for="speed">Speed
+          <select id="speed">
+            <option value="0.2">0.2× Ultra Slow</option>
+            <option value="0.35" selected>0.35× Slow Motion</option>
+            <option value="0.6">0.6× Half Speed</option>
+            <option value="1">1.0× Real Time</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <div class="fundamental-phase-strip" id="phase-strip">
+      <button type="button" data-t="0.08" class="active"><b>Step 1 · 0.0–2.0s</b>Two-Hand "W" Target</button>
+      <button type="button" data-t="0.28"><b>Step 2 · 2.0–4.0s</b>High-Point Snatch</button>
+      <button type="button" data-t="0.48"><b>Step 3 · 4.0–6.0s</b>Wide Base &amp; Pull Down</button>
+      <button type="button" data-t="0.68"><b>Step 4 · 6.0–8.0s</b>Chin It &amp; Elbows 90°</button>
+      <button type="button" data-t="0.88"><b>Step 5 · 8.0–10.0s</b>Rip Pivot &amp; Outlet</button>
+    </div>
+  </section>
+
+  <section style="margin-top:34px">
+    <div class="eyebrow">Step-by-Step Breakdown</div>
+    <h2 style="margin-top:6px">The 5 Actions to Secure Every Rebound</h2>
+    <p style="max-width:760px;font-size:14px;margin-top:6px">
+      Most turnovers after a defensive rebound happen in the first 1.5 seconds because the rebounder catches with one hand, brings the ball down to the waist, or turns blindly into traffic. Follow these five steps on every board:
+    </p>
+
+    <div class="fundamental-steps-grid">
+      <article class="info-panel">
+        <div class="eyebrow" style="margin-bottom:6px">Step 1 · Before Contact</div>
+        <h2>Track Early &amp; Show a Two-Hand "W" Target</h2>
+        <p>As soon as the shot goes up and you establish body position, lock your eyes on the flight of the ball and prepare both hands above your shoulders.</p>
+        <ul style="margin-top:10px">
+          <li><strong>Two hands every time:</strong> One-handed rebounds get tipped away or knocked loose on the way down.</li>
+          <li><strong>Spread fingers wide ("W" shape):</strong> Thumbs point inward behind the ball so it cannot slip through your hands.</li>
+          <li><strong>Jump from a balanced base:</strong> Take off from two feet so you can absorb contact in the air.</li>
+        </ul>
+      </article>
+
+      <article class="info-panel">
+        <div class="eyebrow" style="margin-bottom:6px">Step 2 · Peak Extension</div>
+        <h2>Attack &amp; Snatch at the Highest Point</h2>
+        <p>Do not wait on the floor for the ball to come to you. Jump to meet the ball at the highest point you can control with two hands.</p>
+        <ul style="margin-top:10px">
+          <li><strong>Aggressive squeeze:</strong> Clamp both sides of the basketball firmly with your fingertips and palms.</li>
+          <li><strong>Arms extended, elbows slightly flexed:</strong> Absorb the momentum of the rebound and immediately initiate the downward pull.</li>
+        </ul>
+      </article>
+
+      <article class="info-panel">
+        <div class="eyebrow" style="margin-bottom:6px">Step 3 · The Descent</div>
+        <h2>Pull Straight to the Chin &amp; Land Wide</h2>
+        <p>While coming down, rip the ball straight from overhead into your upper chest/chin pocket and land on a wide, stable base.</p>
+        <ul style="margin-top:10px">
+          <li><strong>Land two feet wide (shoulder-width or wider):</strong> A narrow landing makes you easy to bump off balance into a traveling violation.</li>
+          <li><strong>Hips low, knees bent:</strong> Land in an athletic stance ready to pivot immediately.</li>
+          <li><strong>Never drop the ball to your waist:</strong> Keep the ball above your chest line away from smaller guards slapping at your hips.</li>
+        </ul>
+      </article>
+
+      <article class="info-panel">
+        <div class="eyebrow" style="margin-bottom:6px">Step 4 · The Protection Cage</div>
+        <h2>"Chin It" with Elbows Flared Out</h2>
+        <p>Tuck the basketball 4–6 inches directly beneath your chin with your elbows flared out wide at roughly 90 degrees.</p>
+        <ul style="margin-top:10px">
+          <li><strong>Ball under the chin:</strong> Your head, shoulders, and forearms form a natural roof over the ball.</li>
+          <li><strong>Elbows wide and strong (not swinging):</strong> Wide, stationary elbows establish your legal cylinder so defenders cannot reach in without fouling.</li>
+          <li><strong>Locked wrists:</strong> Grip the ball tightly enough that a slap from underneath cannot pop it loose.</li>
+        </ul>
+      </article>
+
+      <article class="info-panel">
+        <div class="eyebrow" style="margin-bottom:6px">Step 5 · Transition</div>
+        <h2>Rip-Through Pivot &amp; Chin Up to Outlet</h2>
+        <p>Once balanced, pivot away from pressure to put your body between the defender and the basketball while scanning the sideline for your guard.</p>
+        <ul style="margin-top:10px">
+          <li><strong>Violent rip-through:</strong> If a defender crowds your front, sweep the ball forcefully either low-to-high (below the knees) or overhead to the opposite pocket.</li>
+          <li><strong>Pivot to the outside sideline:</strong> Open toward the nearest wing/sideline rather than passing across the middle of your own basket.</li>
+          <li><strong>Pass before dribbling:</strong> Look for the crisp two-hand overhead or chest outlet pass first; only dribble if the outlet is denied.</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="guide-grid" style="margin-top:18px">
+      <div class="role-principle">
+        <strong>Coaching Cue in Practice: "SNATCH — CHIN — ELBOWS!"</strong>
+        <p>During 3-on-3 and 5-on-5 drills, award a bonus point whenever a rebounder lands on two feet with the ball tucked under the chin and elbows wide before making the outlet pass.</p>
+      </div>
+      <div class="callout" style="margin:0;display:flex;flex-direction:column;justify-content:center">
+        <strong style="color:var(--red);font-size:15px;margin-bottom:6px">Habit to Eliminate: The "Waist Drop &amp; Immediate Dribble"</strong>
+        <p style="color:var(--text);font-size:13px">Sixth-grade players naturally bring the rebound down to their stomach or put the ball on the floor immediately in traffic—where guards sit waiting to strip it. Keep the ball high and protected until the outlet window is clear.</p>
+      </div>
+    </div>
+  </section>
+
+  <nav class="next-prev" aria-label="Fundamentals navigation">
+    <a href="../fundamentals/index.html">← Back to Fundamentals</a>
+    <a href="../hit-find-get/index.html">Related Drill: Hit, Find, Get →</a>
+  </nav>
+</main>
+
+<script>
+(function() {
+  const FRAME_SRCS = [
+    '../assets/fundamentals/rebound-1-target.jpg',
+    '../assets/fundamentals/rebound-2-snatch.jpg',
+    '../assets/fundamentals/rebound-3-pull.jpg',
+    '../assets/fundamentals/rebound-4-chin.jpg',
+    '../assets/fundamentals/rebound-5-pivot.jpg'
+  ];
+  const frameImgs = FRAME_SRCS.map(src => {
+    const img = new Image();
+    img.src = src;
+    return img;
+  });
+
+  const BALL_COORDS = [
+    { u: 0.500, v: 0.057, rH: 0.080 },
+    { u: 0.456, v: 0.114, rH: 0.082 },
+    { u: 0.445, v: 0.116, rH: 0.084 },
+    { u: 0.382, v: 0.378, rH: 0.105 },
+    { u: 0.262, v: 0.510, rH: 0.108 }
+  ];
+
+  const canvas = document.getElementById('render-canvas');
+  const ctx = canvas.getContext('2d');
+  const playToggle = document.getElementById('play-toggle');
+  const resetBtn = document.getElementById('reset-video');
+  const prevBtn = document.getElementById('prev-phase');
+  const nextBtn = document.getElementById('next-phase');
+  const timeline = document.getElementById('timeline');
+  const clock = document.getElementById('clock');
+  const speedSel = document.getElementById('speed');
+  const btnFull = document.getElementById('btn-full');
+  const btnClose = document.getElementById('btn-close');
+  const btnCues = document.getElementById('btn-cues');
+  const printBtn = document.getElementById('print-fundamental');
+  const phaseButtons = Array.from(document.querySelectorAll('#phase-strip button'));
+
+  const DURATION = 10.0;
+  const stops = [0.08, 0.28, 0.48, 0.68, 0.88];
+  let t = 0, playing = true, speed = 0.35, zoomMode = 'full', showCues = true, lastTs = performance.now();
+
+  const phases = [
+    {
+      from: 0.00, to: 0.20,
+      title: 'STEP 1 · TRACK & TWO-HAND "W" TARGET',
+      cue: 'Jump balanced · Eyes on the seams · Both hands extended high in a "W" target',
+      tip: 'Never reach with one hand. Spread fingers wide to absorb the rebound cleanly.'
+    },
+    {
+      from: 0.20, to: 0.40,
+      title: 'STEP 2 · HIGH-POINT TWO-HAND SNATCH',
+      cue: 'Attack at peak reach · Clamp both sides of the basketball firmly overhead',
+      tip: 'Meet the ball at its highest point—do not wait on the floor for the bounce.'
+    },
+    {
+      from: 0.40, to: 0.60,
+      title: 'STEP 3 · WIDE BASE LANDING & PULL DOWN',
+      cue: 'Rip straight down from overhead · Land on two feet shoulder-width or wider',
+      tip: 'Knees bent, hips low. A wide base prevents defenders from bumping you off balance.'
+    },
+    {
+      from: 0.60, to: 0.80,
+      title: 'STEP 4 · "CHIN IT" & FLARE ELBOWS 90°',
+      cue: 'Tuck ball 4 in. under chin · Flare both elbows wide to build a protection cage',
+      tip: 'Never drop the ball to your waist or hips where smaller guards wait to strip it.'
+    },
+    {
+      from: 0.80, to: 1.00,
+      title: 'STEP 5 · RIP-THROUGH PIVOT & OUTLET SCAN',
+      cue: 'Sweep firmly into side pocket · Pivot away from pressure · Chin up to find outlet',
+      tip: 'Seal the defender on your hip and look to pass to the wing before dribbling.'
+    }
+  ];
+
+  const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+  const lerp = (a, b, u) => a + (b - a) * clamp(u, 0, 1);
+  const smooth = u => { const x = clamp(u, 0, 1); return x * x * (3 - 2 * x); };
+
+  function setPlaying(state) {
+    playing = state;
+    playToggle.textContent = playing ? 'Pause' : 'Play';
+    playToggle.setAttribute('aria-pressed', String(playing));
+  }
+
+  btnFull.onclick = () => { zoomMode = 'full'; btnFull.setAttribute('aria-pressed', 'true'); btnClose.setAttribute('aria-pressed', 'false'); };
+  btnClose.onclick = () => { zoomMode = 'closeup'; btnClose.setAttribute('aria-pressed', 'true'); btnFull.setAttribute('aria-pressed', 'false'); };
+  btnCues.onclick = () => {
+    showCues = !showCues;
+    btnCues.setAttribute('aria-pressed', String(showCues));
+    btnCues.textContent = showCues ? 'Overlays: On' : 'Overlays: Off';
+  };
+  playToggle.onclick = () => setPlaying(!playing);
+  resetBtn.onclick = () => { t = 0; timeline.value = 0; setPlaying(false); };
+  prevBtn.onclick = () => {
+    setPlaying(false);
+    const cur = Math.min(4, Math.floor(t * 5));
+    t = stops[(cur + 4) % 5];
+    timeline.value = Math.round(t * 1000);
+  };
+  nextBtn.onclick = () => {
+    setPlaying(false);
+    const cur = Math.min(4, Math.floor(t * 5));
+    t = stops[(cur + 1) % 5];
+    timeline.value = Math.round(t * 1000);
+  };
+  speedSel.onchange = () => { speed = parseFloat(speedSel.value); };
+  timeline.oninput = () => { t = parseFloat(timeline.value) / 1000; setPlaying(false); };
+  phaseButtons.forEach(btn => {
+    btn.onclick = () => { t = parseFloat(btn.dataset.t); timeline.value = Math.round(t * 1000); setPlaying(false); };
+  });
+  printBtn.onclick = () => window.print();
+
+  function getBlend(tNorm) {
+    const centers = [0.10, 0.30, 0.50, 0.70, 0.90];
+    if (tNorm <= centers[0]) return { idxA: 0, idxB: 0, alpha: 0, localU: tNorm / 0.20 };
+    if (tNorm >= centers[4]) {
+      if (tNorm > 0.95) return { idxA: 4, idxB: 0, alpha: smooth((tNorm - 0.95) / 0.05), localU: (tNorm - 0.80) / 0.20 };
+      return { idxA: 4, idxB: 4, alpha: 0, localU: (tNorm - 0.80) / 0.20 };
+    }
+    for (let i = 0; i < 4; i++) {
+      const start = centers[i], end = centers[i + 1];
+      if (tNorm >= start && tNorm <= end) {
+        const boundaryStart = start + 0.05, boundaryEnd = end - 0.05;
+        const alpha = smooth((tNorm - boundaryStart) / (boundaryEnd - boundaryStart));
+        const phaseIdx = Math.min(4, Math.floor(tNorm * 5));
+        const localU = (tNorm - phaseIdx * 0.20) / 0.20;
+        return { idxA: i, idxB: i + 1, alpha, localU };
+      }
+    }
+    return { idxA: 0, idxB: 0, alpha: 0, localU: 0 };
+  }
+
+  function getFrameRect(idx, localU) {
+    const img = frameImgs[idx];
+    const imgAspect = (img && img.naturalWidth && img.naturalHeight) ? (img.naturalWidth / img.naturalHeight) : (16 / 9);
+    let scale = 1.04, dx = 0, dy = 0;
+    if (idx === 0) { dy = lerp(8, -4, localU); scale = lerp(1.02, 1.05, localU); }
+    else if (idx === 1) { dy = lerp(-4, -8, Math.sin(localU * Math.PI)); scale = 1.05; }
+    else if (idx === 2) { dy = lerp(-6, 6, localU); scale = lerp(1.05, 1.03, localU); }
+    else if (idx === 3) { dy = 4; scale = lerp(1.03, 1.06, Math.sin(localU * Math.PI * 0.5)); }
+    else if (idx === 4) { dx = lerp(0, -10, localU); dy = 4; scale = 1.05; }
+
+    if (zoomMode === 'closeup') {
+      scale *= 1.35;
+      dy += idx <= 2 ? 55 : 28;
+      dx += idx === 4 ? 32 : 12;
+    }
+
+    const targetW = 520;
+    const targetH = canvas.height;
+    const drawH = targetH * scale;
+    const drawW = drawH * imgAspect;
+    const drawX = (targetW - drawW) * 0.5 + dx;
+    const drawY = (targetH - drawH) * 0.5 + dy;
+    return { drawX, drawY, drawW, drawH };
+  }
+
+  function imgPoint(idx, localU, u, v, rH = 0) {
+    const rect = getFrameRect(idx, localU);
+    return { x: rect.drawX + u * rect.drawW, y: rect.drawY + v * rect.drawH, r: rH * rect.drawH };
+  }
+
+  function drawFrameWithMotion(img, idx, localU, alpha) {
+    if (!img || !img.complete || !img.naturalWidth) return;
+    const rect = getFrameRect(idx, localU);
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.drawImage(img, rect.drawX, rect.drawY, rect.drawW, rect.drawH);
+    ctx.restore();
+  }
+
+  function drawArrow(x1, y1, x2, y2, color, width = 2.5) {
+    const angle = Math.atan2(y2 - y1, x2 - x1);
+    ctx.save();
+    ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = width;
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x2, y2);
+    ctx.lineTo(x2 - 10 * Math.cos(angle - 0.4), y2 - 10 * Math.sin(angle - 0.4));
+    ctx.lineTo(x2 - 10 * Math.cos(angle + 0.4), y2 - 10 * Math.sin(angle + 0.4));
+    ctx.closePath(); ctx.fill();
+    ctx.restore();
+  }
+
+  function drawBiomechanicalOverlays(tNorm, hScale) {
+    if (!showCues) return;
+    ctx.save();
+    const s = hScale;
+    const { idxA, idxB, alpha, localU } = getBlend(tNorm);
+    const bA = imgPoint(idxA, localU, BALL_COORDS[idxA].u, BALL_COORDS[idxA].v, BALL_COORDS[idxA].rH);
+    const bB = imgPoint(idxB, localU, BALL_COORDS[idxB].u, BALL_COORDS[idxB].v, BALL_COORDS[idxB].rH);
+    const ball = { x: lerp(bA.x, bB.x, alpha), y: lerp(bA.y, bB.y, alpha), r: lerp(bA.r, bB.r, alpha) };
+
+    if (tNorm < 0.20) {
+      const pulse = 0.65 + 0.35 * Math.sin(tNorm * 45);
+      ctx.strokeStyle = `rgba(119, 217, 220, ${0.9 * pulse})`;
+      ctx.lineWidth = 2.5;
+      ctx.setLineDash([6, 4]);
+      ctx.beginPath();
+      ctx.arc(ball.x, ball.y, ball.r * 1.18, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      const handsPt = imgPoint(0, localU, 0.43, 0.20);
+      const boxW = 148 * s, boxH = 26 * s;
+      const boxX = Math.max(12 * s, handsPt.x - boxW - 24 * s);
+      const boxY = handsPt.y - boxH * 0.5;
+      ctx.fillStyle = 'rgba(12, 20, 32, 0.88)';
+      ctx.strokeStyle = '#f8ca78';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.roundRect(boxX, boxY, boxW, boxH, 6); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#f8ca78';
+      ctx.font = `bold ${Math.round(12 * s)}px sans-serif`;
+      ctx.fillText('2-HAND "W" TARGET', boxX + 10 * s, boxY + 17 * s);
+      drawArrow(boxX + boxW + 2 * s, handsPt.y, handsPt.x - 6 * s, handsPt.y, '#f8ca78', 2);
+    } else if (tNorm < 0.40) {
+      const local = (tNorm - 0.20) / 0.20;
+      const ringR = ball.r * (1.12 + local * 0.45);
+      ctx.strokeStyle = `rgba(248, 202, 120, ${1 - local * 0.65})`;
+      ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.arc(ball.x, ball.y, ringR, 0, Math.PI * 2); ctx.stroke();
+
+      ctx.strokeStyle = 'rgba(119, 217, 220, 0.85)';
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(ball.x, ball.y, ball.r * 1.05, 0, Math.PI * 2); ctx.stroke();
+
+      drawArrow(ball.x - ball.r * 2.1, ball.y, ball.x - ball.r * 1.18, ball.y, '#77d9dc', 3);
+      drawArrow(ball.x + ball.r * 2.1, ball.y, ball.x + ball.r * 1.18, ball.y, '#77d9dc', 3);
+
+      const boxW = 128 * s, boxH = 26 * s;
+      const boxX = Math.max(10 * s, ball.x - ball.r * 2.1 - boxW - 8 * s);
+      const boxY = Math.max(36 * s, ball.y - boxH * 0.5);
+      ctx.fillStyle = 'rgba(12, 20, 32, 0.90)';
+      ctx.strokeStyle = '#77d9dc';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.roundRect(boxX, boxY, boxW, boxH, 6); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#77d9dc';
+      ctx.font = `bold ${Math.round(12 * s)}px sans-serif`;
+      ctx.fillText('CLAMP AT PEAK', boxX + 10 * s, boxY + 17 * s);
+    } else if (tNorm < 0.60) {
+      const chinTarget = imgPoint(2, localU, 0.435, 0.42);
+      ctx.strokeStyle = 'rgba(119, 217, 220, 0.85)';
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(ball.x, ball.y, ball.r * 1.06, 0, Math.PI * 2); ctx.stroke();
+
+      drawArrow(ball.x, ball.y + ball.r * 1.1, chinTarget.x, chinTarget.y, '#77d9dc', 3.5);
+      ctx.fillStyle = 'rgba(12, 20, 32, 0.90)';
+      ctx.strokeStyle = '#77d9dc';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.roundRect(22 * s, 96 * s, 152 * s, 26 * s, 6); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#77d9dc';
+      ctx.font = `bold ${Math.round(12 * s)}px sans-serif`;
+      ctx.fillText('PULL STRAIGHT DOWN', 32 * s, 113 * s);
+
+      const kneeL = imgPoint(2, localU, 0.28, 0.90);
+      const kneeR = imgPoint(2, localU, 0.55, 0.90);
+      ctx.strokeStyle = '#f8ca78';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath(); ctx.moveTo(kneeL.x, kneeL.y); ctx.lineTo(kneeR.x, kneeR.y); ctx.stroke();
+      const midX = (kneeL.x + kneeR.x) * 0.5;
+      ctx.fillStyle = 'rgba(12, 20, 32, 0.90)';
+      ctx.beginPath(); ctx.roundRect(midX - 68 * s, kneeL.y - 18 * s, 136 * s, 24 * s, 6); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#f8ca78';
+      ctx.fillText('◄ WIDE 2-FOOT BASE ►', midX - 60 * s, kneeL.y - 2 * s);
+    } else if (tNorm < 0.80) {
+      ctx.strokeStyle = '#77d9dc';
+      ctx.lineWidth = 3;
+      ctx.setLineDash([6, 4]);
+      ctx.beginPath(); ctx.arc(ball.x, ball.y, ball.r * 1.25, 0, Math.PI * 2); ctx.stroke();
+      ctx.setLineDash([]);
+
+      const elL = imgPoint(3, localU, 0.168, 0.405);
+      const elR = imgPoint(3, localU, 0.585, 0.405);
+      ctx.fillStyle = 'rgba(12, 20, 32, 0.90)';
+      ctx.strokeStyle = '#f8ca78';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.roundRect(Math.max(8 * s, elL.x - 52 * s), elL.y - 36 * s, 106 * s, 24 * s, 6); ctx.fill(); ctx.stroke();
+      ctx.beginPath(); ctx.roundRect(elR.x - 52 * s, elR.y - 36 * s, 108 * s, 24 * s, 6); ctx.fill(); ctx.stroke();
+
+      ctx.fillStyle = '#f8ca78';
+      ctx.font = `bold ${Math.round(12 * s)}px sans-serif`;
+      ctx.fillText('◄ ELBOW 90°', Math.max(16 * s, elL.x - 44 * s), elL.y - 20 * s);
+      ctx.fillText('ELBOW 90° ►', elR.x - 42 * s, elR.y - 20 * s);
+
+      const waistPt = imgPoint(3, localU, 0.382, 0.66);
+      ctx.strokeStyle = 'rgba(237, 86, 113, 0.85)';
+      ctx.fillStyle = 'rgba(40, 16, 24, 0.85)';
+      ctx.setLineDash([5, 4]);
+      ctx.beginPath(); ctx.roundRect(waistPt.x - 88 * s, waistPt.y - 14 * s, 178 * s, 28 * s, 6); ctx.fill(); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#fda4af';
+      ctx.fillText('✖ NO WAIST DROP (STRIP ZONE)', waistPt.x - 80 * s, waistPt.y + 4 * s);
+    } else {
+      ctx.strokeStyle = '#f8ca78';
+      ctx.lineWidth = 2.5;
+      ctx.setLineDash([5, 4]);
+      ctx.beginPath(); ctx.arc(ball.x, ball.y, ball.r * 1.15, 0, Math.PI * 2); ctx.stroke();
+      ctx.setLineDash([]);
+
+      const eyesPt = imgPoint(4, localU, 0.465, 0.205);
+      drawArrow(eyesPt.x + 12 * s, eyesPt.y, eyesPt.x + 95 * s, eyesPt.y - 16 * s, '#77d9dc', 2.5);
+      ctx.fillStyle = 'rgba(12, 20, 32, 0.90)';
+      ctx.strokeStyle = '#77d9dc';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.roundRect(eyesPt.x + 18 * s, eyesPt.y - 46 * s, 164 * s, 26 * s, 6); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#77d9dc';
+      ctx.font = `bold ${Math.round(12 * s)}px sans-serif`;
+      ctx.fillText('CHIN UP · SCAN OUTLET ↗', eyesPt.x + 28 * s, eyesPt.y - 29 * s);
+
+      ctx.fillStyle = 'rgba(12, 20, 32, 0.90)';
+      ctx.strokeStyle = '#f8ca78';
+      ctx.beginPath(); ctx.roundRect(Math.max(12 * s, ball.x - 82 * s), ball.y + ball.r + 8 * s, 164 * s, 26 * s, 6); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#f8ca78';
+      ctx.fillText('PROTECTED RIP POCKET', Math.max(22 * s, ball.x - 72 * s), ball.y + ball.r + 25 * s);
+    }
+    ctx.restore();
+  }
+
+  function wrapText(context, text, x, y, maxWidth, lineHeight) {
+    const words = text.split(' ');
+    let line = '';
+    for (let n = 0; n < words.length; n++) {
+      const testLine = line + words[n] + ' ';
+      if (context.measureText(testLine).width > maxWidth && n > 0) {
+        context.fillText(line, x, y);
+        line = words[n] + ' ';
+        y += lineHeight;
+      } else {
+        line = testLine;
+      }
+    }
+    context.fillText(line, x, y);
+  }
+
+  function frame(now) {
+    const dt = Math.min(0.05, (now - lastTs) / 1000);
+    lastTs = now;
+    if (playing) {
+      t = (t + (dt * speed) / DURATION) % 1;
+      timeline.value = Math.round(t * 1000);
+    }
+
+    const activeIdx = Math.min(4, Math.floor(t * 5));
+    const activePhase = phases[activeIdx];
+    clock.textContent = `${(t * DURATION).toFixed(1)}s`;
+    phaseButtons.forEach((b, idx) => b.classList.toggle('active', idx === activeIdx));
+
+    ctx.fillStyle = '#05080d';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    const { idxA, idxB, alpha, localU } = getBlend(t);
+    drawFrameWithMotion(frameImgs[idxA], idxA, localU, 1);
+    if (alpha > 0.01 && idxB !== idxA) {
+      drawFrameWithMotion(frameImgs[idxB], idxB, localU, alpha);
+    }
+
+    const fadeGrad = ctx.createLinearGradient(440, 0, 540, 0);
+    fadeGrad.addColorStop(0, 'rgba(5, 8, 13, 0)');
+    fadeGrad.addColorStop(1, 'rgba(5, 8, 13, 1)');
+    ctx.fillStyle = fadeGrad;
+    ctx.fillRect(430, 0, 530, canvas.height);
+
+    drawBiomechanicalOverlays(t, canvas.height / 360);
+
+    ctx.save();
+    ctx.fillStyle = 'rgba(15, 25, 38, 0.94)';
+    ctx.strokeStyle = 'rgba(119, 217, 220, 0.4)';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.roundRect(530, 36, 395, 286, 12); ctx.fill(); ctx.stroke();
+
+    ctx.fillStyle = '#77d9dc';
+    ctx.font = 'bold 13px sans-serif';
+    ctx.fillText(activePhase.title, 554, 70);
+
+    ctx.fillStyle = '#f3f4f6';
+    ctx.font = 'bold 16px sans-serif';
+    wrapText(ctx, activePhase.cue, 554, 102, 350, 23);
+
+    ctx.fillStyle = '#f8ca78';
+    ctx.font = 'bold 13px sans-serif';
+    ctx.fillText('COACHING DETAIL', 554, 180);
+
+    ctx.fillStyle = '#aab9cc';
+    ctx.font = '14px sans-serif';
+    wrapText(ctx, activePhase.tip, 554, 204, 350, 21);
+
+    const tags = ['2 Hands', 'Chin It', 'Elbows 90°', 'Wide Base'];
+    tags.forEach((label, i) => {
+      const active = (i === 0 && t >= 0.15) || (i === 1 && t >= 0.58) || (i === 2 && t >= 0.60) || (i === 3 && t >= 0.40);
+      const tx = 554 + i * 88;
+      ctx.fillStyle = active ? 'rgba(119, 217, 220, 0.22)' : 'rgba(37, 51, 73, 0.6)';
+      ctx.strokeStyle = active ? '#77d9dc' : '#29384b';
+      ctx.beginPath(); ctx.roundRect(tx, 272, 82, 26, 6); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = active ? '#a7f3d0' : '#94a3b8';
+      ctx.font = 'bold 12px sans-serif';
+      ctx.fillText(label, tx + 8, 289);
+    });
+    ctx.restore();
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
