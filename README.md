@@ -2,7 +2,27 @@
 
 25 animated lessons: four refined originals, the original twenty additions, and the requested alternating-elbow shooting drill.
 
-The shared header uses `assets/crimsonlogo.webp` followed by “/ PLAYBOOK”. The public **Positions** page at `position-guide/index.html` covers roles 1–5, offense, man-to-man defense, both sides of inbounding, shot priorities, and skill development. Edit `position-guide.html`, then run `node build.cjs` to update it. This reference page does not need a Firebase record or a coach PIN.
+The shared header uses your revised `assets/crimsonlogo.webp` followed by “/ PLAYBOOK”. **Positions & responsibilities** is now the featured item at the top of the sidebar, rather than a top-menu link. The public page at `position-guide/index.html` covers roles 1–5, offense, man-to-man defense, both sides of inbounding, shot priorities, and skill development. Each position has a shot-practice map and a defensive matchup example with Ball left / Ball right controls. These illustrate helping man defense, not fixed defensive zones. A five-out spacing diagram explains how jobs move. Edit the original text in `position-guide.html` and diagrams in `lessons/diagrams.cjs`, then run `node build.cjs`. These reference pages do not need Firebase records or a coach PIN.
+
+## October 23, 2026: visual learning update
+
+This version starts from the supplied CrimsonBasketball.zip. It preserves the revised logo, CNAME, Firebase setup/configuration, all 25 play records, the animation engine, and the additional folders in that archive. The original archive is not modified.
+
+The Fundamentals library has eight lessons: rebound security, on-ball defense, back/reverse pivot, front/forward pivot, shot contests, legal screens, ball protection/retreat dribble, and catch–stop–read. Each uses three separate photo illustrations, readable HTML captions, a practice activity, and coaching references. The old canvas captions and crossfaded images are replaced to prevent text clipping and doubled bodies. Photo playback starts paused, holds each still for 4/7/10 seconds, and has continuous loop OFF by default. Show all steps supports side-by-side study of the lesson text as you scroll; Print lesson includes all three steps. With JavaScript disabled, all steps and both defensive maps remain readable.
+
+Editable files:
+
+- `lessons/fundamentals.cjs`: lesson copy, source links, images, and related lessons.
+- `lessons/render.cjs`: shared sidebar, fundamentals library, photo lesson templates, position-page assembly.
+- `lessons/diagrams.cjs`: precise SVG court maps, footwork and technique diagrams.
+- `assets/learning.css` and `assets/learning.js`: responsive layout and local photo/map controls.
+- `assets/fundamentals/*.png`: eight final AI-created photo sequences, produced with the built-in image generation tool. The prompt set is in `lessons/image-prompts.json`; the final defense framing edit is in `lessons/final-defense-image-prompt.txt`.
+
+Run `node build.cjs` after changing lesson data or templates. Generated `*/index.html` files and root lesson-body `.html` copies are outputs; edit the data/template files above rather than the generated lesson bodies. The build now includes the previously untracked defensive-stance lesson, so rebuilding no longer drops it from the menu. Original JPEG assets are retained but the repaired lessons use the new PNGs.
+
+Coaching corrections include controlled elbows rather than a supposed elbow “protection cage,” variable on-ball hand roles, recovery running when a slide is beaten, a clear difference between held-ball protection and a live retreat dribble, accurate pivot-foot release rules, stationary screens with room to avoid them, and shot contests that respect the shooter’s space. Photos are teaching illustrations rather than official rules diagrams; references are linked within each lesson.
+
+Upload the CONTENTS of the updated ZIP directly into your existing published folder. Keep its folder structure, `.nojekyll`, and `CNAME`. Do not put this entire site inside another nested site folder. No Firebase console changes are required for this update.
 
 ## Use it
 
@@ -69,3 +89,11 @@ The coach's guide includes an installation sequence, 75-minute practice, sources
 The animations illustrate selected teaching reads; they do not model every possible defensive recovery or guarantee a score. The user’s actual competition rules need confirmation with the event organizer, particularly pressing restrictions. Sources and distinctions are documented in the guide.
 
 Complete the Firebase setup guide before uploading this version. The package does not provision your live Firebase database or publish your GitHub repository. See UPDATE-FILES.txt for the complete upload list. Names are admin-only; PINs are derived lookup keys for a lightweight focus gate over public static plays, not private-content protection. Administrator writes use Firebase Authentication and Firestore Security Rules. Coach names may be duplicated but PINs must be unique. Admin can change PINs and disable access. Coach session access expires after 12 hours and is rechecked on navigation or refresh.
+
+## Rules guide
+
+The top-menu Rules page is public at rules/index.html. It contains 14 illustrated rules, topic filters, backcourt and free-throw step diagrams, and six self-check questions. No Firebase changes are needed.
+
+Edit lessons/rules.cjs for explanations and source links; lessons/rule-diagrams.cjs for original SVG visuals. Styling and optional interactions live in assets/rules.css and assets/rules.js. Run node build.cjs after changing content. All reference content works without JavaScript.
+
+Rules reviewed October 24, 2026 against NFHS 2026–27 changes and the linked rule explanations. Utah high-school changes and Utah Bantam examples are identified separately. The team's exact event is not confirmed; recheck its current rules before treating the example press restriction as applicable.

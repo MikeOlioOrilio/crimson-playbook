@@ -1,13 +1,33 @@
-LOGO + POSITIONS GUIDE UPDATE — October 21, 2026
+CRIMSON BASKETBALL — POSITIONS, FUNDAMENTALS & RULES UPDATE
+October 24, 2026
 
-Upload / replace:
-assets/crimsonlogo.webp (lowercase filename)
-assets/style.css
-index.html
-position-guide/index.html (new page)
+RECOMMENDED UPLOAD
+Extract CrimsonBasketball-updated.zip. Its index.html is directly at the ZIP root.
+Upload the CONTENTS into the folder GitHub Pages already publishes.
+Preserve the subfolders, .nojekyll, and your CNAME. Do not upload the ZIP itself
+and do not nest a second site folder inside the existing one.
+
+This update starts from your supplied CrimsonBasketball.zip, preserving your
+revised logo, all play data and animation files, Firebase files, custom domain,
+and the additional folders. No Firebase console changes are needed.
+
+WHAT CHANGED
+- Rules added to every shared top menu: 14 illustrated cards and six quiz questions.
+- Interactive backcourt and free-throw diagrams, topic filters, and print support.
+- Utah high-school modifications and unconfirmed Bantam event examples labeled.
+- Positions is the featured sidebar entry and is removed from the top menu.
+- Each position has shot locations and switchable ball-side/help-side diagrams.
+- Fundamentals has 8 lessons: 2 repaired + 5 requested new skills + catch/stop/read.
+- Photo steps replace canvas captions and image blending; text wraps responsively.
+- Play steps starts paused, and continuous loop defaults OFF.
+- Coaching cues, practice instructions, and source references were reviewed.
+- Shared build sources now retain every fundamentals lesson on future rebuilds.
+
+IF UPLOADING ONLY THE CHANGED FILES
+Replace these files:
+README.md
+UPDATE-FILES.txt
 admin/index.html
-firebase-setup/index.html
-coach-guide/index.html
 advantage-break/index.html
 alternating-elbow-shooting/index.html
 ball-screen-defense/index.html
@@ -16,17 +36,26 @@ baseline-help/index.html
 baseline-screen-slip/index.html
 baseline-stack/index.html
 box-blob/index.html
+build.cjs
 closeout-contain/index.html
+coach-guide/index.html
 cut-read-3v3/index.html
+defensive-stance/index.html
 drag-screen/index.html
 dribble-at-backdoor/index.html
+firebase-setup/index.html
 five-out/index.html
 full-court-man/index.html
+fundamentals/index.html
 gap-help-recover/index.html
 hit-find-get/index.html
+index.html
 laker-drill/index.html
 made-basket-entry/index.html
+position-guide/index.html
 press-break/index.html
+rebound-ball-security.html
+rebound-ball-security/index.html
 run-and-jump/index.html
 screen-away/index.html
 screen-read-3v3/index.html
@@ -34,14 +63,46 @@ sideline-box/index.html
 trap-drill/index.html
 zone-buster/index.html
 
-Keep the editable sources too:
-build.cjs
-position-guide.html
-README.md
-UPDATE-FILES.txt
+Add these files, keeping their folders:
+assets/fundamentals/catch-stop-read.png
+assets/fundamentals/defensive-stance.png
+assets/fundamentals/front-pivot.png
+assets/fundamentals/legal-screen.png
+assets/fundamentals/protect-retreat.png
+assets/fundamentals/rebound-security.png
+assets/fundamentals/reverse-pivot.png
+assets/fundamentals/shot-contest.png
+assets/learning.css
+assets/learning.js
+assets/rules.css
+assets/rules.js
+catch-stop-read.html
+catch-stop-read/index.html
+defensive-stance.html
+front-pivot.html
+front-pivot/index.html
+legal-screen.html
+legal-screen/index.html
+lessons/diagrams.cjs
+lessons/final-defense-image-prompt.txt
+lessons/fundamentals.cjs
+lessons/image-prompts.json
+lessons/render.cjs
+lessons/rule-diagrams.cjs
+lessons/rules.cjs
+protect-retreat.html
+protect-retreat/index.html
+reverse-pivot.html
+reverse-pivot/index.html
+rules/index.html
+shot-contest.html
+shot-contest/index.html
 
-All generated pages changed because the shared logo and Positions navigation link appear throughout the site.
-The easiest upload is the contents of the latest clean crimson-playbook folder, preserving its subfolders. Do not create a nested crimson-playbook folder.
-The logo is packaged using the exact lowercase path assets/crimsonlogo.webp. GitHub Pages paths are case-sensitive.
-This update does not change Firebase configuration, database records, permissions, coach PINs, or play animations. No Firebase console steps are needed if the previous Firebase version is already configured.
-After GitHub Pages finishes publishing, refresh with Ctrl+Shift+R.
+Because the shared header changed, every generated play index.html is included.
+Keep lessons/ and build.cjs for future editing. Run node build.cjs after edits.
+Do not edit generated lesson HTML as the sole source of a change.
+
+After GitHub Pages publishes, refresh with Ctrl+Shift+R.
+The photos are AI-created teaching illustrations, not recorded live footage.
+The full prompt set is in lessons/image-prompts.json and the final defense
+framing correction is in lessons/final-defense-image-prompt.txt.
