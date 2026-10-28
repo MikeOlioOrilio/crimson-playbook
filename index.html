@@ -1,1 +1,650 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0c1420"><meta name="description" content="A decision-based basketball playbook for a skilled, smaller sixth-grade club team."><title>Play library | Crimson Playbook</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230c1420'/%3E%3Ccircle cx='32' cy='32' r='23' fill='%23ed5671'/%3E%3Cpath d='M9 32h46M32 9v46M17 14q25 18 0 36M47 14q-25 18 0 36' fill='none' stroke='%230c1420' stroke-width='3'/%3E%3C/svg%3E"><link rel="stylesheet" href="assets/style.css"><link rel="stylesheet" href="assets/learning.css"><link rel="stylesheet" href="assets/rules.css"></head><body><a class="skip" href="#main">Skip to content</a><header class="topbar"><a class="brand" href="index.html"><img class="brand-logo" src="assets/crimsonlogo.webp" alt="Crimson — Home of the Mustangs" width="768" height="202"><span class="brand-label">/ PLAYBOOK</span></a><nav class="toplinks" aria-label="Main navigation"><a href="index.html">Team View</a><a href="index.html?view=coach">Coach View</a><a href="rules/index.html" >Rules</a><a href="coach-guide/index.html">Coach’s Guide</a><a href="admin/index.html">Admin</a><button id="leave-coach" hidden>Exit Coach View</button><span class="edition">6TH GRADE · CLUB</span></nav></header><div class="layout"><aside class="sidebar learning-sidebar"><div class="sidebar-label">START WITH YOUR ROLE</div><a class="positions-feature" href="position-guide/index.html" ><span class="role-digits" aria-hidden="true">1 2 3 4 5</span><strong>Positions & responsibilities</strong><span>See your shots, spacing, and defensive help →</span></a><div class="sidebar-label section-label">THE PLAY LIBRARY</div><nav class="category-nav" aria-label="Play categories"><a href="#all" data-category="all">All categories <span class="count">0</span></a><a href="#drills" data-category="drills">Drills <span class="count">0</span></a><a href="#offense" data-category="offense">Offensive Plays / Strategies <span class="count">0</span></a><a href="#defense" data-category="defense">Defensive Plays / Strategies <span class="count">0</span></a><a href="#inbounds" data-category="inbounds">Inbounding Plays <span class="count">0</span></a></nav><div class="sidebar-fundamentals"><div class="sidebar-label">SKILL DEVELOPMENT</div><nav class="category-nav" aria-label="Fundamentals"><a href="fundamentals/index.html" >Fundamentals <span class="count">8</span></a></nav></div><div class="sidebar-note"><strong>OUR IDENTITY</strong><p>Win space with speed.<br>Make the simple read.<br>Pressure with purpose.<br>Finish with a rebound.</p></div></aside><main id="main" class="library-main"><section class="focus-hero"><div class="eyebrow" id="view-label">TEAM VIEW · CURRENT FOCUS</div><h1 id="team-title">Our team’s playbook</h1><p id="team-note">The plays and drills for our next steps together.</p></section><p id="library-status" class="access-status" role="status">Loading your team’s playbook…</p><button id="retry-library" hidden>Try again</button><section id="coach-login" class="info-panel login-panel" hidden><h2>Coach View</h2><p>Enter your coach PIN to open every drill and play.</p><form id="coach-login-form" class="stack-form"><label>Coach PIN<input id="coach-pin" type="password" inputmode="numeric" pattern="[0-9]{4,8}" minlength="4" maxlength="8" autocomplete="off" required></label><button class="primary" id="unlock-coach">Open Coach View</button><p id="coach-error" role="status"></p></form><p><a href="admin/index.html">Administrator sign in ↗</a></p></section><div id="library-content" hidden><div class="library-toolbar"><div><h2 id="section-title">All categories</h2><p id="section-subtitle"></p></div><label class="search-wrap"><span aria-hidden="true">⌕</span><span class="sr-only">Search plays and drills</span><input type="search" id="search" placeholder="Search these plays…" autocomplete="off"></label></div><p id="result-count" class="selection-count" role="status"></p><div class="card-grid" id="cards"></div></div><noscript><p>Enable JavaScript to load your team’s selected plays and animations.</p></noscript></main></div><script src="assets/catalog.js"></script><script src="assets/court.js"></script><script src="assets/app.js"></script><script type="module" src="assets/library.js"></script><footer class="footer"><span>CRIMSON BASKETBALL · Play fast. Read the game. Play together.</span><a href="coach-guide/index.html#sources">Coaching sources & rules notes ↗</a></footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Real Knowledge | Practical AI Integration for Business</title>
+  <meta name="description" content="Real Knowledge helps organizations adopt AI at three levels: empowering employees with AI tools and training, connecting AI to company knowledge, and integrating AI into business systems." />
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* Obsidian */
+      --obsidian: #050506;
+      --obsidian-2: #09090b;
+      /* Glass */
+      --glass: linear-gradient(135deg, rgba(255,255,255,0.075) 0%, rgba(255,255,255,0.025) 45%, rgba(255,255,255,0.045) 100%);
+      --glass-strong: linear-gradient(135deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.08) 100%);
+      --glass-edge: linear-gradient(135deg,
+        rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.08) 28%,
+        rgba(190,210,255,0.18) 55%, rgba(255,215,240,0.14) 72%,
+        rgba(255,255,255,0.04) 85%, rgba(255,255,255,0.30) 100%);
+      --glass-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(255,255,255,0.02), 0 30px 80px -20px rgba(0,0,0,0.85);
+      --line: rgba(255,255,255,0.07);
+      /* Crystal tones */
+      --text: #e7e9ee;
+      --muted: #868a95;
+      --crystal: linear-gradient(110deg, #f4f6fb 0%, #aab1c0 18%, #ffffff 36%, #c9d4ea 52%, #efe4f2 66%, #9aa1b0 82%, #f4f6fb 100%);
+      --serif: "Cormorant Garamond", "Times New Roman", serif;
+      --radius: 20px;
+      --max: 1160px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 140px; }
+    body {
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: radial-gradient(ellipse 120% 80% at 50% -10%, #15161b 0%, var(--obsidian) 55%);
+      background-color: var(--obsidian);
+      color: var(--text);
+      line-height: 1.65;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    /* Film grain for a rich, non-flat finish */
+    body::after {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.045;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), 92%); margin: 0 auto; position: relative; z-index: 1; }
+
+    /* Ambient light that the glass refracts */
+    .ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .ambient span { position: absolute; border-radius: 50%; filter: blur(90px); animation: drift 28s ease-in-out infinite alternate; }
+    .ambient span:nth-child(1) { width: 620px; height: 620px; top: -12%; right: -8%; background: rgba(205,215,240,0.11); }
+    .ambient span:nth-child(2) { width: 520px; height: 520px; top: 38%; left: -14%; background: rgba(150,170,215,0.08); animation-duration: 34s; }
+    .ambient span:nth-child(3) { width: 460px; height: 460px; bottom: -14%; right: 18%; background: rgba(225,205,235,0.06); animation-duration: 40s; }
+    @keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(60px,40px) scale(1.12); } }
+
+    /* ---------- Glass primitive ---------- */
+    .glass {
+      position: relative; overflow: hidden;
+      background: var(--glass);
+      backdrop-filter: blur(22px) saturate(150%);
+      -webkit-backdrop-filter: blur(22px) saturate(150%);
+      box-shadow: var(--glass-shadow);
+      border-radius: var(--radius);
+    }
+    /* Prismatic, light-catching edge */
+    .glass::before {
+      content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+      background: var(--glass-edge);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+    }
+    /* Light sweep on hover */
+    .glass::after {
+      content: ""; position: absolute; inset: -1px; pointer-events: none; border-radius: inherit;
+      background: linear-gradient(115deg, transparent 32%, rgba(255,255,255,0.05) 44%, rgba(255,255,255,0.16) 50%, rgba(255,255,255,0.05) 56%, transparent 68%);
+      transform: translateX(-130%); transition: transform 1.3s cubic-bezier(.2,.7,.2,1);
+    }
+    .glass:hover::after { transform: translateX(130%); }
+
+    /* Crystal text */
+    .crystal {
+      font-family: var(--serif); font-style: italic; font-weight: 500; letter-spacing: -0.01em;
+      background: var(--crystal); background-size: 260% 100%;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      animation: sheen 10s ease-in-out infinite;
+      padding-right: 0.06em;
+    }
+    @keyframes sheen { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    .polished {
+      background: linear-gradient(180deg, #ffffff 0%, #d9dce3 55%, #a9aeb9 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+
+    /* ---------- Nav ---------- */
+    header { position: sticky; top: 16px; z-index: 50; }
+    nav {
+      display: flex; align-items: center; justify-content: space-between; height: 108px; padding: 0 22px 0 10px;
+      border-radius: 30px;
+    }
+    .logo { display: flex; align-items: center; gap: 20px; font-weight: 500; font-size: 1.3rem; letter-spacing: 0.16em; text-transform: uppercase; }
+    .logo-mark {
+      position: relative; flex-shrink: 0; width: 88px; height: 88px; border-radius: 22px; overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18), 0 10px 30px -8px rgba(0,0,0,0.85), 0 0 30px -6px rgba(210,225,255,0.28);
+    }
+    .logo-mark img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.18); display: block; }
+    .logo-mark::after {
+      content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+      background: linear-gradient(135deg, rgba(255,255,255,0.22), transparent 40%, transparent 70%, rgba(255,255,255,0.08));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14);
+    }
+    footer .logo { font-size: 1.15rem; gap: 18px; }
+    footer .logo-mark { width: 72px; height: 72px; border-radius: 18px; }
+    .nav-links { display: flex; gap: 40px; font-size: 0.98rem; color: var(--muted); letter-spacing: 0.03em; }
+    .nav-links a { transition: color .3s; }
+    .nav-links a:hover { color: #fff; }
+    nav .btn { padding: 15px 30px; font-size: 0.95rem; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px; padding: 13px 26px; border-radius: 999px;
+      font-weight: 500; font-size: 0.9rem; letter-spacing: 0.04em; font-family: inherit; cursor: pointer;
+      color: #fff; transition: transform .3s, box-shadow .3s;
+    }
+    .btn-primary {
+      background: var(--glass-strong);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), inset 0 0 20px rgba(255,255,255,0.06), 0 10px 40px -10px rgba(200,215,255,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), inset 0 0 26px rgba(255,255,255,0.1), 0 16px 50px -10px rgba(200,215,255,0.5); }
+    .btn-ghost { background: transparent; color: var(--text); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12); backdrop-filter: blur(10px); }
+    .btn-ghost:hover { box-shadow: inset 0 0 0 1px rgba(255,255,255,0.3); color: #fff; }
+    .btn .arrow { transition: transform .3s; }
+    .btn:hover .arrow { transform: translateX(3px); }
+
+    /* ---------- Hero ---------- */
+    .hero { position: relative; padding: 110px 0 120px; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px; border-radius: 999px;
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text); margin-bottom: 30px;
+    }
+    .eyebrow i { width: 6px; height: 6px; transform: rotate(45deg); background: linear-gradient(135deg,#fff,#b8c3dc); box-shadow: 0 0 10px rgba(220,230,255,0.9); }
+    h1 { font-size: clamp(2.6rem, 5.4vw, 4.3rem); line-height: 1.04; letter-spacing: -0.04em; font-weight: 300; margin-bottom: 28px; }
+    h1 .crystal { font-size: 1.12em; display: inline-block; line-height: 1; }
+    .lead { font-size: 1.1rem; color: var(--muted); max-width: 540px; margin-bottom: 40px; font-weight: 300; }
+    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* Hero visual: faceted crystal behind glass layers */
+    .hero-visual { position: relative; min-height: 440px; display: grid; align-items: center; }
+    .gem {
+      position: absolute; width: 112%; left: -6%; top: 50%; transform: translateY(-50%); z-index: 0; opacity: 0.9;
+      animation: float 12s ease-in-out infinite;
+      filter: drop-shadow(0 0 40px rgba(200,215,255,0.12));
+    }
+    @keyframes float { 0%,100% { transform: translateY(-52%) rotate(-1deg); } 50% { transform: translateY(-48%) rotate(1deg); } }
+    .gem .facet { stroke: rgba(255,255,255,0.32); stroke-width: 0.4; }
+    .gem .glint { animation: glint 6s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+    .gem .glint.g2 { animation-delay: 3s; }
+    @keyframes glint { 0%, 70%, 100% { opacity: 0; transform: scale(0.4) rotate(0deg); } 80% { opacity: 1; transform: scale(1) rotate(45deg); } }
+
+    .stack { position: relative; z-index: 1; display: grid; gap: 14px; perspective: 1200px; }
+    .stack-layer { padding: 22px 26px; display: flex; align-items: center; gap: 18px; transform: rotateX(10deg); transition: transform .5s; }
+    .stack-layer:hover { transform: rotateX(0) translateY(-4px); }
+    .num {
+      flex-shrink: 0; width: 46px; height: 46px; border-radius: 13px; display: grid; place-items: center;
+      font-weight: 300; font-size: 1.15rem; color: #fff;
+      background: var(--glass-strong); box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), inset 0 0 0 1px rgba(255,255,255,0.08);
+    }
+    .s3 .num { box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), inset 0 0 0 1px rgba(255,255,255,0.18), 0 0 24px rgba(210,225,255,0.3); }
+    .stack-layer h4 { font-size: 1rem; font-weight: 500; letter-spacing: 0.01em; }
+    .stack-layer p { font-size: 0.85rem; color: var(--muted); font-weight: 300; }
+    /* Pyramid: Level 1 is the broad foundation, Level 3 the pinnacle */
+    .s3 { margin: 0 88px; } .s2 { margin: 0 44px; } .s1 { margin: 0; padding: 28px 30px; }
+    .s1 .num { width: 52px; height: 52px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), inset 0 0 0 1px rgba(255,255,255,0.14), 0 0 26px rgba(210,225,255,0.25); }
+    .s1 h4 { font-size: 1.1rem; }
+    .stack-caption {
+      margin-top: 18px; text-align: center; font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: #b9bdc7;
+    }
+
+    /* ---------- Sections ---------- */
+    section { padding: 120px 0; position: relative; }
+    .divider { height: 1px; width: min(var(--max), 92%); margin: 0 auto; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent); }
+    .section-head { text-align: center; max-width: 760px; margin: 0 auto 70px; }
+    .kicker { display: inline-flex; align-items: center; gap: 12px; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.26em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+    .kicker::before, .kicker::after { content: ""; width: 28px; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4)); }
+    .kicker::after { transform: scaleX(-1); }
+    .section-head h2 { font-size: clamp(2rem, 3.8vw, 3rem); letter-spacing: -0.035em; line-height: 1.1; margin-bottom: 20px; font-weight: 300; }
+    .section-head h2 .crystal { font-size: 1.1em; }
+    .section-head p { color: var(--muted); font-size: 1.05rem; font-weight: 300; }
+
+    /* ---------- Levels ---------- */
+    .levels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .level { padding: 40px 34px; display: flex; flex-direction: column; transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s; }
+    .level:hover { transform: translateY(-8px); box-shadow: var(--glass-shadow), 0 0 60px -10px rgba(200,215,255,0.15); }
+    .level-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 26px; }
+    .icon {
+      width: 54px; height: 54px; border-radius: 15px; display: grid; place-items: center; color: #f2f4f8;
+      background: var(--glass-strong); box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 0 0 1px rgba(255,255,255,0.07);
+    }
+    .icon svg { filter: drop-shadow(0 0 6px rgba(255,255,255,0.25)); }
+    .level-num { font-family: var(--serif); font-style: italic; font-size: 3.4rem; line-height: 0.9; color: transparent; -webkit-text-stroke: 0.8px rgba(255,255,255,0.28); }
+    .level-tag { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .level h3 { font-size: 1.55rem; margin-bottom: 6px; letter-spacing: -0.02em; font-weight: 400; }
+    .level .tagline { font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: #cfd3dc; margin-bottom: 16px; }
+    .level > p.desc { color: var(--muted); font-size: 0.95rem; margin-bottom: 24px; font-weight: 300; }
+    .level ul { list-style: none; display: grid; gap: 12px; margin-bottom: 28px; }
+    .level li { display: flex; gap: 14px; font-size: 0.92rem; align-items: baseline; font-weight: 300; color: #d6d9e0; }
+    .level li::before {
+      content: ""; width: 6px; height: 6px; flex-shrink: 0; transform: rotate(45deg) translateY(-2px);
+      background: linear-gradient(135deg, #ffffff, #aeb9d4); box-shadow: 0 0 8px rgba(220,230,255,0.7);
+    }
+    .examples { margin-top: auto; padding-top: 22px; border-top: 1px solid var(--line); }
+    .examples h5 { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--muted); margin-bottom: 12px; font-weight: 500; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      font-size: 0.77rem; padding: 6px 13px; border-radius: 999px; color: #dfe2e8; font-weight: 400;
+      background: rgba(255,255,255,0.04); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.09), inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .spectrum { margin-top: 56px; padding: 36px 40px; }
+    .spectrum h4 { font-size: 1.1rem; font-weight: 400; margin-bottom: 4px; }
+    .spectrum p { color: var(--muted); font-size: 0.94rem; font-weight: 300; }
+    .spectrum-bar { height: 2px; border-radius: 999px; margin: 26px 0 16px; background: linear-gradient(90deg, rgba(255,255,255,0.05), rgba(200,215,255,0.5) 60%, #fff); position: relative; }
+    .spectrum-bar::after { content: ""; position: absolute; right: -4px; top: 50%; width: 12px; height: 12px; transform: translateY(-50%) rotate(45deg); background: linear-gradient(135deg,#fff,#c3cde6); box-shadow: 0 0 18px rgba(220,230,255,0.9), 0 0 40px rgba(200,215,255,0.5); }
+    .spectrum-labels { display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--muted); letter-spacing: 0.02em; }
+
+    /* ---------- Level 1 showcase ---------- */
+    .showcase { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .use-case { padding: 36px; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+    .use-case:hover { transform: translateY(-5px); }
+    .use-case-head { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+    .use-case-head .icon { width: 46px; height: 46px; border-radius: 13px; }
+    .use-case h3 { font-size: 1.22rem; font-weight: 400; letter-spacing: -0.015em; }
+    .use-case > p { color: var(--muted); font-size: 0.95rem; margin-bottom: 20px; font-weight: 300; }
+    .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .ba { padding: 15px 17px; border-radius: 13px; font-size: 0.85rem; font-weight: 300; }
+    .ba span { display: block; font-size: 0.64rem; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 5px; font-weight: 500; }
+    .ba.before { box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06); color: #6f737d; }
+    .ba.before span { color: #5b5f69; }
+    .ba.after { background: var(--glass-strong); box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 0 0 1px rgba(255,255,255,0.09), 0 0 30px -8px rgba(200,215,255,0.2); color: #eef0f4; }
+    .ba.after span { color: #fff; }
+
+    .training-band { margin-top: 24px; padding: 38px 42px; display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap; background: var(--glass-strong); }
+    .training-band h4 { font-size: 1.5rem; font-weight: 300; letter-spacing: -0.02em; margin-bottom: 6px; }
+    .training-band p { color: #a3a7b1; font-size: 0.95rem; max-width: 680px; font-weight: 300; }
+    .pill-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    /* ---------- Process ---------- */
+    .process { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; counter-reset: step; }
+    .step { padding: 34px 28px; }
+    .step::marker { content: none; }
+    .step h4 { font-size: 1.12rem; margin-bottom: 8px; font-weight: 400; }
+    .step h4::before {
+      counter-increment: step; content: "0" counter(step);
+      display: block; margin-bottom: 18px; font-family: var(--serif); font-style: italic; font-size: 2.6rem; line-height: 1;
+      color: transparent; -webkit-text-stroke: 0.8px rgba(255,255,255,0.5);
+    }
+    .step p { color: var(--muted); font-size: 0.92rem; font-weight: 300; }
+
+    /* ---------- FAQ ---------- */
+    .faq { max-width: 820px; margin: 0 auto; display: grid; gap: 14px; }
+    details { padding: 22px 26px; border-radius: 16px; }
+    details.glass::after { display: none; }
+    summary { cursor: pointer; font-weight: 400; font-size: 1.02rem; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; font-size: 1.5rem; font-weight: 200; color: #fff; transition: transform .3s; }
+    details[open] summary::after { transform: rotate(45deg); }
+    details p { color: var(--muted); margin-top: 12px; font-weight: 300; }
+
+    footer { padding: 60px 0; color: var(--muted); font-size: 0.88rem; position: relative; z-index: 1; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity 1s ease, transform 1s cubic-bezier(.2,.7,.2,1); }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 960px) {
+      .hero-grid, .levels, .showcase { grid-template-columns: 1fr; }
+      .process { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+      .hero-visual { min-height: 380px; }
+    }
+    @media (max-width: 600px) {
+      .process, .before-after { grid-template-columns: 1fr; }
+      .s3 { margin: 0 40px; } .s2 { margin: 0 20px; }
+      section { padding: 80px 0; }
+      nav .btn { display: none; }
+      nav { height: 84px; border-radius: 24px; padding: 0 16px 0 8px; }
+      .logo { font-size: 1.05rem; gap: 14px; }
+      .logo-mark { width: 68px; height: 68px; border-radius: 18px; }
+      footer .logo-mark { width: 56px; height: 56px; border-radius: 15px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ambient" aria-hidden="true"><span></span><span></span><span></span></div>
+
+  <header>
+    <nav class="container glass">
+      <a href="#" class="logo">
+        <span class="logo-mark"><img src="assets/logo.jpg" alt="Real Knowledge logo" /></span>
+        Real Knowledge
+      </a>
+      <div class="nav-links">
+        <a href="#levels">Services</a>
+        <a href="#empower">Employee AI</a>
+        <a href="#process">Approach</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <a href="#levels" class="btn btn-primary">Explore Services</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="reveal">
+        <span class="eyebrow glass"><i></i>AI Integration</span>
+        <h1><span class="polished">AI that fits</span><br /><span class="crystal">how your business actually works.</span></h1>
+        <p class="lead">
+          From equipping every employee with the right AI tools to weaving AI directly into your core systems,
+          Real Knowledge helps organizations adopt AI at the level that makes sense for them, then grow from there.
+        </p>
+        <div class="hero-cta">
+          <a href="#levels" class="btn btn-primary">Explore the 3 Levels <span class="arrow">→</span></a>
+          <a href="#empower" class="btn btn-ghost">See What's Possible</a>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal" aria-hidden="true">
+        <div class="stack">
+          <div class="stack-layer glass s3">
+            <div class="num">3</div>
+            <div><h4>Integrated AI</h4><p>AI that acts inside your systems and workflows</p></div>
+          </div>
+          <div class="stack-layer glass s2">
+            <div class="num">2</div>
+            <div><h4>Connected AI</h4><p>AI grounded in your company's knowledge and data</p></div>
+          </div>
+          <div class="stack-layer glass s1">
+            <div class="num">1</div>
+            <div><h4>Empowered Employees</h4><p>The right AI tools, and the skills to master them</p></div>
+          </div>
+        </div>
+        <p class="stack-caption">Every level is built on your people.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Levels -->
+  <section id="levels">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Services</span>
+        <h2><span class="polished">Three levels of</span> <span class="crystal">AI integration</span></h2>
+        <p>Every organization is at a different stage. Start where you are. Adopt one level or combine all three into a unified AI strategy.</p>
+      </div>
+
+      <div class="levels">
+        <!-- Level 1 -->
+        <article class="level glass reveal">
+          <div class="level-top">
+            <div class="icon">
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><circle cx="12" cy="7" r="3.5"/><path d="M5 21v-1.5A6.5 6.5 0 0 1 11.5 13h1A6.5 6.5 0 0 1 19 19.5V21"/><path d="M18 3l.8 1.7L20.5 5.5l-1.7.8L18 8l-.8-1.7L15.5 5.5l1.7-.8z"/></svg>
+            </div>
+            <span class="level-num">01</span>
+          </div>
+          <div class="level-tag">Level 1</div>
+          <h3>Empowered Employees</h3>
+          <p class="tagline">The right AI tools, and the skills to master them.</p>
+          <p class="desc">
+            We put AI into the hands of your people and train them to direct it. Beyond better emails, AI now does the work at
+            their direction: auditing spreadsheets, building presentations, setting up automations, and producing creative content.
+          </p>
+          <ul>
+            <li>Selecting and deploying the right AI tools for each role</li>
+            <li>Hands-on, role-specific training and workshops</li>
+            <li>Directing AI to build automations in the software you already own</li>
+            <li>Usage guidelines that keep company data safe</li>
+          </ul>
+          <div class="examples">
+            <h5>Example outcomes</h5>
+            <div class="chips">
+              <span class="chip">Error-free spreadsheets</span>
+              <span class="chip">Presentations that land</span>
+              <span class="chip">Routine tasks automated</span>
+              <span class="chip">Creative marketing</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Level 2 -->
+        <article class="level glass reveal">
+          <div class="level-top">
+            <div class="icon">
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>
+            </div>
+            <span class="level-num">02</span>
+          </div>
+          <div class="level-tag">Level 2</div>
+          <h3>Connected AI</h3>
+          <p class="tagline">AI that knows your business.</p>
+          <p class="desc">
+            Give AI secure access to the information that matters, such as file stores, policies, product catalogs, and selected data,
+            so it can answer questions and support teams accurately. It runs alongside your operations without changing them.
+          </p>
+          <ul>
+            <li>Knowledge bases built on your documents</li>
+            <li>Secure, permission-aware data connections</li>
+            <li>Sales, support, and HR assistants</li>
+            <li>Accuracy testing and source citations</li>
+          </ul>
+          <div class="examples">
+            <h5>Example outcomes</h5>
+            <div class="chips">
+              <span class="chip">Sales enablement</span>
+              <span class="chip">Internal policy Q&amp;A</span>
+              <span class="chip">Customer FAQ assistant</span>
+              <span class="chip">Proposal drafting</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Level 3 -->
+        <article class="level glass reveal">
+          <div class="level-top">
+            <div class="icon">
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h4M6.5 10v4M17.5 10v4M10 17.5h4"/></svg>
+            </div>
+            <span class="level-num">03</span>
+          </div>
+          <div class="level-tag">Level 3</div>
+          <h3>Integrated AI</h3>
+          <p class="tagline">AI as part of your operations.</p>
+          <p class="desc">
+            Embed AI directly into your systems, including ERP, CRM, databases, and line-of-business apps, so it can take action,
+            automate processes, and make decisions within the guardrails you define.
+          </p>
+          <ul>
+            <li>AI agents and workflow automation</li>
+            <li>Integration with CRM, ERP, SQL and APIs</li>
+            <li>Human-in-the-loop approvals and audit trails</li>
+            <li>Monitoring, governance, and cost control</li>
+          </ul>
+          <div class="examples">
+            <h5>Example outcomes</h5>
+            <div class="chips">
+              <span class="chip">Automated order processing</span>
+              <span class="chip">Invoice triage</span>
+              <span class="chip">Smart ticket routing</span>
+              <span class="chip">Predictive alerts</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="spectrum glass reveal">
+        <h4>One strategy, many entry points</h4>
+        <p>Most clients start with Level 1 or 2 to build confidence and quick wins, then expand into deeper integration as value is proven.</p>
+        <div class="spectrum-bar"></div>
+        <div class="spectrum-labels">
+          <span>Low effort · Fast results</span>
+          <span>Deep integration · Transformational impact</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Level 1 showcase -->
+  <section id="empower">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Level 1 in Action</span>
+        <h2><span class="polished">Far beyond</span> <span class="crystal">better-sounding emails</span></h2>
+        <p>When employees have the right tools and know how to direct them, AI doesn't just assist with the work. It does the work, to their specifications.</p>
+      </div>
+
+      <div class="showcase">
+        <div class="use-case glass reveal">
+          <div class="use-case-head">
+            <div class="icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+            </div>
+            <h3>Smarter Spreadsheets</h3>
+          </div>
+          <p>At an employee's direction, AI audits workbooks for broken formulas, inconsistent data, and outliers, corrects them, and builds the formulas, pivots, analysis, and forecasts they request.</p>
+          <div class="before-after">
+            <div class="ba before"><span>Before</span>Manual cell-by-cell checks and hidden errors</div>
+            <div class="ba after"><span>After</span>Errors found and fixed, analysis built on request</div>
+          </div>
+        </div>
+
+        <div class="use-case glass reveal">
+          <div class="use-case-head">
+            <div class="icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M12 17v4M8 21h8"/><path d="M7 13l3-3 2 2 4-4"/></svg>
+            </div>
+            <h3>Presentations Brought to Life</h3>
+          </div>
+          <p>Employees provide the raw material, such as notes, data, documents, or a rough draft, and AI organizes, writes, compiles, and stylizes it into a polished, compelling presentation built to their requests.</p>
+          <div class="before-after">
+            <div class="ba before"><span>Before</span>Text-heavy slides and hours of formatting</div>
+            <div class="ba after"><span>After</span>Polished decks created from your content, to your specifications</div>
+          </div>
+        </div>
+
+        <div class="use-case glass reveal">
+          <div class="use-case-head">
+            <div class="icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5.3L20 9"/><path d="M20 4v5h-5"/><path d="M20 12a8 8 0 0 1-14 5.3L4 15"/><path d="M4 20v-5h5"/></svg>
+            </div>
+            <h3>Routine Work, Automated</h3>
+          </div>
+          <p>Most production software already includes powerful automation features that go unused. Employees describe what they need, and AI sets up the automation for them, configuring workflows in the tools they already own without new systems or code.</p>
+          <div class="before-after">
+            <div class="ba before"><span>Before</span>Copy, paste, repeat, every day</div>
+            <div class="ba after"><span>After</span>Automations built by AI, at the employee's direction</div>
+          </div>
+        </div>
+
+        <div class="use-case glass reveal">
+          <div class="use-case-head">
+            <div class="icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>
+            </div>
+            <h3>Marketing Creativity Unleashed</h3>
+          </div>
+          <p>Marketers direct AI to generate campaign concepts, copy variations, imagery, video, and content calendars, so they can explore more ideas and bring campaigns to market faster.</p>
+          <div class="before-after">
+            <div class="ba before"><span>Before</span>Blank pages and limited bandwidth</div>
+            <div class="ba after"><span>After</span>More ideas, more content, more experiments</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="training-band glass reveal">
+        <div>
+          <h4><span class="polished">Tools are only</span> <span class="crystal">half the equation.</span></h4>
+          <p>Our hands-on training turns AI from something employees try once into something they rely on every day, tailored to their role, their software, and their real work.</p>
+        </div>
+        <div class="pill-row">
+          <span class="chip">Workshops</span>
+          <span class="chip">Role-based playbooks</span>
+          <span class="chip">Ongoing coaching</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Process -->
+  <section id="process">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Approach</span>
+        <h2><span class="polished">A practical path from</span> <span class="crystal">idea to impact</span></h2>
+        <p>No hype, no 18-month roadmaps that are never realized. We focus on successful implementation and measurable results in weeks, not years.</p>
+      </div>
+      <div class="process">
+        <div class="step glass reveal">
+          <h4>Discover</h4>
+          <p>We learn your goals, workflows, systems, and data to identify where AI can deliver the most value at each level.</p>
+        </div>
+        <div class="step glass reveal">
+          <h4>Plan</h4>
+          <p>You get a clear, prioritized roadmap with costs, timelines, risks, and expected ROI. No jargon.</p>
+        </div>
+        <div class="step glass reveal">
+          <h4>Build</h4>
+          <p>We deploy, configure, and integrate the solutions, starting with a focused pilot to prove value quickly.</p>
+        </div>
+        <div class="step glass reveal">
+          <h4>Scale</h4>
+          <p>We train your teams, measure results, and expand what works across the organization.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">FAQ</span>
+        <h2><span class="polished">Frequently asked</span> <span class="crystal">questions</span></h2>
+      </div>
+      <div class="faq reveal">
+        <details class="glass">
+          <summary>Which level should my organization start with?</summary>
+          <p>It depends on your goals and readiness. Many organizations start with Level 1 for fast, organization-wide productivity gains, or Level 2 when they have a specific knowledge-heavy use case such as sales or support.</p>
+        </details>
+        <details class="glass">
+          <summary>Can we adopt more than one level at a time?</summary>
+          <p>Absolutely. The levels complement each other. For example, employees may use AI tools daily (Level 1) that also draw on company knowledge (Level 2), while automated workflows (Level 3) run in the background.</p>
+        </details>
+        <details class="glass">
+          <summary>Do we need to buy new software?</summary>
+          <p>Often, no. Many of the biggest Level 1 gains come from AI features and automation already built into the software you own. When new tools are needed, we recommend options that fit your budget and environment.</p>
+        </details>
+        <details class="glass">
+          <summary>Is our company data safe?</summary>
+          <p>Yes. We prioritize enterprise-grade tools with strong privacy commitments, apply permission-aware access to your data, and help you establish clear AI usage policies so sensitive information stays protected.</p>
+        </details>
+        <details class="glass">
+          <summary>How quickly can we see results?</summary>
+          <p>Level 1 rollouts can show productivity gains within a few weeks. Level 2 pilots typically take 4–8 weeks, and Level 3 integrations vary based on system complexity. We always start with a focused pilot to demonstrate value quickly.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <footer>
+    <div class="container footer-inner">
+      <a href="#" class="logo">
+        <span class="logo-mark"><img src="assets/logo.jpg" alt="" /></span>
+        Real Knowledge
+      </a>
+      <span>© <span id="year"></span> Real Knowledge. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
