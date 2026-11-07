@@ -1,0 +1,16 @@
+REAL KNOWLEDGE LLC — BUSINESS AND INDIVIDUAL AI TRAINING
+
+Open index.html for the business offering, or individuals.html for personal
+training. Keep both pages, styles.css, app.js, and the assets folder together.
+The site uses optional Google Fonts with system-font fallbacks.
+
+Founder: Michael Heaton, M.B.A
+Copyright: (c) 2026 Real Knowledge LLC
+
+The business page retains the three levels of AI integration.
+The individual page offers personal examples, one-to-one training, small-group
+workshops, and a personal learning-path planner. Both planners run locally;
+no inquiry or personal information is submitted. Contact and booking details
+have not yet been added.
+
+The hosted preview retains its existing private access setting.
