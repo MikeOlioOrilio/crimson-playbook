@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#101112">
+  <title>Individual AI Training | Real Knowledge LLC</title>
+  <link rel="icon" href="../assets/logo.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="admin.css">
+  <script type="module" src="admin.js"></script>
+</head>
+<body class="training-admin">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="admin-header"><a class="brand" href="../"><img src="../assets/logo.jpg" alt=""><span>REAL KNOWLEDGE<small>INSTRUCTOR WORKSPACE</small></span></a><button id="sign-out" class="admin-button secondary" type="button" hidden>Sign out</button></header>
+  <main id="main" class="wrap">
+    <section id="login" class="admin-login glass" aria-labelledby="login-title">
+      <p class="eyebrow"><span class="status-dot"></span> INSTRUCTOR ACCESS</p>
+      <h1 id="login-title">Individual AI<br><em>training guide.</em></h1>
+      <p>Sign in with your existing Real Knowledge administrator account.</p>
+      <form id="login-form" method="post"><fieldset id="credentials" disabled>
+        <label for="email">Email address</label>
+        <input id="email" name="email" type="email" autocomplete="username" required>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+        <button class="admin-button primary" type="submit">Sign in <span aria-hidden="true">↗</span></button>
+      </fieldset></form>
+      <p id="status" role="status" aria-live="polite"></p>
+      <noscript><p>Enable JavaScript to sign in and open the training guide.</p></noscript>
+    </section>
+    <section id="workspace" hidden aria-labelledby="guide-title">
+      <div class="admin-hero">
+        <div><p class="eyebrow"><span class="status-dot"></span> PHASE 01 / THE INDIVIDUAL</p>
+          <h1 id="guide-title" tabindex="-1">Learn it.<br><em>Use it. Recover it.</em></h1>
+          <p>A standard first session for personal AI: choose the right tool, give it only what it needs, and prove you can undo a change before you trust it with real work.</p></div>
+        <div class="admin-hero-note glass"><p class="mini-label">INSTRUCTOR EDITION</p><strong>Michael Heaton, M.B.A</strong><span>Real Knowledge LLC</span><span id="verified-date"></span></div>
+      </div>
+      <section class="admin-section" aria-labelledby="process-title">
+        <p class="eyebrow">01 / THE STANDARD SESSION</p>
+        <h2 id="process-title">One process. <em>Any provider.</em></h2>
+        <ol class="process-grid" id="process"></ol>
+        <div class="admin-callout"><strong>The first thing every learner should hear</strong><p id="biggest-risk"></p></div>
+      </section>
+      <section class="admin-section" aria-labelledby="platform-title">
+        <p class="eyebrow">02 / CHOOSE THE RIGHT SURFACE</p>
+        <h2 id="platform-title">Three platforms. <em>Different strengths.</em></h2>
+        <p class="section-intro">Desktop is the starting point when a lesson needs local files or apps. For chat, research, or a cloud task, the web or phone may be simpler. Check the actual device, account, and permissions before promising a feature.</p>
+        <div class="comparison-wrap"><table id="comparison"><caption>Platform starting points and phone-to-computer options</caption><thead><tr><th scope="col">Provider</th><th scope="col">Best starting point</th><th scope="col">Can a phone direct the computer?</th></tr></thead><tbody></tbody></table></div>
+        <div class="provider-tabs" role="tablist" aria-label="Provider training guides" id="provider-tabs"></div>
+        <div id="provider-panels"></div>
+      </section>
+      <section class="admin-section" aria-labelledby="recovery-title">
+        <p class="eyebrow">03 / PRACTICE THE RESTORE</p>
+        <h2 id="recovery-title">Know your <em>way back.</em></h2>
+        <p class="section-intro">Ask the assistant for a recovery plan before it edits anything. Make and verify a backup yourself. A promise in a chat, a synced folder, or a provider’s Undo button is not proof of a recoverable copy.</p>
+        <div class="recovery-grid" id="recovery"></div>
+        <div class="prompt-grid" id="prompts"></div>
+      </section>
+      <section class="admin-section signoff" aria-labelledby="signoff-title">
+        <p class="eyebrow">04 / LEARNER SIGN-OFF</p>
+        <h2 id="signoff-title">Ready for <em>real work?</em></h2>
+        <p class="section-intro">Have the learner demonstrate each item on a harmless example. This checklist stays on this page and is cleared on sign-out.</p>
+        <fieldset id="checklist"><legend>Show that you can…</legend></fieldset>
+        <p id="check-progress" role="status" aria-live="polite"></p>
+      </section>
+    </section>
+  </main>
+  <footer class="wrap admin-footer"><span>© 2026 Real Knowledge LLC</span><a href="../">Return to Real Knowledge ↗</a></footer>
+</body>
+</html>
