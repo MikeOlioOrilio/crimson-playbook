@@ -1,7 +1,7 @@
 REAL KNOWLEDGE LLC — BUSINESS AND INDIVIDUAL AI TRAINING
 
-Open index.html for the business offering, or individuals.html for personal
-training. Keep both pages, styles.css, app.js, and the assets folder together.
+Open index.html for individual training or business.html for the business
+offering. Keep both pages, styles.css, app.js, and the assets folder together.
 The site uses optional Google Fonts with system-font fallbacks.
 
 Founder: Michael Heaton, M.B.A

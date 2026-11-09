@@ -16,3 +16,31 @@
 .start-panel .actions .button {
   margin-top: 0;
 }
+
+.hero-copy {
+  min-inline-size: 0;
+  container-type: inline-size;
+}
+.hero .hero-copy h1 {
+  font-size: clamp(2.35rem, 13cqi, 4.5rem);
+}
+.hero-copy h1 em {
+  display: inline-block;
+  max-inline-size: 100%;
+  padding-inline: .14em;
+  margin-inline: -.14em;
+  box-sizing: content-box;
+}
+.hero-copy .purchase-status {
+  margin-block: 12px 0;
+  font-size: .82rem;
+  color: #c1ccc4;
+}
+@media (min-width: 901px) {
+  .hero {padding-top: 44px}
+  .hero-description {margin-top: 20px}
+  .hero .actions {margin-top: 22px}
+}
+@media (max-width: 600px) {
+  .hero-art::before {inset-inline: 0;width:100%}
+}
