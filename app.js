@@ -1,12 +1,18 @@
 'use strict';
-const publicCoursePrice = document.getElementById('public-course-price');
-if (publicCoursePrice) {
-  void fetch('https://learn.realknowledgeonline.com/api/billing').then(response => response.ok ? response.json() : null).then(offer => {
-    if (Number.isInteger(offer?.unitAmount)) {
-      const price = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: 0});
-      publicCoursePrice.textContent = 'Start Now for ' + price.format(offer.unitAmount / 100);
-    }
-  }).catch(() => {});
+for (const [id, label, query, minimumFractionDigits] of [
+  ['public-course-price', 'Start Now for ', '', 0],
+  ['public-phase2-price', 'Expand Your Skills ', '?course=phase2', 2]
+]) {
+  const target = document.getElementById(id);
+  if (!target) continue;
+  void fetch('https://learn.realknowledgeonline.com/api/billing' + query)
+    .then(response => response.ok ? response.json() : null)
+    .then(offer => {
+      if (Number.isSafeInteger(offer?.unitAmount) && offer.unitAmount > 0) {
+        const price = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits});
+        target.textContent = label + price.format(offer.unitAmount / 100);
+      }
+    }).catch(() => {});
 }
 const businessRoles = [
   {name:'Operations',label:'THE OPERATIONS TEAM',title:'Turn “there has to be\na better way” into one.',description:'Bring the steps, the bottlenecks, and the exceptions. Learn to map a process, challenge the busywork, and prototype something your team can actually use.',list:['Build a searchable troubleshooting guide','Turn a procedure into a visual job aid','Prototype a checklist, calculator, or internal tool'],takeaway:'Your knowledge of the work is the starting point.',input:'“Here’s how receiving works, where we lose time, and the exceptions we need to protect.”',type:'A WORKING FIRST VERSION',output:'Receiving, rethought.',items:['A clearer process map','An exception checklist','A prototype receiving tool'],exercise:'Map a receiving or handoff process and prototype a clearer job aid.',check:'Test the normal path and at least two exceptions with someone who performs the work.'},

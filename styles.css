@@ -44,3 +44,4 @@
 @media (max-width: 600px) {
   .hero-art::before {inset-inline: 0;width:100%}
 }
+.phase-two-invite{margin-top:22px}.phase-two-invite .button{border-color:#26332a50}.phase-two-invite p{font-size:13px;line-height:1.5;margin-top:8px}
