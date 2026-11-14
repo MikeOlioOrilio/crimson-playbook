@@ -45,3 +45,7 @@
   .hero-art::before {inset-inline: 0;width:100%}
 }
 .phase-two-invite{margin-top:22px}.phase-two-invite .button{border-color:#26332a50}.phase-two-invite p{font-size:13px;line-height:1.5;margin-top:8px}
+.phase-two-invite p {max-width:76ch}
+.business-entry-options {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 24px;margin-top:20px;max-width:580px}
+.business-entry-options p {color:#b3bdb6;font-size:13px;line-height:1.5;margin-top:6px}
+@media(max-width:400px) {.business-entry-options{grid-template-columns:1fr}}
