@@ -51,6 +51,10 @@
 @media(max-width:400px) {.business-entry-options{grid-template-columns:1fr}}
 
 .header > nav{align-items:center}
+@media (min-width:901px) and (max-width:1100px) {
+  .header{gap:16px}
+  .header > nav{gap:12px}
+}
 .products{position:relative}
 .products summary{display:flex;align-items:center;gap:5px;list-style:none;cursor:pointer;font-size:12px;color:#b9bbb9;transition:color .2s;white-space:nowrap}
 .products summary::-webkit-details-marker{display:none}
