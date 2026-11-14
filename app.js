@@ -44,6 +44,16 @@ const isIndividual = document.body.dataset.audience === 'individuals';
 const roles = isIndividual ? individualRoles : businessRoles;
 const levels = isIndividual ? individualLevels : businessLevels;
 const $ = (id) => document.getElementById(id);
+const learnerSite = 'https://learn.realknowledgeonline.com';
+const nextSteps = isIndividual ? [
+  ['View the beginner course', learnerSite + '/training/'],
+  ['Try guided projects', learnerSite + '/training/phase-2/'],
+  ['Explore a repeatable approach', '#start']
+] : [
+  ['Explore team training', '#services'],
+  ['Explore consulting for connected knowledge', '#consulting'],
+  ['Discuss an implementation project', learnerSite + '/contact/?from=business-consulting']
+];
 function setLines(el,text){el.replaceChildren();text.split('\n').forEach((line,index)=>{if(index)el.append(document.createElement('br'));el.append(document.createTextNode(line));});}
 function setList(el,items){el.replaceChildren(...items.map(text=>{const li=document.createElement('li');li.textContent=text;return li;}));}
 function selectRole(index){
@@ -58,6 +68,10 @@ function selectLevel(index){
   const l=levels[index];
   document.querySelectorAll('[data-level]').forEach((button)=>{const active=Number(button.dataset.level)===index;button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1;});
   $('level-panel').setAttribute('aria-labelledby',`level-tab-${index}`);$('level-category').textContent=l.category;$('level-count').textContent=`0${index+1} / 03`;setLines($('level-title'),l.title);$('level-description').textContent=l.description;setList($('level-learn'),l.learn);$('level-result').textContent=l.result;$('level-boundary').textContent=l.boundary;
+  const [label, href] = nextSteps[index];
+  const next = $('level-next');
+  next.href = href;
+  next.firstChild.textContent = label + ' ';
   $('level-flow').replaceChildren();l.flow.forEach((text,i)=>{if(i){const b=document.createElement('b');b.textContent='→';b.setAttribute('aria-hidden','true');$('level-flow').append(b);}const span=document.createElement('span');span.textContent=text;$('level-flow').append(span);});$('goal').value=String(index);
 }
 function setupTabs(selector,select,vertical=false){
@@ -108,7 +122,7 @@ $('planner-form').addEventListener('submit',event=>{
   }
   const scopeNote=isIndividual?'A sample learning direction, not a booking. Sessions are shaped around your interests, experience, and chosen tools.':'Illustrative scope, not a quote or booking. A real engagement would be scoped with your team.';
   $('plan-level').textContent=`${isIndividual?'YOUR PATH':'LEVEL '+(index+1)} / ${level.name}`;$('plan-heading').textContent=`A starting point for ${role.name.toLowerCase()}`;setList($('plan-steps'),steps);$('plan-check').textContent='Success check: '+check;
-  brief=`REAL KNOWLEDGE LLC\nSample ${isIndividual?'personal learning':'workshop'} path\n\n${isIndividual?'Interest':'Team'}: ${role.name}\nStarting point: ${level.name}\n\n${steps.map((s,i)=>`${i+1}. ${s}`).join('\n\n')}\n\n${$('plan-check').textContent}\n\n${scopeNote}\nNo information was submitted.\n`;
+  brief=`REAL KNOWLEDGE LLC\nSample ${isIndividual?'personal learning path':'business AI plan'}\n\n${isIndividual?'Interest':'Team'}: ${role.name}\nStarting point: ${level.name}\n\n${steps.map((s,i)=>`${i+1}. ${s}`).join('\n\n')}\n\n${$('plan-check').textContent}\n\n${scopeNote}\nNo information was submitted.\n`;
   $('planner-form').hidden=true;$('plan-result').hidden=false;$('plan-heading').tabIndex=-1;$('plan-heading').focus();
 });
 $('reset-plan').addEventListener('click',()=>{$('plan-result').hidden=true;$('planner-form').hidden=false;$('team').focus();});

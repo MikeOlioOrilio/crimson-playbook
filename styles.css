@@ -41,9 +41,7 @@
   .hero-description {margin-top: 20px}
   .hero .actions {margin-top: 22px}
 }
-@media (max-width: 600px) {
-  .hero-art::before {inset-inline: 0;width:100%}
-}
+.hero-art::before {inset-inline: 0;width:100%}
 .phase-two-invite{margin-top:22px}.phase-two-invite .button{border-color:#26332a50}.phase-two-invite p{font-size:13px;line-height:1.5;margin-top:8px}
 .phase-two-invite p {max-width:76ch}
 .business-entry-options {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 24px;margin-top:20px;max-width:580px}
@@ -70,3 +68,21 @@
   .mobile-nav .product-links{position:static;min-width:0;max-width:none;margin-block:4px 8px;box-shadow:none}
   .mobile-nav .product-links a:last-child{border-bottom:0}
 }
+
+.offerings {padding-block:clamp(38px,6vw,88px)}
+.offerings + .offerings {padding-top:0}
+.offerings .section-heading {margin-bottom:26px}
+.offer-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,255px),1fr));gap:14px}
+.offer-card {display:flex;flex-direction:column;min-width:0;align-items:flex-start;gap:12px;padding:clamp(18px,2.5vw,28px);border:1px solid var(--line);background:#171c19;border-radius:5px}
+.offer-card h3 {font-size:clamp(23px,2.4vw,29px);line-height:1.14;overflow-wrap:anywhere}
+.offer-card p {font-size:15px;line-height:1.55}
+.offerings .text-link,.level-next {color:#dbe8de;text-decoration:underline;text-underline-offset:4px}
+.offer-card .text-link {margin-top:auto}
+.offering-note {margin-top:18px}
+.level-next {display:inline-block;margin-top:12px}
+.product-group {padding:5px 0}
+.product-group + .product-group {border-top:1px solid #ffffff18}
+.product-group p {padding:3px 12px;color:#b5c8bc;font-size:11px;font-weight:650}
+.header .product-group a {padding-block:6px}
+.product-links {max-height:calc(100dvh - 94px);overflow:auto}
+.mobile-nav .product-links {max-height:none}
