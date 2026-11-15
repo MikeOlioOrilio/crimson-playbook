@@ -105,7 +105,7 @@
 .certificate-description {font-size:16px;max-width:54ch;margin-top:20px}
 .certificate-management .button.primary {background:#202a24;color:#f2f6f2;border-color:#202a24}
 .certificate-management .button.primary:hover {background:#35473d}
-.certificate-topics {padding:clamp(20px,4vw,38px);border:1px solid #283a302d;border-radius:4px;background:#dfe7df}
+.certificate-topics {padding:clamp(20px,4vw,38px);border:1px solid #283a302d;border-radius:4px;background:#dfe7df;color:#243a30}
 .certificate-topics h3 {font-size:clamp(1.35rem,3vw,1.85rem);margin:0 0 14px}
 .certificate-topics ul {margin:0;padding-inline-start:20px}
 .certificate-topics li + li {margin-top:10px}
