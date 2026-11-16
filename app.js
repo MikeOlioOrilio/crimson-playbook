@@ -1,6 +1,5 @@
 'use strict';
 for (const [id, label, query, minimumFractionDigits] of [
-  ['public-course-price', 'Start Now for ', '', 0],
   ['public-phase2-price', 'Expand Your Skills ', '?course=phase2', 2]
 ]) {
   const target = document.getElementById(id);
