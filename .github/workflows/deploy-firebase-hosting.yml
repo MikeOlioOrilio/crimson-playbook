@@ -1,0 +1,42 @@
+name: Publish public site to Firebase Hosting
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: firebase-hosting-crimson-playbook
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Build the public site
+        run: node scripts/build-hosting.cjs
+      - name: Install Firebase CLI
+        run: npm install --global --no-audit --no-fund firebase-tools@15.35.0
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3.0.0
+        with:
+          project_id: crimson-playbook
+          workload_identity_provider: projects/454412062652/locations/global/workloadIdentityPools/github-public/providers/github
+          service_account: github-hosting@crimson-playbook.iam.gserviceaccount.com
+      - name: Deploy to the public Hosting site
+        env:
+          FIREBASE_CLI_DISABLE_USAGE: 'true'
+        run: firebase deploy --only hosting:crimson-playbook --project crimson-playbook --non-interactive

@@ -1,0 +1,21 @@
+{
+  "hosting": {
+    "site": "crimson-playbook",
+    "public": "dist",
+    "ignore": ["**/.*", "**/node_modules/**"],
+    "redirects": [
+      {"regex": "^/crimson/admin[.]html$", "destination": "/crimson/admin/", "type": 301},
+      {"regex": "^/crimson/firebase-setup[.]html$", "destination": "/crimson/firebase-setup/", "type": 301},
+      {"regex": "^/crimson/guide[.]html$", "destination": "/crimson/coach-guide/", "type": 301},
+      {"regex": "^/crimson/position-guide[.]html$", "destination": "/crimson/position-guide/", "type": 301},
+      {"regex": "^/crimson/rebound-ball-security[.]html$", "destination": "/crimson/rebound-ball-security/", "type": 301},
+      {"regex": "^/crimson/defensive-stance[.]html$", "destination": "/crimson/defensive-stance/", "type": 301},
+      {"regex": "^/crimson/reverse-pivot[.]html$", "destination": "/crimson/reverse-pivot/", "type": 301},
+      {"regex": "^/crimson/front-pivot[.]html$", "destination": "/crimson/front-pivot/", "type": 301},
+      {"regex": "^/crimson/shot-contest[.]html$", "destination": "/crimson/shot-contest/", "type": 301},
+      {"regex": "^/crimson/legal-screen[.]html$", "destination": "/crimson/legal-screen/", "type": 301},
+      {"regex": "^/crimson/protect-retreat[.]html$", "destination": "/crimson/protect-retreat/", "type": 301},
+      {"regex": "^/crimson/catch-stop-read[.]html$", "destination": "/crimson/catch-stop-read/", "type": 301}
+    ]
+  }
+}
