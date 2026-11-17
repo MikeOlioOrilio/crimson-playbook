@@ -13,7 +13,7 @@ if (login) {
   frame.title = 'Real Knowledge sign-in status';
   frame.hidden = true;
   frame.tabIndex = -1;
-  frame.src = learnerOrigin + '/session/?parent=' + encodeURIComponent(location.origin);
+  frame.src = learnerOrigin + '/session/?v=2&parent=' + encodeURIComponent(location.origin);
   let signedIn = false;
   let signingOut = false;
   let timeout;
