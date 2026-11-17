@@ -98,6 +98,12 @@
 .header-controls .nav-cta{white-space:nowrap}
 .nav-login{font-size:12px;font-weight:600;padding:7px 0}
 .nav-login:hover{text-decoration:underline;text-underline-offset:4px}
+.nav-dashboard{font-size:12px;padding:7px 0;white-space:nowrap}
+.nav-dashboard:hover{text-decoration:underline;text-underline-offset:4px}
+.nav-login[aria-disabled="true"]{opacity:.6;cursor:wait}
+.account-status{position:absolute;top:100%;right:20px;max-width:280px;background:#19201e;color:#e7e9e2;font-size:12px;padding:8px 12px;border:1px solid #ffffff25}
+.account-status:empty{display:none}
+@media(max-width:600px){.header-controls{gap:12px}.nav-dashboard,.nav-login{font-size:11px}.header-controls:has(.nav-dashboard:not([hidden])){flex-wrap:wrap;justify-content:flex-end;max-width:170px}}
 @media(max-width:900px){
   .header-controls .nav-cta{display:none}
   .header:has(.header-controls) > .brand{min-width:0;flex-shrink:1}
