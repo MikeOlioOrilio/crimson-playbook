@@ -84,3 +84,11 @@
 .fundamental-phase-strip button.active{border-color:var(--accent);background:#172e3a}
 .fundamental-steps-grid{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
 @media(max-width:760px){.sidebar-fundamentals{margin-top:10px;padding-top:10px}}
+
+.video-card-preview{display:grid;place-items:center;height:100%;color:var(--accent);font-size:32px}
+.video-credit{margin-top:4px;font-size:13px}
+.video-player{display:block;width:100%;aspect-ratio:16/9;min-height:200px;border:0;background:#000}
+.video-actions{padding:16px 20px}
+.video-actions .button{display:inline-block}
+.video-related{display:inline-block;margin-top:12px;color:var(--accent);font-size:13px;text-decoration:underline}
+@media print{.video-player{display:none}.video-actions{padding:10px 0}.video-actions .button{border:0;padding:0}}
