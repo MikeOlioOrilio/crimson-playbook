@@ -25,8 +25,8 @@ function videoPlayBody(play, category, escape) {
         <h2 id="video-heading">Drill demonstration</h2>
         <p class="video-credit">FIBA Basketball</p>
       </div>
-      <div data-coach-video hidden></div>
-      <template id="coach-video">
+      <div data-lesson-video hidden></div>
+      <template id="lesson-video">
         <iframe class="video-player" src="${embedUrl}" title="FIBA Basketball — ${title}"
           referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; fullscreen"
           allowfullscreen></iframe>

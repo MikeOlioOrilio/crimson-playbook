@@ -2,17 +2,13 @@ import {readTeam, checkCoach, isAdmin, clearCoach, logoutAdmin} from './firebase
 import {visiblePlays, friendlyError} from './access-model.js';
 const main = document.getElementById('main'), gate = document.getElementById('play-access-status');
 const coachRequested = new URLSearchParams(location.search).get('view') === 'coach';
-const coachVideo = main.querySelector('[data-coach-video]');
+const lessonVideo = main.querySelector('[data-lesson-video]');
 async function load() {
   main.hidden = true; gate.hidden = false; gate.replaceChildren();
   const message = document.createElement('p'); message.textContent = 'Loading this play…'; gate.append(message);
   try {
     const team = await readTeam();
     const coach = coachRequested && (await isAdmin() || await checkCoach());
-    if (coachVideo && !coach) {
-      coachVideo.replaceChildren();
-      coachVideo.hidden = true;
-    }
     if (coachRequested && !coach) {
       message.textContent = 'Enter your coach PIN to browse the complete playbook.';
       const link = document.createElement('a'); link.className = 'button'; link.href = '../index.html?view=coach'; link.textContent = 'Open Coach View'; gate.append(link); return;
@@ -22,9 +18,9 @@ async function load() {
       const link = document.createElement('a'); link.className = 'button'; link.href = '../index.html'; link.textContent = 'See this week’s plays'; gate.append(link); return;
     }
     gate.hidden = true; main.hidden = false;
-    if (coach && coachVideo && !coachVideo.firstElementChild) {
-      coachVideo.append(document.getElementById('coach-video').content.cloneNode(true));
-      coachVideo.hidden = false;
+    if (lessonVideo && !lessonVideo.firstElementChild) {
+      lessonVideo.append(document.getElementById('lesson-video').content.cloneNode(true));
+      lessonVideo.hidden = false;
     }
     document.getElementById('leave-coach').hidden = !coach;
     if (coach) main.querySelectorAll('.breadcrumbs a').forEach(link => {const u = new URL(link.href); u.searchParams.set('view', 'coach'); link.href = u.href;});
@@ -37,6 +33,11 @@ async function load() {
   } catch (error) {
     message.textContent = friendlyError(error);
     const retry = document.createElement('button'); retry.textContent = 'Try again'; retry.onclick = load; gate.append(retry);
+  } finally {
+    if (lessonVideo && main.hidden) {
+      lessonVideo.replaceChildren();
+      lessonVideo.hidden = true;
+    }
   }
 }
 document.getElementById('leave-coach').onclick = async () => {clearCoach(); try {await logoutAdmin();} finally {location.href = '../index.html';}};
