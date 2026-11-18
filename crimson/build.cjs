@@ -35,7 +35,7 @@ for(const [i,p] of plays.entries()){
   if(p.slug==='defensive-stance-builder'){
    html=html.replace('</head>','<meta name="google-site-verification" content="svEJsdTjgbV5NuKpmi_rVlmJmTlMbyX5eYx3MtFPOqo"></head>');
   }
-  const videoScripts='<script src="../assets/catalog.js"></script><script src="../content/'+p.slug+'.js"></script><script type="module" src="../assets/play-access.js"></script>';
+  const videoScripts='<script src="../assets/catalog.js"></script><script src="../content/'+p.slug+'.js"></script><script type="module" src="../assets/play-access.js?v=video"></script>';
   fs.mkdirSync(path.join(root,p.slug),{recursive:true});
   fs.writeFileSync(path.join(root,p.slug,'index.html'),html+videoPlayBody(p,cats[p.category],e)+videoScripts+foot(prefix));
   continue;

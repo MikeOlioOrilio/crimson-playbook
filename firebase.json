@@ -7,7 +7,9 @@
       {"source": "/", "headers": [{"key": "Cache-Control", "value": "no-cache"}]},
       {"source": "/{index,business,individuals,certifications}.html", "headers": [{"key": "Cache-Control", "value": "no-cache"}]},
       {"source": "/{account-navigation,navigation}.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}]},
-      {"source": "/styles.css", "headers": [{"key": "Cache-Control", "value": "no-cache"}]}
+      {"source": "/styles.css", "headers": [{"key": "Cache-Control", "value": "no-cache"}]},
+      {"source": "/crimson/defensive-stance-builder{,/index.html,/}", "headers": [{"key": "Cache-Control", "value": "no-cache"}]},
+      {"source": "/crimson/assets/play-access.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}]}
     ],
     "redirects": [
       {"regex": "^/crimson/admin[.]html$", "destination": "/crimson/admin/", "type": 301},
