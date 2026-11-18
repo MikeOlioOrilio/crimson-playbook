@@ -5,12 +5,13 @@ export function teamSelection(value) {
   return {title: String(value.title || 'This week’s playbook'), note: String(value.note || ''), selectedSlugs: [...new Set(value.selectedSlugs)], revision: Number.isInteger(value.revision) ? value.revision : 0};
 }
 export function visiblePlays(catalog, selection, coach) {
-  const selected = new Set(selection.selectedSlugs);
-  return coach ? catalog : catalog.filter(p => selected.has(p.slug));
+  if (coach) return catalog;
+  const playsBySlug = new Map(catalog.map(play => [play.slug, play]));
+  return Array.from(new Set(selection.selectedSlugs), slug => playsBySlug.get(slug)).filter(Boolean);
 }
 export function checkedSelection(catalog, slugs) {
-  const selected = new Set(slugs);
-  return catalog.filter(p => selected.has(p.slug)).map(p => p.slug);
+  const known = new Set(catalog.map(play => play.slug));
+  return [...new Set(slugs)].filter(slug => known.has(slug));
 }
 export function validatePin(pin) {
   if (!/^\d{4,8}$/.test(pin)) throw new Error('Use a PIN with 4–8 digits. Six or more is recommended.');

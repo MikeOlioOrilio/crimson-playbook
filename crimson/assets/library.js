@@ -1,11 +1,12 @@
 import {readTeam, checkCoach, unlockCoach, clearCoach, isAdmin, logoutAdmin} from './firebase-store.js';
-import {visiblePlays, friendlyError} from './access-model.js';
+import {visiblePlays, friendlyError} from './access-model.js?v=practice-order';
 const $ = id => document.getElementById(id), C = window.CrimsonCourt, catalog = window.CRIMSON_CATALOG;
 const categories = {all: 'All categories', drills: 'Drills', offense: 'Offensive Plays / Strategies', defense: 'Defensive Plays / Strategies', inbounds: 'Inbounding Plays'};
 const wantsCoach = new URLSearchParams(location.search).get('view') === 'coach';
 let team = {selectedSlugs: [], title: '', note: ''}, coach = false, ready = false;
 function render() {
   const all = ready ? visiblePlays(catalog, team, coach) : [];
+  const practicePositions = new Map(all.map((play, index) => [play.slug, index + 1]));
   const cat = categories[location.hash.slice(1)] ? location.hash.slice(1) : 'all';
   const query = $('search').value.trim().toLowerCase();
   const plays = all.filter(p => (cat === 'all' || p.category === cat) && [p.title, p.description, p.level, p.category].join(' ').toLowerCase().includes(query));
@@ -15,8 +16,8 @@ function render() {
   });
   $('section-title').textContent = categories[cat];
   $('result-count').textContent = `${plays.length} ${plays.length === 1 ? 'play' : 'plays'}`;
-  $('section-subtitle').textContent = coach ? 'The full library. Team picks are marked below.' : 'The plays your coaches want you to focus on.';
-  $('cards').innerHTML = plays.map(p => `<a class="play-card" href="${p.slug}/index.html${coach ? '?view=coach' : ''}"><div class="card-preview">${p.video ? '<div class="video-card-preview" aria-hidden="true">▶</div>' : C.svg(p, p.preview, .35)}<span class="tag">${C.escape(categories[p.category])}</span></div><div class="card-copy"><div class="card-meta"><span class="tag level">${C.escape(p.level)}</span>${coach && team.selectedSlugs.includes(p.slug) ? '<span class="tag team-pick">Team pick</span>' : ''}</div><h3>${C.escape(p.title)}</h3><p>${C.escape(p.description)}</p><div class="card-foot">Open play <span>${p.video ? 'Video lesson' : p.sequence ? '30s sequence' : p.optionsCount + ' reads'} ↗</span></div></div></a>`).join('');
+  $('section-subtitle').textContent = coach ? 'The full library. Team picks are marked below.' : 'Your coach’s practice order.';
+  $('cards').innerHTML = plays.map(p => `<a class="play-card" href="${p.slug}/index.html${coach ? '?view=coach' : ''}"><div class="card-preview">${p.video ? '<div class="video-card-preview" aria-hidden="true">▶</div>' : C.svg(p, p.preview, .35)}<span class="tag">${C.escape(categories[p.category])}</span></div><div class="card-copy"><div class="card-meta">${coach ? '' : `<span class="practice-card-number">Practice ${practicePositions.get(p.slug)}</span>`}<span class="tag level">${C.escape(p.level)}</span>${coach && team.selectedSlugs.includes(p.slug) ? '<span class="tag team-pick">Team pick</span>' : ''}</div><h3>${C.escape(p.title)}</h3><p>${C.escape(p.description)}</p><div class="card-foot">Open play <span>${p.video ? 'Video lesson' : p.sequence ? '30s sequence' : p.optionsCount + ' reads'} ↗</span></div></div></a>`).join('');
   if (ready && !plays.length) $('cards').innerHTML = `<div class="empty"><h3>${all.length ? 'No matching plays' : 'Your team’s plays are coming soon'}</h3><p>${all.length ? 'Try another search or category.' : 'Your coach has not selected any plays yet. Check back after your next practice.'}</p></div>`;
 }
 function status(message) {$('library-status').textContent = message; $('library-status').hidden = !message;}

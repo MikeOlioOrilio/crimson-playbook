@@ -1,5 +1,5 @@
 import {readTeam, checkCoach, isAdmin, clearCoach, logoutAdmin} from './firebase-store.js';
-import {visiblePlays, friendlyError} from './access-model.js';
+import {visiblePlays, friendlyError} from './access-model.js?v=practice-order';
 const main = document.getElementById('main'), gate = document.getElementById('play-access-status');
 const coachRequested = new URLSearchParams(location.search).get('view') === 'coach';
 const lessonVideo = main.querySelector('[data-lesson-video]');
@@ -26,8 +26,18 @@ async function load() {
     if (coach) main.querySelectorAll('.breadcrumbs a').forEach(link => {const u = new URL(link.href); u.searchParams.set('view', 'coach'); link.href = u.href;});
     const plays = visiblePlays(window.CRIMSON_CATALOG, team, coach), index = plays.findIndex(p => p.slug === window.CRIMSON_PLAY.slug);
     const nav = main.querySelector('.next-prev'); nav.replaceChildren();
-    if (plays.length > 1) for (const [delta, label] of [[-1, '← '], [1, 'Next: ']]) {
-      const p = plays[(index + delta + plays.length) % plays.length], link = document.createElement('a');
+    if (!coach && index >= 0) {
+      const heading = main.querySelector('.play-heading .eyebrow');
+      const position = heading.querySelector('.practice-position') || document.createElement('span');
+      position.className = 'practice-position';
+      position.textContent = ` · Practice ${index + 1} of ${plays.length}`;
+      heading.append(position);
+    }
+    if (plays.length > 1 && index >= 0) for (const [delta, label] of [[-1, 'Previous: '], [1, 'Next: ']]) {
+      const target = index + delta;
+      const p = plays[coach ? (target + plays.length) % plays.length : target];
+      if (!p) continue;
+      const link = document.createElement('a');
       link.href = `../${p.slug}/index.html${coach ? '?view=coach' : ''}`; link.textContent = label + p.title; nav.append(link);
     }
   } catch (error) {

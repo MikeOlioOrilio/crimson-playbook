@@ -1,10 +1,24 @@
 import {isAdmin, loginAdmin, logoutAdmin, readTeam, saveTeam, listCoaches, saveCoach} from './firebase-store.js';
-import {checkedSelection, friendlyError} from './access-model.js';
+import {checkedSelection, friendlyError} from './access-model.js?v=practice-order';
 const $ = id => document.getElementById(id), C = window.CrimsonCourt, catalog = window.CRIMSON_CATALOG;
 const categories = {drills: 'Drills', offense: 'Offensive Plays / Strategies', defense: 'Defensive Plays / Strategies', inbounds: 'Inbounding Plays'};
-let revision = 0, dirty = false, coaches = [], active = false;
+const playsBySlug = new Map(catalog.map(play => [play.slug, play]));
+let revision = 0, dirty = false, coaches = [], active = false, practiceOrder = [];
 function markDirty() {dirty = true; $('selection-status').textContent = 'Unsaved changes'; count();}
-function count() {$('selection-count').textContent = `${document.querySelectorAll('[data-play]:checked').length} of ${catalog.length} selected`;}
+function count() {$('selection-count').textContent = `${practiceOrder.length} of ${catalog.length} selected`;}
+function drawPracticeOrder() {
+  $('practice-order-empty').hidden = practiceOrder.length > 0;
+  $('practice-order').innerHTML = practiceOrder.map((slug, index) => {
+    const title = C.escape(playsBySlug.get(slug).title);
+    return `<li><div class="practice-order-row" data-order-slug="${slug}">
+      <strong>${title}</strong>
+      <div class="practice-order-controls">
+        <button type="button" data-move="-1" aria-label="Move ${title} up" ${index === 0 ? 'disabled' : ''}>Move up</button>
+        <button type="button" data-move="1" aria-label="Move ${title} down" ${index === practiceOrder.length - 1 ? 'disabled' : ''}>Move down</button>
+      </div>
+    </div></li>`;
+  }).join('');
+}
 function resetCoach() {
   $('coach-editor').reset(); $('coach-id').value = ''; $('new-coach-pin').required = true;
   $('save-coach').textContent = 'Add coach'; $('cancel-coach').hidden = true;
@@ -24,9 +38,10 @@ async function openWorkspace() {
   $('admin-workspace').hidden = true;
   const [team, records] = await Promise.all([readTeam(), listCoaches()]);
   revision = team.revision; coaches = records;
+  practiceOrder = checkedSelection(catalog, team.selectedSlugs);
   $('selection-title').value = team.title; $('selection-note').value = team.note;
   $('play-checklist').innerHTML = Object.entries(categories).map(([key, label]) => `<fieldset><legend>${label}</legend>${catalog.filter(p => p.category === key).map(p => `<label class="play-check"><input type="checkbox" data-play="${p.slug}" ${team.selectedSlugs.includes(p.slug) ? 'checked' : ''}><span><strong>${C.escape(p.title)}</strong><small>${C.escape(p.description)}</small></span></label>`).join('')}</fieldset>`).join('');
-  dirty = false; count(); drawCoaches(); active = true;
+  dirty = false; count(); drawPracticeOrder(); drawCoaches(); active = true;
   $('admin-login').hidden = true; $('admin-workspace').hidden = false; $('admin-signout').hidden = false;
   $('admin-status').textContent = 'Signed in as administrator.';
 }
@@ -43,15 +58,40 @@ $('admin-login-form').onsubmit = async event => {
 };
 $('retry-admin').onclick = start;
 $('admin-signout').onclick = async () => {await logoutAdmin(); active = false; location.reload();};
-$('selection-form').addEventListener('input', markDirty);
-for (const [id, checked] of [['select-all', true], ['select-none', false]]) $(id).onclick = () => {document.querySelectorAll('[data-play]').forEach(input => {input.checked = checked;}); markDirty();};
+$('selection-form').addEventListener('input', event => {
+  const {play: slug} = event.target.dataset;
+  if (slug) {
+    if (event.target.checked) practiceOrder.push(slug);
+    else practiceOrder = practiceOrder.filter(selected => selected !== slug);
+    drawPracticeOrder();
+  }
+  markDirty();
+});
+for (const [id, checked] of [['select-all', true], ['select-none', false]]) $(id).onclick = () => {
+  document.querySelectorAll('[data-play]').forEach(input => {input.checked = checked;});
+  practiceOrder = checked ? checkedSelection(catalog, [...practiceOrder, ...playsBySlug.keys()]) : [];
+  drawPracticeOrder(); markDirty();
+};
+$('practice-order').addEventListener('click', event => {
+  const button = event.target.closest('[data-move]');
+  if (!button || button.disabled) return;
+  const slug = button.closest('[data-order-slug]').dataset.orderSlug;
+  const direction = Number(button.dataset.move), index = practiceOrder.indexOf(slug), target = index + direction;
+  [practiceOrder[index], practiceOrder[target]] = [practiceOrder[target], practiceOrder[index]];
+  drawPracticeOrder();
+  const row = $('practice-order').querySelector(`[data-order-slug="${slug}"]`);
+  (row.querySelector(`[data-move="${direction}"]:enabled`) || row.querySelector('button:enabled')).focus();
+  markDirty();
+  $('selection-status').textContent = `${playsBySlug.get(slug).title} moved to position ${target + 1} of ${practiceOrder.length}. Unsaved changes.`;
+});
 $('selection-form').onsubmit = async event => {
   event.preventDefault(); if (!active) return;
-  $('save-selection').disabled = true; $('selection-status').textContent = 'Saving…';
-  const values = {title: $('selection-title').value.trim(), note: $('selection-note').value.trim(), selectedSlugs: checkedSelection(catalog, Array.from(document.querySelectorAll('[data-play]:checked'), input => input.dataset.play))};
+  $('selection-status').textContent = 'Saving…';
+  const values = {title: $('selection-title').value.trim(), note: $('selection-note').value.trim(), selectedSlugs: checkedSelection(catalog, practiceOrder)};
   // Disable the form while saving so newer edits cannot be mistaken for saved values.
-  const controls = Array.from($('selection-form').elements); controls.forEach(input => {input.disabled = true;});
-  try {revision = await saveTeam(values, revision); dirty = false; $('selection-status').textContent = `Saved. The team will see ${values.selectedSlugs.length} plays when they open or refresh the page.`;}
+  const controls = Array.from($('selection-form').elements).filter(input => !input.disabled);
+  controls.forEach(input => {input.disabled = true;});
+  try {revision = await saveTeam(values, revision); dirty = false; $('selection-status').textContent = `Saved. Team View will show ${values.selectedSlugs.length} plays in this order when opened or refreshed.`;}
   catch (error) {$('selection-status').textContent = friendlyError(error);}
   finally {controls.forEach(input => {input.disabled = false;});}
 };

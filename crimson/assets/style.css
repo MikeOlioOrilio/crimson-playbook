@@ -92,3 +92,14 @@
 .video-actions .button{display:inline-block}
 .video-related{display:inline-block;margin-top:12px;color:var(--accent);font-size:13px;text-decoration:underline}
 @media print{.video-player{display:none}.video-actions{padding:10px 0}.video-actions .button{border:0;padding:0}}
+
+.practice-order{border:1px solid var(--line);border-radius:10px;padding:16px;background:var(--bg)}
+.practice-order>p{margin-top:5px}
+.practice-order ol{margin:10px 0;padding-left:28px}
+.practice-order li::marker{font-weight:750}
+.practice-order-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 16px;padding:8px 0;border-bottom:1px solid var(--line)}
+.practice-order-controls{display:flex;gap:8px;flex-wrap:wrap}
+.practice-order-controls button{min-height:44px}
+.practice-order .save-row{margin-top:14px}
+.practice-order-jump{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.practice-card-number{font-size:13px;font-weight:750;color:var(--accent)}
