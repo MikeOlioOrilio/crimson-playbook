@@ -14,7 +14,8 @@ const counts=Object.fromEntries(Object.keys(cats).map(c=>[c,plays.filter(p=>p.ca
 const fundamentals=require('./lessons/fundamentals.cjs');
 const learning=require('./lessons/render.cjs');
 const videoPlayBody=require('./lessons/video-play.cjs');
-let home=head('Play library','A decision-based basketball playbook for a skilled, smaller sixth-grade club team.');
+const googleSiteVerification='<meta name="google-site-verification" content="svEJsdTjgbV5NuKpmi_rVlmJmTlMbyX5eYx3MtFPOqo">';
+let home=head('Play library','A decision-based basketball playbook for a skilled, smaller sixth-grade club team.').replace('</head>',googleSiteVerification+'</head>');
 home+=`<div class="layout">${learning.sidebar('',cats,counts,'',true)}<main id="main" class="library-main"><section class="focus-hero"><div class="eyebrow" id="view-label">TEAM VIEW · CURRENT FOCUS</div><h1 id="team-title">Our team’s playbook</h1><p id="team-note">The plays and drills for our next steps together.</p></section><p id="library-status" class="access-status" role="status">Loading your team’s playbook…</p><button id="retry-library" hidden>Try again</button><section id="coach-login" class="info-panel login-panel" hidden><h2>Coach View</h2><p>Enter your coach PIN to open every drill and play.</p><form id="coach-login-form" class="stack-form"><label>Coach PIN<input id="coach-pin" type="password" inputmode="numeric" pattern="[0-9]{4,8}" minlength="4" maxlength="8" autocomplete="off" required></label><button class="primary" id="unlock-coach">Open Coach View</button><p id="coach-error" role="status"></p></form><p><a href="admin/index.html">Administrator sign in ↗</a></p></section><div id="library-content" hidden><div class="library-toolbar"><div><h2 id="section-title">All categories</h2><p id="section-subtitle"></p></div><label class="search-wrap"><span aria-hidden="true">⌕</span><span class="sr-only">Search plays and drills</span><input type="search" id="search" placeholder="Search these plays…" autocomplete="off"></label></div><p id="result-count" class="selection-count" role="status"></p><div class="card-grid" id="cards"></div></div><noscript><p>Enable JavaScript to load your team’s selected plays and animations.</p></noscript></main></div>`;
 fs.writeFileSync(path.join(root,'index.html'),home+scripts()+foot());
 fs.writeFileSync(path.join(root,'assets/catalog.js'),'window.CRIMSON_CATALOG = '+JSON.stringify(plays.map(p=>({slug:p.slug,category:p.category,title:p.title,description:p.description,level:p.level,original:p.original||false,full:p.full||false,help:p.help||false,preview:p.options?.[0],optionsCount:p.options?.length,video:p.youtubeId?true:undefined,players:p.players,sequence:p.sequence})))+';\n');
@@ -33,7 +34,7 @@ for(const [i,p] of plays.entries()){
  const prefix='../',previous=plays[(i+plays.length-1)%plays.length],next=plays[(i+1)%plays.length];let html=head(p.title,p.description,prefix);
  if(p.youtubeId){
   if(p.slug==='defensive-stance-builder'){
-   html=html.replace('</head>','<meta name="google-site-verification" content="svEJsdTjgbV5NuKpmi_rVlmJmTlMbyX5eYx3MtFPOqo"></head>');
+   html=html.replace('</head>',googleSiteVerification+'</head>');
   }
   const videoScripts='<script src="../assets/catalog.js"></script><script src="../content/'+p.slug+'.js"></script><script type="module" src="../assets/play-access.js?v=practice-order"></script>';
   fs.mkdirSync(path.join(root,p.slug),{recursive:true});
