@@ -4,7 +4,7 @@ const C=window.CrimsonCourt,$=id=>document.getElementById(id);
 const p=window.CRIMSON_PLAY;if(!p)return;
 let chosen=0,t=0,playing=false,last=null,speed=1,raf=null,repeat=false;
 const params=new URLSearchParams(location.search);if(/^\d+$/.test(params.get('read')||''))chosen=Math.min(p.options.length-1,+params.get('read'));if(Number.isFinite(Number(params.get('t'))))t=Math.max(0,Math.min(1,Number(params.get('t'))||0));
-const settings={paths:true,matchups:false,help:!!p.help};
+const settings={paths:true,matchups:!!p.matchups,help:!!p.help};
 let prevIndex=-1;
 function controls(){ $('play-pause').textContent=playing?'Pause':'Play';$('play-pause').setAttribute('aria-pressed',String(playing));}
 function draw(){const o=p.options[chosen],steps=o.steps||o.frames;let step=0;while(step<steps.length-1&&steps[step+1].t<=t)step++;const s=C.stateAt(o,t);s.index=step;$('court').innerHTML=C.svg(p,o,t,settings);$('scrubber').value=Math.round(t*1000);$('elapsed').textContent=(t*p.duration).toFixed(1)+'s';$('phase-number').textContent=`Step ${s.index+1} of ${steps.length}`;$('phase-caption').textContent=steps[s.index].caption;$('previous-step').disabled=t<=0;$('next-step').disabled=t>=1;if(s.index!==prevIndex){document.querySelectorAll('.steps button').forEach((b,i)=>b.setAttribute('aria-current',i===s.index?'step':'false'));prevIndex=s.index;}controls();}

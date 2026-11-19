@@ -13,7 +13,7 @@
       {"source": "/crimson{,/index.html,/}", "headers": [{"key": "Cache-Control", "value": "no-cache"}]},
       {"source": "/crimson/admin{,/index.html,/}", "headers": [{"key": "Cache-Control", "value": "no-cache"}]},
       {"source": "/crimson/assets/{play-access,access-model,admin,library,catalog}.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}]},
-      {"source": "/crimson/content/baseline-screen-slip.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}]}
+      {"source": "/crimson/content/{baseline-screen-slip,gap-help-recover}.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}]}
     ],
     "redirects": [
       {"regex": "^/crimson/admin[.]html$", "destination": "/crimson/admin/", "type": 301},

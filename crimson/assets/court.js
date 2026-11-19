@@ -13,7 +13,18 @@ function court(full){const rim=(x,y)=>`<path d="M${x-6},${y-2}h12" stroke="#e4e7
 }
 function svg(p,o,t,settings={}){const s=stateAt(o,t),full=p.full,view=full?'-12 -12 212 124':'-12 -12 124 118';const r=full?3.1:3.05;let content=court(full);let help='';
  if(settings.help&&p.help&&!full){const side=s.ball[0]>53?'right':s.ball[0]<47?'left':'middle';help=`<path d="M50 0V94" stroke="#f8ca78" stroke-width=".5" stroke-dasharray="2 2" opacity=".65"/>`;if(side!=='middle')help+=`<rect x="${side==='right'?0:50}" y="0" width="50" height="94" fill="#80dfed" opacity=".055"/><text x="${side==='right'?18:82}" y="89" fill="#a3d9dd" font-size="2.3" text-anchor="middle">WEAK SIDE · HELP</text><text x="${side==='right'?82:18}" y="89" fill="#a3d9dd" font-size="2.3" text-anchor="middle">BALL SIDE</text>`;content+=help;}
- if(settings.matchups){for(const [k,v] of Object.entries(s.pos)){if(!k.startsWith('d'))continue;const target=(o.assignments&&t>=o.switchAt&&o.assignments[k])||k.replace('d','p');if(!s.pos[target])continue;const q=s.pos[target];content+=`<path d="M${v}L${q}" stroke="#f296a6" opacity=".3" stroke-width=".35" stroke-dasharray="1 1.6"/>`;}}
+ if(settings.matchups){
+  for(const [k,v] of Object.entries(s.pos)){
+   if(!k.startsWith('d'))continue;
+   const target=(o.assignments&&t>=o.switchAt&&o.assignments[k])||k.replace('d','p');
+   const q=s.pos[target];
+   if(!q)continue;
+   const stroke=p.matchups
+    ? `stroke="${playerColor(p,target)}" opacity=".7" stroke-width=".6"`
+    : 'stroke="#f296a6" opacity=".3" stroke-width=".35" stroke-dasharray="1 1.6"';
+   content+=`<path d="M${v}L${q}" ${stroke}/>`;
+  }
+ }
  if(settings.paths&&t<1){for(const [k,v] of Object.entries(s.pos)){const q=s.next.pos[k];if(Math.hypot(q[0]-v[0],q[1]-v[1])<5)continue;content+=`<path d="M${v}${s.paths[k].map(pt=>'L'+pt).join('')}" stroke="${k[0]==='d'?'#f2a1b1':playerColor(p,k)}" fill="none" stroke-width=".55" opacity=".55" ${k[0]==='d'?'stroke-dasharray="1 1.4"':''}/><circle cx="${q[0]}" cy="${q[1]}" r=".65" fill="${k[0]==='d'?'#f2a1b1':playerColor(p,k)}" opacity=".7"/>`;}}
  for(const z of o.screens||[]){if(t+1e-6<z.from||t-1e-6>z.to)continue;const v=s.pos[z.p],d=s.pos[z.d];let dx=d[0]-v[0],dy=d[1]-v[1],len=Math.hypot(dx,dy)||1;dx/=len;dy/=len;const x=v[0]+dx*3.7,y=v[1]+dy*3.7;content+=`<circle cx="${v[0]}" cy="${v[1]}" r="4.35" fill="#f8ca7817" stroke="#f8ca78" stroke-width=".4"/><path d="M${x-dy*3.5},${y+dx*3.5}L${x+dy*3.5},${y-dx*3.5}" stroke="#f8ca78" stroke-width="1.1" stroke-linecap="round"/><text x="${v[0]}" y="${v[1]+7}" fill="#ffe0a3" font-size="2.2" text-anchor="middle" font-weight="bold">SET</text>`;}
  // Render defenders first; X labels remain individually identifiable across reads.

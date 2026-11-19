@@ -19,9 +19,10 @@ function head(title,description,prefix=''){return `<!doctype html><html lang="en
 function foot(prefix=''){return `<footer class="footer"><span>CRIMSON BASKETBALL · Play fast. Read the game. Play together.</span><a href="${prefix}coach-guide/index.html#sources">Coaching sources & rules notes ↗</a></footer></body></html>`;}
 function catalogScript(prefix=''){return `<script src="${prefix}assets/catalog.js?v=box-one"></script>`;}
 function scripts(prefix='',slug=null){
- const version=slug==='baseline-screen-slip'?'?v=box-one':'';
+ const gapHelpVersion=slug==='gap-help-recover'?'?v=gap-help-shell':'';
+ const version=slug==='baseline-screen-slip'?'?v=box-one':gapHelpVersion;
  const content=slug?`<script src="${prefix}content/${slug}.js${version}"></script>`:'';
- return `${catalogScript(prefix)}${content}<script src="${prefix}assets/court.js"></script><script src="${prefix}assets/app.js?v=play-video"></script><script type="module" src="${prefix}assets/${slug?'play-access':'library'}.js?v=practice-order"></script>`;
+ return `${catalogScript(prefix)}${content}<script src="${prefix}assets/court.js${gapHelpVersion}"></script><script src="${prefix}assets/app.js${gapHelpVersion||'?v=play-video'}"></script><script type="module" src="${prefix}assets/${slug?'play-access':'library'}.js?v=practice-order"></script>`;
 }
 const counts=Object.fromEntries(Object.keys(cats).map(c=>[c,plays.filter(p=>p.category===c).length]));
 const fundamentals=require('./lessons/fundamentals.cjs');
