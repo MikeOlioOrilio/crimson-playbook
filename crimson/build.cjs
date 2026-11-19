@@ -17,7 +17,12 @@ for (const play of plays) {
 const icon="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230c1420'/%3E%3Ccircle cx='32' cy='32' r='23' fill='%23ed5671'/%3E%3Cpath d='M9 32h46M32 9v46M17 14q25 18 0 36M47 14q-25 18 0 36' fill='none' stroke='%230c1420' stroke-width='3'/%3E%3C/svg%3E";
 function head(title,description,prefix=''){return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0c1420"><meta name="description" content="${e(description)}"><title>${e(title)} | Crimson Playbook</title><link rel="icon" href="${icon}"><link rel="stylesheet" href="${prefix}assets/style.css?v=play-video"><link rel="stylesheet" href="${prefix}assets/learning.css"><link rel="stylesheet" href="${prefix}assets/rules.css"></head><body><a class="skip" href="#main">Skip to content</a><header class="topbar"><a class="brand" href="${prefix}index.html"><img class="brand-logo" src="${prefix}assets/crimsonlogo.webp" alt="Crimson — Home of the Mustangs" width="768" height="202"><span class="brand-label">/ PLAYBOOK</span></a><nav class="toplinks" aria-label="Main navigation"><a href="${prefix}index.html">Team View</a><a href="${prefix}index.html?view=coach">Coach View</a><a href="${prefix}rules/index.html" ${title==='Rules'?'aria-current="page"':''}>Rules</a><a href="${prefix}coach-guide/index.html">Coach’s Guide</a><a href="${prefix}admin/index.html">Admin</a><button id="leave-coach" hidden>Exit Coach View</button><span class="edition">6TH GRADE · CLUB</span></nav></header>`;}
 function foot(prefix=''){return `<footer class="footer"><span>CRIMSON BASKETBALL · Play fast. Read the game. Play together.</span><a href="${prefix}coach-guide/index.html#sources">Coaching sources & rules notes ↗</a></footer></body></html>`;}
-function scripts(prefix='',slug=null){return `<script src="${prefix}assets/catalog.js"></script>${slug?'<script src="'+prefix+'content/'+slug+'.js"></script>':''}<script src="${prefix}assets/court.js"></script><script src="${prefix}assets/app.js?v=play-video"></script><script type="module" src="${prefix}assets/${slug?'play-access':'library'}.js?v=practice-order"></script>`;}
+function catalogScript(prefix=''){return `<script src="${prefix}assets/catalog.js?v=box-one"></script>`;}
+function scripts(prefix='',slug=null){
+ const version=slug==='baseline-screen-slip'?'?v=box-one':'';
+ const content=slug?`<script src="${prefix}content/${slug}.js${version}"></script>`:'';
+ return `${catalogScript(prefix)}${content}<script src="${prefix}assets/court.js"></script><script src="${prefix}assets/app.js?v=play-video"></script><script type="module" src="${prefix}assets/${slug?'play-access':'library'}.js?v=practice-order"></script>`;
+}
 const counts=Object.fromEntries(Object.keys(cats).map(c=>[c,plays.filter(p=>p.category===c).length]));
 const fundamentals=require('./lessons/fundamentals.cjs');
 const learning=require('./lessons/render.cjs');
@@ -44,7 +49,7 @@ for(const [i,p] of plays.entries()){
   if(p.slug==='defensive-stance-builder'){
    html=html.replace('</head>',googleSiteVerification+'</head>');
   }
-  const videoScripts='<script src="../assets/catalog.js"></script><script src="../content/'+p.slug+'.js"></script><script type="module" src="../assets/play-access.js?v=practice-order"></script>';
+  const videoScripts=catalogScript(prefix)+`<script src="../content/${p.slug}.js"></script><script type="module" src="../assets/play-access.js?v=practice-order"></script>`;
   fs.mkdirSync(path.join(root,p.slug),{recursive:true});
   fs.writeFileSync(path.join(root,p.slug,'index.html'),html+videoPlayBody(p,cats[p.category],e)+videoScripts+foot(prefix));
   continue;
@@ -56,7 +61,7 @@ for(const [i,p] of plays.entries()){
 fs.mkdirSync(path.join(root,'coach-guide'),{recursive:true});fs.writeFileSync(path.join(root,'coach-guide/index.html'),head('Coach’s guide','Practice guide for sixth-grade club basketball team.','../')+fs.readFileSync(path.join(root,'guide.html'),'utf8')+foot('../'));
 
 fs.mkdirSync(path.join(root,'admin'),{recursive:true});
-fs.writeFileSync(path.join(root,'admin/index.html'),head('Admin','Choose team plays and manage coach PINs.','../')+fs.readFileSync(path.join(root,'admin.html'),'utf8')+'<script src="../assets/catalog.js"></script><script src="../assets/court.js"></script><script type="module" src="../assets/admin.js?v=practice-order"></script>'+foot('../'));
+fs.writeFileSync(path.join(root,'admin/index.html'),head('Admin','Choose team plays and manage coach PINs.','../')+fs.readFileSync(path.join(root,'admin.html'),'utf8')+catalogScript('../')+'<script src="../assets/court.js"></script><script type="module" src="../assets/admin.js?v=practice-order"></script>'+foot('../'));
 fs.mkdirSync(path.join(root,'firebase-setup'),{recursive:true});
 fs.writeFileSync(path.join(root,'firebase-setup/index.html'),head('Firebase setup','Step-by-step instructions for connecting the playbook.','../')+fs.readFileSync(path.join(root,'firebase-setup.html'),'utf8')+foot('../'));
 fs.mkdirSync(path.join(root,'position-guide'),{recursive:true});
