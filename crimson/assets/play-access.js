@@ -1,8 +1,10 @@
 import {readTeam, checkCoach, isAdmin, clearCoach, logoutAdmin} from './firebase-store.js';
 import {visiblePlays, friendlyError} from './access-model.js?v=practice-order';
+import {addDrillTimer} from './drill-timer.js';
 const main = document.getElementById('main'), gate = document.getElementById('play-access-status');
 const coachRequested = new URLSearchParams(location.search).get('view') === 'coach';
 const lessonVideo = main.querySelector('[data-lesson-video]');
+let timerAdded = false;
 async function load() {
   main.hidden = true; gate.hidden = false; gate.replaceChildren();
   const message = document.createElement('p'); message.textContent = 'Loading this play…'; gate.append(message);
@@ -18,6 +20,10 @@ async function load() {
       const link = document.createElement('a'); link.className = 'button'; link.href = '../index.html'; link.textContent = 'See this week’s plays'; gate.append(link); return;
     }
     gate.hidden = true; main.hidden = false;
+    if (!coach && !timerAdded) {
+      addDrillTimer(main.querySelector('#print, [data-print-video-lesson]'));
+      timerAdded = true;
+    }
     if (lessonVideo && !lessonVideo.firstElementChild) {
       lessonVideo.append(document.getElementById('lesson-video').content.cloneNode(true));
       lessonVideo.hidden = false;

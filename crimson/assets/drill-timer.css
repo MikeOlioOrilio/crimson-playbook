@@ -1,0 +1,85 @@
+.drill-timer-actions {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.play-heading .actions:has(.drill-timer-actions) {
+  flex-wrap: wrap;
+}
+
+.drill-timer-dialog {
+  box-sizing: border-box;
+  width: 66.6667vw;
+  max-width: none;
+  max-height: calc(100% - 24px);
+  margin: auto;
+  padding: 0;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.drill-timer-dialog::backdrop {
+  background: rgb(3 9 16 / 76%);
+}
+
+.drill-timer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 18px;
+}
+
+.drill-timer-header h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.drill-timer-dialog iframe {
+  display: block;
+  width: 100%;
+  height: clamp(8rem, 26vw, 22rem);
+  border: 0;
+  background: var(--bg);
+}
+
+.drill-timer-status {
+  margin: 0;
+  text-align: center;
+}
+
+.drill-timer-status:not(:empty) {
+  padding: 10px;
+}
+
+.drill-timer-face {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  margin: 0;
+  background: #0c1420;
+  color: #77d9dc;
+  font-family: system-ui, sans-serif;
+}
+
+.drill-timer-face output {
+  font-size: clamp(3.5rem, 28vw, 16rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.drill-timer-face output[data-finished] {
+  color: #f8ca78;
+}
+
+@media (max-width: 540px) {
+  .drill-timer-dialog { width: calc(100vw - 24px); }
+}
+
+@media print {
+  .drill-timer-dialog { display: none; }
+}

@@ -57,6 +57,7 @@ try {
   const crimsonAssets = new Set(['.js', '.css', '.jpg', '.jpeg', '.png', '.webp', '.svg']);
   const runtimeAssets = join(crimsonOutput, 'assets');
   copyAssets(join(crimson, 'assets'), runtimeAssets, crimsonAssets);
+  copyFile(join(crimson, 'assets', 'drill-timer.html'), join(runtimeAssets, 'drill-timer.html'));
   cpSync(join(crimsonSource, 'assets', 'catalog.js'), join(runtimeAssets, 'catalog.js'));
   copyAssets(join(crimsonSource, 'content'), join(crimsonOutput, 'content'), playAssets);
 
