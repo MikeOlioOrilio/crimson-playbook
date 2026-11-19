@@ -18,6 +18,10 @@ $('repeat').checked=false;
 $('repeat').onchange=e=>{repeat=e.target.checked;};
 window.addEventListener('pageshow',()=>{repeat=false;$('repeat').checked=false;});
 for(const k of ['paths','matchups','help']){const el=$(k);if(el){el.checked=settings[k];el.onchange=()=>{settings[k]=el.checked;draw();};}}
+$('video-read')?.addEventListener('click', event => {
+  setOption(Number(event.currentTarget.dataset.read));
+  $('options').querySelector('[aria-pressed="true"]').focus();
+});
 $('print').onclick=()=>{stop();window.print();};$('share').onclick=async()=>{const u=new URL(location.href);u.search='';u.searchParams.set('read',chosen);u.searchParams.set('t',t.toFixed(3));try{await navigator.clipboard.writeText(u.href);$('share').textContent='Link copied';}catch{$('share-fallback').hidden=false;$('share-url').value=u.href;$('share-url').focus();$('share-url').select();}setTimeout(()=>{$('share').textContent='Copy this read';},2200);};
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
 document.addEventListener('keydown',e=>{if(e.target.matches('input,select,textarea,button,a,summary'))return;if(e.code==='Space'){e.preventDefault();play();}else if(e.key==='ArrowRight'){e.preventDefault();jump(1);}else if(e.key==='ArrowLeft'){e.preventDefault();jump(-1);}});

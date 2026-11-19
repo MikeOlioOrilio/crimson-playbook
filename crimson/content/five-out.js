@@ -11,6 +11,11 @@ window.CRIMSON_PLAY = {
     "Fill behind a cutter, never into the same space."
   ],
   "practice": "9 minutes • Walk 5-on-0, play 3-on-3, then 5-on-5. First target: five possessions with a cut and correct fill, regardless of scoring. Add screens only after this is comfortable.",
+  "video": {
+    "id": "inc4zoIjzEI",
+    "publisher": "Breakthrough Basketball",
+    "cue": "Watch the passer cut to the rim and teammates fill the open spots to keep the floor spaced."
+  },
   "options": [
     {
       "label": "X1 late • Give-and-go",

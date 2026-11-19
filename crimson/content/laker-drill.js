@@ -11,6 +11,12 @@ window.CRIMSON_PLAY = {
     "No early window? Keep the ball and flow into five-out."
   ],
   "practice": "8 minutes • Groups of five go down and back, then rotate lane jobs. Target 4 of 5 trips with a secure outlet and no lane collisions; add guided defense, then live 5-on-2.",
+  "video": {
+    "id": "3HgVhs5N0Js",
+    "publisher": "Championship Productions",
+    "cue": "Watch the rebounder find the outlet and the runners fill their lanes. The video uses its own lane assignments.",
+    "start": 124
+  },
   "options": [
     {
       "label": "5-on-0 • Learn the lanes",

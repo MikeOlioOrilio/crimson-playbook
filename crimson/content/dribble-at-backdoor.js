@@ -11,6 +11,11 @@ window.CRIMSON_PLAY = {
     "If the defender sinks, stay spaced and make the safe pass."
   ],
   "practice": "6 minutes • Rehearse 2-on-2 plus a corner spacer, then 5-on-5. Defender chooses denial or cushion. Score one coaching point for correctly declining a covered backdoor.",
+  "video": {
+    "id": "wSZxVdxiL0E",
+    "publisher": "Breakthrough Basketball",
+    "cue": "Watch the wing step toward the dribbler, then plant and cut to the rim. In Crimson, make that cut when the defender denies the wing pass."
+  },
   "options": [
     {
       "label": "X2 denies • Backdoor",

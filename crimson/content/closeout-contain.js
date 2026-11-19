@@ -11,6 +11,11 @@ window.CRIMSON_PLAY = {
     "Slide to contain; turn and sprint if beaten. No reaching."
   ],
   "practice": "6 minutes • Alternate sides for 6 reps each, then play 1-on-1 with a three-dribble limit. Defender earns a point for a legal stop plus rebound. Attacker chooses freely after guided reps.",
+  "video": {
+    "id": "6Q0XV-8-SU0",
+    "publisher": "Breakthrough Basketball",
+    "cue": "Watch the defender sprint out on the pass, shorten the last steps, and stay in front of the drive."
+  },
   "options": [
     {
       "label": "Attack middle",

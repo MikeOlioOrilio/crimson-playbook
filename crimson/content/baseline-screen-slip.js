@@ -11,6 +11,12 @@ window.CRIMSON_PLAY = {
     "3 reads X5; 1 stays available if both options close."
   ],
   "practice": "7 minutes • 3 guided reps per coverage, then live. Switch inbound sides. Aim for 4 of 5 clean entries released by the count of four.",
+  "video": {
+    "id": "XWsWJnPS7qk",
+    "publisher": "Coach To Lead",
+    "cue": "Watch the screener slip to the rim when the cutter draws the defense. Pair this example with the “X5 follows 2 • Find 5” read.",
+    "read": 1
+  },
   "options": [
     {
       "label": "X5 stays with 5 • Find 2",

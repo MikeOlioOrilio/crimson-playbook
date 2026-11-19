@@ -93,6 +93,40 @@
 .video-related{display:inline-block;margin-top:12px;color:var(--accent);font-size:13px;text-decoration:underline}
 @media print{.video-player{display:none}.video-actions{padding:10px 0}.video-actions .button{border:0;padding:0}}
 
+.play-video-rack {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+}
+.play-video-panel [data-lesson-video] {
+  background: #000;
+}
+.play-video-panel .video-cue {
+  margin-top: 8px;
+}
+.play-video-panel .video-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.play-video-panel .video-player {
+  width: min(100%, 720px, max(356px, 80vh));
+  margin-inline: auto;
+}
+.play-video-panel .video-player:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: -4px;
+}
+@media screen and (orientation: portrait) {
+  .board-layout:has(> .play-video-rack) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media print {
+  .play-video-rack { display: block; }
+  .play-video-panel { display: none; }
+}
+
 .practice-order{border:1px solid var(--line);border-radius:10px;padding:16px;background:var(--bg)}
 .practice-order>p{margin-top:5px}
 .practice-order ol{margin:10px 0;padding-left:28px}

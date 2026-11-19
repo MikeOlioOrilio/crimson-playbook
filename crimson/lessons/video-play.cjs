@@ -1,7 +1,33 @@
+function videoPanel(play, escape) {
+  const {id, publisher, cue, start, end, read} = play.video ??
+    {id: play.youtubeId, publisher: 'FIBA Basketball'};
+  const embedParams = new URLSearchParams({playsinline: '1', rel: '0'});
+  if (start) embedParams.set('start', start);
+  if (end) embedParams.set('end', end);
+  const embedUrl = `https://www.youtube-nocookie.com/embed/${id}?${embedParams}`;
+  const watchUrl = `https://www.youtube.com/watch?v=${id}${start ? `&t=${start}s` : ''}`;
+  return `
+    <section class="board-panel${play.video ? ' play-video-panel' : ''}" aria-labelledby="video-heading">
+      <div class="board-top">
+        <h2 id="video-heading">${play.video ? 'See it in action' : 'Drill demonstration'}</h2>
+        <p class="video-credit">${escape(publisher)}</p>
+        ${cue ? `<p class="video-cue">${escape(cue)}</p>` : ''}
+      </div>
+      <div data-lesson-video hidden></div>
+      <template id="lesson-video">
+        <iframe class="video-player" src="${escape(embedUrl)}" title="${escape(publisher)} — ${escape(play.title)}"
+          referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; fullscreen"
+          allowfullscreen></iframe>
+      </template>
+      <div class="video-actions">
+        ${read === undefined ? '' : `<button type="button" id="video-read" data-read="${read}">Show this read on the diagram</button>`}
+        <a class="button" href="${escape(watchUrl)}" target="_blank" rel="noopener">Watch on YouTube</a>
+      </div>
+    </section>`;
+}
+
 function videoPlayBody(play, category, escape) {
   const title = escape(play.title);
-  const watchUrl = `https://www.youtube.com/watch?v=${play.youtubeId}`;
-  const embedUrl = `https://www.youtube-nocookie.com/embed/${play.youtubeId}?playsinline=1`;
   return `
 <section id="play-access-status" class="page access-status" role="status">
   <p>Loading this play…</p><noscript>Enable JavaScript to load your team’s playbook.</noscript>
@@ -20,21 +46,7 @@ function videoPlayBody(play, category, escape) {
     <div class="actions"><button type="button" data-print-video-lesson>Print lesson</button></div>
   </header>
   <div class="board-layout">
-    <section class="board-panel" aria-labelledby="video-heading">
-      <div class="board-top">
-        <h2 id="video-heading">Drill demonstration</h2>
-        <p class="video-credit">FIBA Basketball</p>
-      </div>
-      <div data-lesson-video hidden></div>
-      <template id="lesson-video">
-        <iframe class="video-player" src="${embedUrl}" title="FIBA Basketball — ${title}"
-          referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; fullscreen"
-          allowfullscreen></iframe>
-      </template>
-      <div class="video-actions">
-        <a class="button" href="${watchUrl}" target="_blank" rel="noopener">Watch on YouTube ↗</a>
-      </div>
-    </section>
+    ${videoPanel(play, escape)}
     <aside class="coach-panel" aria-label="Coaching notes">
       <section class="info-panel"><h2>Set it up</h2><p>${escape(play.setup)}</p></section>
       <section class="info-panel"><h2>Coaching cues</h2>
@@ -50,4 +62,4 @@ function videoPlayBody(play, category, escape) {
 </main>`;
 }
 
-module.exports = videoPlayBody;
+module.exports = {videoPanel, videoPlayBody};

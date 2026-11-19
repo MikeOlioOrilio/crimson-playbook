@@ -11,6 +11,11 @@ window.CRIMSON_PLAY = {
     "Two passes away: see ball and man near the help line; do not camp blindly in the paint."
   ],
   "practice": "9 minutes • Freeze on each pass and ask each player to name ball and matchup. Progress pass-only → one drive → live. Defense earns a point only for a stop plus rebound.",
+  "video": {
+    "id": "2TZ_KE2LmyE",
+    "publisher": "Jr. NBA",
+    "cue": "Watch the defenders shift with each pass and keep both the ball and their matchup in view."
+  },
   "options": [
     {
       "label": "Wing catch • Shift together",

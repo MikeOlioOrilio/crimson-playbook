@@ -11,6 +11,12 @@ window.CRIMSON_PLAY = {
     "All three pursue; the guard takes long rebounds."
   ],
   "practice": "7 minutes • Coach varies shot location and misses. Defense scores 1 for rebound plus outlet; offense scores 1 for a board. Rotate after 3 reps. Reward the box-out that creates a teammate’s rebound.",
+  "video": {
+    "id": "NG9_lpyHGCk",
+    "publisher": "Glazier Clinics / Katrina Merriweather",
+    "cue": "Watch all three defenders find someone to box out, then look for the outlet as soon as the rebound is secure. The clip uses a different starting alignment.",
+    "start": 104
+  },
   "options": [
     {
       "label": "Short rebound",

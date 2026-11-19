@@ -9,6 +9,7 @@
       {"source": "/{account-navigation,navigation}.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}]},
       {"source": "/styles.css", "headers": [{"key": "Cache-Control", "value": "no-cache"}]},
       {"source": "/crimson/defensive-stance-builder{,/index.html,/}", "headers": [{"key": "Cache-Control", "value": "no-cache"}]},
+      {"source": "/crimson/{baseline-screen-slip,closeout-contain,dribble-at-backdoor,five-out,gap-help-recover,hit-find-get,laker-drill}{,/index.html,/}", "headers": [{"key": "Cache-Control", "value": "no-cache"}]},
       {"source": "/crimson{,/index.html,/}", "headers": [{"key": "Cache-Control", "value": "no-cache"}]},
       {"source": "/crimson/admin{,/index.html,/}", "headers": [{"key": "Cache-Control", "value": "no-cache"}]},
       {"source": "/crimson/assets/{play-access,access-model,admin,library}.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}]}
