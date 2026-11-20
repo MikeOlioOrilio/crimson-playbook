@@ -200,3 +200,77 @@
   .audience-bar nav a {padding-inline:5px;line-height:1.35}
   .audience-bar nav b {display:none}
 }
+
+/* Italic letterforms can extend past their line box and gradient paint area. */
+h1,h2,h3,h4 {overflow-wrap:break-word}
+h1 em {
+  padding:.08em .14em .2em;
+  margin-inline:-.14em;
+  -webkit-box-decoration-break:clone;
+  box-decoration-break:clone;
+}
+.hero .hero-copy h1,.certification-overview h1 {line-height:1.12}
+.hero-copy h1 em {
+  padding:.08em .14em .2em;
+  margin:-.08em -.14em -.2em;
+}
+.hero {grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}
+.role-panel,.level-bottom {grid-template-columns:repeat(2,minmax(0,1fr))}
+.level-layout {grid-template-columns:minmax(0,.95fr) minmax(0,1.35fr)}
+.hero>*,.role-panel>*,.level-layout>*,.level-bottom>*,.experience>*,.principles>div>* {min-inline-size:0}
+.section-heading>div {flex:1 1 0}
+.section-heading>p {flex:0 1 360px}
+.output-doc {grid-template-columns:28px minmax(0,1fr)}
+
+/* Keep the slogan at half the name size, with room to wrap at word boundaries. */
+.brand {min-inline-size:0}
+.brand img {flex:none}
+.brand>span {min-inline-size:0;font-size:24px;letter-spacing:.08em;line-height:1.15}
+.brand small {font-size:12px;letter-spacing:.02em;line-height:1.4;font-weight:500;color:#bdc4be;margin-top:5px}
+.footer {flex-wrap:wrap}
+.footer .brand {max-inline-size:100%}
+.footer .brand>span {font-size:22px}
+.footer .brand small {font-size:11px}
+
+.site-header {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  gap:24px;
+}
+.site-header>.brand {justify-self:start}
+.site-header>nav:not(.mobile-nav) {justify-self:center;gap:24px;white-space:nowrap}
+.site-header>.header-controls {justify-self:end}
+.site-header>.mobile-nav {display:none}
+.site-header .product-links {max-height:min(560px,calc(100dvh - 132px));overscroll-behavior:contain}
+
+@media(max-width:1359px) {
+  .site-header {grid-template-columns:minmax(0,1fr) auto;gap:20px}
+  .site-header>nav:not(.mobile-nav),.site-header .header-controls .nav-cta {display:none}
+  .site-header .menu-button {display:flex;flex-direction:column;gap:6px;background:transparent;border:1px solid #ffffff25;padding:14px 12px;border-radius:3px}
+  .site-header .menu-button span {width:20px;height:1px;background:#d4dfd9}
+  .site-header>.mobile-nav {
+    position:absolute;inset-inline:0;top:100%;display:flex;flex-direction:column;align-items:stretch;gap:0;
+    max-height:calc(100dvh - 100%);overflow:auto;overscroll-behavior:contain;
+    padding:10px 30px 20px;border-bottom:1px solid #ffffff25;background:#161b18;
+  }
+  .site-header .mobile-nav>a {padding:13px 0;border-bottom:1px solid #ffffff10}
+  .site-header .mobile-nav .products summary {padding:13px 0;border-bottom:1px solid #ffffff10}
+  .site-header .mobile-nav .product-links {position:static;min-width:0;max-width:none;max-height:none;overflow:visible;margin-block:4px 8px;box-shadow:none}
+  .site-header .mobile-nav .product-links a:last-child {border-bottom:0}
+}
+@media(max-width:900px) {
+  .level-layout {grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:600px) {
+  html {scroll-padding-top:170px}
+  .hero,.role-panel,.level-bottom {grid-template-columns:minmax(0,1fr)}
+  .site-header {grid-template-columns:minmax(0,1fr);gap:12px}
+  .site-header>.brand {width:100%}
+  .site-header .brand>span {font-size:22px}
+  .site-header .brand small {font-size:11px}
+  .site-header>.header-controls,.site-header>.header-controls:has(.nav-dashboard:not([hidden])) {
+    max-width:none;flex-wrap:nowrap;justify-content:flex-end;gap:20px;
+  }
+  .site-header .nav-dashboard,.site-header .nav-login {font-size:12px}
+  .site-header>.mobile-nav {padding-inline:20px}
+}
