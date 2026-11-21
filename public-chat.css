@@ -71,7 +71,7 @@
 .rk-guide-message + .rk-guide-message {margin-top: 20px}
 .rk-guide .rk-guide-speaker {font-size: 12px; font-weight: 650; line-height: 1.5; color: #becdc2; margin: 0 0 5px}
 .rk-guide .rk-guide-message-text {margin: 0; font-size: 15px; line-height: 1.65; color: #eef1eb; white-space: pre-wrap; overflow-wrap: anywhere}
-.rk-guide-message-user {margin-inline-start: 26px; padding: 12px 14px; border: 1px solid #d6e1d325; border-radius: 12px 12px 3px 12px; background: #d1e0d00b}
+.rk-guide-message-user {margin-inline-start: 26px; padding: 12px 14px; border: 1px solid #d6e1d325; border-radius: 12px 12px 3px 12px; background: #d1e0d00b; text-align: right}
 .rk-guide-message-user .rk-guide-speaker {color: #d5ded7}
 .rk-guide-message-error .rk-guide-message-text {color: #efdbb6}
 .rk-guide-suggestions {display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px}
