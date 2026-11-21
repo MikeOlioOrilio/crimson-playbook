@@ -1,4 +1,21 @@
 'use strict';
+if (document.querySelector('[data-company-document-price]')) {
+  void fetch('https://learn.realknowledgeonline.com/api/company-documents', {
+    method: 'POST', credentials: 'omit', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({action: 'catalog'})
+  }).then(response => response.ok ? response.json() : null).then(result => {
+    const catalog = result?.catalog;
+    const starter = catalog?.plans?.find(plan => plan.tier === 'small');
+    if (!Number.isSafeInteger(starter?.monthlyCents) || !Number.isSafeInteger(catalog?.fees?.certification) ||
+        !Number.isSafeInteger(catalog?.fees?.qa)) return;
+    const price = amount => new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2}).format(amount / 100);
+    for (const target of document.querySelectorAll('[data-company-document-price]')) {
+      const certification = target.dataset.companyDocumentPrice === 'certification';
+      target.textContent = price(certification ? catalog.fees.certification : catalog.fees.qa) +
+        ' one-time document setup, plus company plans from ' + price(starter.monthlyCents) + '/month for up to ' + starter.includedSeats +
+        ' employees. ' + (certification ? 'Includes up to 15 assessment questions. ' : 'Includes a shared company question allowance. ') + 'Prices before tax.';
+    }
+  }).catch(() => {});
+}
 for (const [id, label, query, minimumFractionDigits] of [
   ['public-phase2-price', 'Expand Your Skills ', '?course=phase2', 2]
 ]) {
