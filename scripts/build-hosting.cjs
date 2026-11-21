@@ -40,7 +40,7 @@ try {
 
   for (const path of [
     'index.html', 'individuals.html', 'business.html', 'certifications.html', 'privacy.html',
-    'app.js', 'navigation.js', 'account-navigation.js', 'styles.css', 'assets/logo.jpg',
+    'app.js', 'navigation.js', 'account-navigation.js', 'styles.css', 'public-chat.js', 'public-chat.css', 'assets/logo.jpg',
     'admin/index.html', 'admin/instructor-guide.html', 'admin/admin.css', 'admin/admin.js',
     'admin/deployment.js', 'admin/firebase.js', 'admin/firebase-config.js'
   ]) {

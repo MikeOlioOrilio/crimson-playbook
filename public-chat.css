@@ -1,0 +1,117 @@
+/* Public website guide. Scoped so course and navigation styles do not leak in. */
+.rk-guide {
+  --rk-guide-bottom: calc(20px + env(safe-area-inset-bottom, 0px) + var(--rk-guide-keyboard, 0px));
+  --rk-guide-height: 100dvh;
+  position: relative;
+  z-index: 100;
+  color: #f0f1ec;
+  font: 15px/1.55 'DM Sans', Arial, sans-serif;
+  text-align: left;
+}
+.rk-guide *, .rk-guide *::before, .rk-guide *::after {box-sizing: border-box}
+.rk-guide [hidden] {display: none !important}
+.rk-guide button, .rk-guide textarea, .rk-guide a {font: inherit}
+.rk-guide button {margin: 0; cursor: pointer; text-transform: none; letter-spacing: normal}
+.rk-guide button:disabled {cursor: wait; opacity: .55}
+.rk-guide button:focus-visible, .rk-guide a:focus-visible, .rk-guide textarea:focus-visible {
+  outline: 2px solid #acd0d7;
+  outline-offset: 3px;
+}
+.rk-guide-launcher {
+  position: fixed;
+  inset-inline-end: max(20px, env(safe-area-inset-right, 0px));
+  bottom: var(--rk-guide-bottom);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 13px 20px;
+  border: 1px solid #dce4df;
+  border-radius: 28px;
+  background: linear-gradient(115deg, #b9c3c0, #f3f4ec 40%, #c8d1cb);
+  color: #14251d;
+  font-weight: 650 !important;
+  box-shadow: 0 5px 25px #0005;
+}
+.rk-guide-launcher:hover {background: #eef2eb}
+.rk-guide-launcher svg {width: 21px; height: 21px; flex: none}
+.rk-guide-panel {
+  position: fixed;
+  inset-inline-end: max(20px, env(safe-area-inset-right, 0px));
+  bottom: calc(var(--rk-guide-bottom) + 66px);
+  display: flex;
+  flex-direction: column;
+  width: min(410px, calc(100vw - 40px));
+  height: min(650px, calc(var(--rk-guide-height) - 110px));
+  min-height: 200px;
+  overflow: hidden;
+  border: 1px solid #78897d;
+  border-radius: 16px;
+  background: #151c18;
+  box-shadow: 0 18px 65px #0008;
+}
+.rk-guide-header {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  flex: none;
+  padding: 16px 14px 14px 18px;
+  border-bottom: 1px solid #ffffff20;
+  background: linear-gradient(115deg, #26372d, #1b231e);
+}
+.rk-guide-header img {width: 36px; height: 36px; flex: none; border-radius: 3px; border: 1px solid #ffffff35}
+.rk-guide-heading {flex: 1; min-width: 0}
+.rk-guide .rk-guide-title {font: 600 17px/1.3 'DM Sans', Arial, sans-serif; letter-spacing: -.02em; margin: 0; color: #f4f4ed}
+.rk-guide .rk-guide-subtitle {font-size: 13px; line-height: 1.4; color: #c7d3cb; margin: 2px 0 0}
+.rk-guide-icon-button {display: grid; place-items: center; flex: none; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 8px; background: transparent; color: #e6eee8}
+.rk-guide-icon-button:hover {background: #ffffff0d}
+.rk-guide-icon-button svg {width: 20px; height: 20px}
+.rk-guide-log {flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 20px 18px; scrollbar-width: thin; scrollbar-color: #6b7b70 #151c18}
+.rk-guide-message + .rk-guide-message {margin-top: 20px}
+.rk-guide .rk-guide-speaker {font-size: 12px; font-weight: 650; line-height: 1.5; color: #becdc2; margin: 0 0 5px}
+.rk-guide .rk-guide-message-text {margin: 0; font-size: 15px; line-height: 1.65; color: #eef1eb; white-space: pre-wrap; overflow-wrap: anywhere}
+.rk-guide-message-user {margin-inline-start: 26px; padding: 12px 14px; border: 1px solid #d6e1d325; border-radius: 12px 12px 3px 12px; background: #d1e0d00b}
+.rk-guide-message-user .rk-guide-speaker {color: #d5ded7}
+.rk-guide-message-error .rk-guide-message-text {color: #efdbb6}
+.rk-guide-suggestions {display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px}
+.rk-guide-suggestion {padding: 8px 11px; min-height: 40px; border: 1px solid #93a39165; border-radius: 8px; background: #c8d5c906; color: #dae5dc; font-size: 13px !important; line-height: 1.4 !important; text-align: left}
+.rk-guide-suggestion:hover {background: #d7e4d514; border-color: #bdcdb9}
+.rk-guide-links {display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin: 12px 0 0; padding: 0; list-style: none}
+.rk-guide .rk-guide-links a, .rk-guide .rk-guide-contact, .rk-guide .rk-guide-privacy {color: #d4e4d6; text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere}
+.rk-guide .rk-guide-links a:hover, .rk-guide .rk-guide-contact:hover, .rk-guide .rk-guide-privacy:hover {color: #fff}
+.rk-guide-retry {padding: 8px 12px; margin-top: 12px !important; border: 1px solid #b0bdac80; border-radius: 6px; background: transparent; color: #edf1e9; font-size: 14px !important}
+.rk-guide-status {flex: none; min-height: 0; padding: 0 18px; color: #d9e3d9; font-size: 13px; line-height: 1.5}
+.rk-guide-status:not(:empty) {padding-block: 10px; border-top: 1px solid #ffffff12}
+.rk-guide-status[data-busy="true"]::before {content: ''; display: inline-block; width: 7px; height: 7px; margin-inline-end: 8px; border-radius: 50%; background: #cbdcc9; animation: rk-guide-pulse 1.5s ease-in-out infinite}
+.rk-guide-composer {flex: none; padding: 14px 18px 12px; border-top: 1px solid #ffffff20; background: #19221c}
+.rk-guide .rk-guide-label {display: block; font-size: 13px; font-weight: 550; margin-bottom: 7px; color: #d6e0d8}
+.rk-guide-input-row {display: flex; align-items: flex-end; gap: 9px}
+.rk-guide textarea {display: block; width: 100%; min-width: 0; min-height: 66px; max-height: 130px; padding: 11px 12px; resize: vertical; border: 1px solid #8a9c8d; border-radius: 8px; background: #101712; color: #f0f2eb; font-size: 16px; line-height: 1.4}
+.rk-guide textarea::placeholder {color: #9daea1; opacity: 1}
+.rk-guide-send {display: inline-flex; align-items: center; justify-content: center; min-width: 61px; min-height: 44px; flex: none; padding: 10px 12px; border: 1px solid #dce4d8; border-radius: 8px; background: #dce5d8; color: #16241a; font-size: 14px !important; font-weight: 650 !important}
+.rk-guide-send:hover:not(:disabled) {background: #f2f4ec}
+.rk-guide .rk-guide-hint {font-size: 12px; line-height: 1.5; color: #aebeb1; margin: 9px 0 0}
+.rk-guide-footer {display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px; padding: 0 18px 13px; background: #19221c; font-size: 13px}
+.rk-guide-clear {min-height: 32px; padding: 4px 0; border: 0; background: none; color: #b7c7ba; text-decoration: underline; text-underline-offset: 3px; font-size: 12px !important}
+@keyframes rk-guide-pulse {50% {opacity: .35}}
+@media (max-width: 480px) {
+  .rk-guide {--rk-guide-bottom: calc(12px + env(safe-area-inset-bottom, 0px) + var(--rk-guide-keyboard, 0px))}
+  .rk-guide-launcher {inset-inline-end: max(12px, env(safe-area-inset-right, 0px)); min-height: 48px; padding: 11px 16px}
+  .rk-guide-panel {inset-inline: 12px; width: auto; height: min(650px, calc(var(--rk-guide-height) - 90px)); bottom: calc(var(--rk-guide-bottom) + 60px); border-radius: 12px}
+  .rk-guide-header {padding: 12px 9px 11px 14px}
+  .rk-guide-log {padding: 17px 14px}
+  .rk-guide-composer {padding: 12px 14px 10px}
+  .rk-guide-footer {padding-inline: 14px}
+  .rk-guide .rk-guide-message-text {font-size: 15px}
+}
+.rk-guide[data-compact="true"] .rk-guide-panel {height: calc(var(--rk-guide-height) - 26px); bottom: calc(12px + var(--rk-guide-keyboard, 0px)); min-height: 170px}
+.rk-guide[data-compact="true"][data-open="true"] .rk-guide-launcher {visibility: hidden}
+.rk-guide[data-compact="true"] .rk-guide-header {padding-block: 6px}
+.rk-guide[data-compact="true"] .rk-guide-header img {width: 28px; height: 28px}
+.rk-guide[data-compact="true"] .rk-guide-composer {padding-block: 8px}
+.rk-guide[data-compact="true"] textarea {min-height: 44px; max-height: 70px}
+.rk-guide[data-compact="true"] .rk-guide-label, .rk-guide[data-compact="true"] .rk-guide-hint {display: none}
+.rk-guide[data-compact="true"] .rk-guide-footer {padding-bottom: 7px}
+@media (prefers-reduced-motion: reduce) {.rk-guide-status[data-busy="true"]::before {animation: none}}
+@media print {.rk-guide {display: none !important}}
