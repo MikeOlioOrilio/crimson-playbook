@@ -32,6 +32,7 @@ if (login) {
     login.textContent = active ? 'Sign Out' : 'Login';
     login.href = dashboardUrl;
     login.removeAttribute('aria-disabled');
+    login.dataset.rkLoading = 'false';
     if (!active) status.textContent = '';
   }
 
@@ -50,6 +51,7 @@ if (login) {
     signingOut = true;
     login.setAttribute('aria-disabled', 'true');
     login.textContent = 'Signing out…';
+    login.dataset.rkLoading = 'true';
     status.textContent = '';
     request('sign-out');
     timeout = setTimeout(() => {

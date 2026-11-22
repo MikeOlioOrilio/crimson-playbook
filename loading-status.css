@@ -1,0 +1,25 @@
+/* The website guide's gentle pulse, scaled to the message's own type and color. */
+.rk-is-loading::before {
+  content: '';
+  display: inline-block;
+  width: .5em;
+  height: .5em;
+  margin-inline-end: .6em;
+  border-radius: 50%;
+  background: currentColor;
+  vertical-align: .06em;
+  flex: none;
+  animation: rk-loading-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes rk-loading-pulse {
+  50% { opacity: .35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rk-is-loading::before { animation: none; }
+}
+
+@media print {
+  .rk-is-loading::before { display: none; }
+}
