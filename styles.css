@@ -44,6 +44,12 @@
 .hero-art::before {inset-inline: 0;width:100%}
 .phase-two-invite{margin-top:22px}.phase-two-invite .button{border-color:#26332a50}.phase-two-invite p{font-size:13px;line-height:1.5;margin-top:8px}
 .phase-two-invite p {max-width:76ch}
+.phase-two-invite > .text-link {display:inline-block;margin-inline-start:18px}
+.launch-notice {margin-block:20px 0;padding:20px 24px;border:1px solid #c7a66b80;border-radius:8px;background:#c7a66b14;color:#f4e6c9}
+.launch-notice strong {display:block;font-size:clamp(1.1rem,2.5vw,1.4rem);line-height:1.35}
+.launch-notice p {max-width:94ch;margin-block:8px 0;font-size:.9rem;line-height:1.6;color:#d5d9d2}
+.button:disabled {cursor:default;opacity:.7;transform:none;box-shadow:none}
+@media(max-width:600px) {.launch-notice {padding:16px}.phase-two-invite > .text-link {margin:12px 0 0;display:block}}
 .business-entry-options {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 24px;margin-top:20px;max-width:580px}
 .business-entry-options p {color:#b3bdb6;font-size:13px;line-height:1.5;margin-top:6px}
 @media(max-width:400px) {.business-entry-options{grid-template-columns:1fr}}

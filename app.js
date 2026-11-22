@@ -16,20 +16,6 @@ if (document.querySelector('[data-company-document-price]')) {
     }
   }).catch(() => {});
 }
-for (const [id, label, query, minimumFractionDigits] of [
-  ['public-phase2-price', 'Expand Your Skills ', '?course=phase2', 2]
-]) {
-  const target = document.getElementById(id);
-  if (!target) continue;
-  void fetch('https://learn.realknowledgeonline.com/api/billing' + query)
-    .then(response => response.ok ? response.json() : null)
-    .then(offer => {
-      if (Number.isSafeInteger(offer?.unitAmount) && offer.unitAmount > 0) {
-        const price = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits});
-        target.textContent = label + price.format(offer.unitAmount / 100);
-      }
-    }).catch(() => {});
-}
 const businessRoles = [
   {name:'Operations',label:'THE OPERATIONS TEAM',title:'Turn “there has to be\na better way” into one.',description:'Bring the steps, the bottlenecks, and the exceptions. Learn to map a process, challenge the busywork, and prototype something your team can actually use.',list:['Build a searchable troubleshooting guide','Turn a procedure into a visual job aid','Prototype a checklist, calculator, or internal tool'],takeaway:'Your knowledge of the work is the starting point.',input:'“Here’s how receiving works, where we lose time, and the exceptions we need to protect.”',type:'A WORKING FIRST VERSION',output:'Receiving, rethought.',items:['A clearer process map','An exception checklist','A prototype receiving tool'],exercise:'Map a receiving or handoff process and prototype a clearer job aid.',check:'Test the normal path and at least two exceptions with someone who performs the work.'},
   {name:'People & training',label:'THE PEOPLE & TRAINING TEAM',title:'Turn expertise into\nsomething others can learn.',description:'Capture the knowledge experienced people carry. Learn to shape it into useful instruction, practice activities, and assessments that help others build capability.',list:['Develop onboarding and role-specific learning paths','Create scripts, visual guides, and training materials','Build scenario-based quizzes and observation checklists'],takeaway:'Make critical knowledge easier to understand and check.',input:'“Here’s our procedure, a veteran employee’s notes, and the mistakes new starters often make.”',type:'A LEARNING EXPERIENCE',output:'Know it. Practice it. Show it.',items:['A step-by-step training guide','A demonstration video script','A knowledge check and skills checklist'],exercise:'Turn one approved procedure into a lesson, practice activity, and knowledge check.',check:'Have a subject-matter expert review accuracy, then test comprehension with a learner.'},
