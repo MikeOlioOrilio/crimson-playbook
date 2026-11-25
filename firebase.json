@@ -6,7 +6,7 @@
     "headers": [
       {"source": "/", "headers": [{"key": "Cache-Control", "value": "no-cache"}]},
       {"source": "/{index,business,individuals,certifications,privacy}.html", "headers": [{"key": "Cache-Control", "value": "no-cache"}]},
-      {"source": "/{account-navigation,navigation}.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}]},
+      {"source": "/{account-navigation,navigation,certification-review-dates}.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}]},
       {"source": "/styles.css", "headers": [{"key": "Cache-Control", "value": "no-cache"}]},
       {"source": "/public-chat.{js,css}", "headers": [{"key": "Cache-Control", "value": "no-cache"}]},
       {"source": "/crimson/defensive-stance-builder{,/index.html,/}", "headers": [{"key": "Cache-Control", "value": "no-cache"}]},

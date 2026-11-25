@@ -184,8 +184,23 @@
 .certification-choice ul {margin:16px 0 0;padding-left:20px;font-size:1rem;color:#c1cec5}
 .certification-choice li + li {margin-top:8px}
 .certification-choice .button {max-width:100%;margin-top:24px;white-space:normal;line-height:1.5;text-align:left}
+.certification-choice > p.certification-audit {margin:20px 0 0;text-align:right;font-size:.75rem;line-height:1.6;color:#b7c8bd;overflow-wrap:anywhere}
+.certification-audit > a {text-decoration:underline;text-underline-offset:3px}
+.certification-audit > small {display:block;font-size:inherit;color:#a8bbaf}
+.certification-audit > small[hidden] {display:none}
+.certification-review-process {padding-block:40px 72px;scroll-margin-top:24px}
+.certification-review-process > .eyebrow {margin-bottom:18px}
+.certification-review-process h2 {font-size:clamp(2rem,4.4vw,3.4rem);line-height:1.12;overflow-wrap:anywhere}
+.certification-review-intro {max-width:78ch;margin-top:24px}
+.certification-review-steps {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;padding:0;margin:34px 0;list-style:none}
+.certification-review-steps > li {min-width:0;padding-top:20px;border-top:1px solid #bfd4ca50}
+.certification-review-steps h3 {font-size:1.2rem;font-weight:600;line-height:1.4;letter-spacing:-.02em;margin-bottom:12px}
+.certification-review-steps p {font-size:.95rem;line-height:1.8}
+.certification-review-process .certification-audit-explainer {max-width:95ch;padding:18px 20px;border-left:2px solid #bfd4ca;background:#ffffff06;font-size:.875rem;line-height:1.8;color:#bacac0}
 @media(max-width:760px) {
   .certification-focus-grid {grid-template-columns:minmax(0,1fr);gap:36px}
+  .certification-review-steps {grid-template-columns:minmax(0,1fr);gap:22px}
+  .certification-review-process {scroll-margin-top:90px}
 }
 .certificate-management {padding-block:clamp(40px,7vw,100px)}
 .certificate-management-grid {display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(24px,6vw,82px);align-items:center}
