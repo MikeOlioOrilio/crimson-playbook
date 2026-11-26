@@ -17,7 +17,6 @@
     const finished=civilDate.format(new Date(review.completedAt))+' UTC';
     if(review.modelReviewPerformed===false){show(card,'Not recorded for this run','Model review skipped. Reference check finished '+finished+'.','skipped');return;}
     const notes=[];
-    if(review.coverage==='with_gaps')notes.push('Finished with review gaps.');
     if(review.coverage==='unconfirmed'||review.modelReviewPerformed===null)notes.push('Model coverage not confirmed.');
     show(card,finished,notes.join(' '),review.coverage);
   }
